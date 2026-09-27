@@ -412,3 +412,102 @@ Pour réutiliser la bande sans la recopier, tu peux sortir le motif d'`InfoCard`
 **Fichiers concernés :** `docs/design/maquettes/README.md`.
 
 **Critères de fin :** le README contient un tableau « écran → PNG → page du PDF » pour les 17 écrans, vérifié en ouvrant chaque fichier.
+
+---
+
+# Logique de jeu et réglages
+
+Ces tâches s'appuient sur l'engine (`src/engine/`), la sauvegarde (`src/db/`) et les stores (`src/stores/`) de l'étape 4. **Règles à respecter :**
+- Toute règle va dans `src/engine/`, en TypeScript pur (pas de Vue, pas de Dexie), avec ses tests.
+- Tout tirage au sort reçoit un générateur à graine (`createRng` de `src/engine/random.ts`), jamais `Math.random`.
+- Tout chiffre réglable va dans `src/config/game.json`, et sa vérification dans `validateGameConfig` (`src/engine/config.ts`, avec un test).
+- Les composants n'appellent jamais Dexie : ils passent par un store.
+- **Sauvegarde :** une nouvelle table ou un nouveau champ se fait avec une **nouvelle version** du schéma (voir le commentaire en tête de `src/db/database.ts`). Si deux tâches en ont besoin en même temps, la première fusionnée prend la version 2, l'autre la version 3.
+
+## 17. Logique du mode Champion
+
+- **Niveau :** intermédiaire
+- **Pris par :** —
+- **Maquettes :** PNG 6 (question Champion) et 12 (Run terminé) ; pages 7 et 14 du PDF
+- **Dépend de :** aucune tâche (l'écran Run terminé est la tâche 10)
+
+**Contexte.** Mode contre la montre, débloqué à 100 points en Classique (`unlocks.champion.classiquePoints`, fonction `isChampionUnlocked`). Chaque énigme a un chrono de 20 s (`timers.championSeconds`). Le joueur enchaîne les énigmes, avec une série (« Série ×4 ») et un score. À la fin, l'écran « Run terminé » montre le score, les bonnes réponses (12/15), la série max et un éventuel record perso.
+
+**À faire valider par le pôle Game Design avant de coder** (puis à ranger dans `game.json`) :
+- le nombre d'énigmes d'un run (la maquette montre 15) et le format utilisé (la maquette montre un Carré 2×2) ;
+- le calcul du score : points du format, bonus de série, bonus de temps restant ? ;
+- ce qui arrive quand le temps est écoulé (compte comme une réponse fausse ?) ;
+- si le run se termine seulement au bout des N énigmes ou aussi après X erreurs ;
+- si le Champion rapporte aussi des Cauris.
+
+**Fichiers concernés :**
+- `src/engine/champion.ts` et `champion.test.ts` : tirage du run (avec graine), score, série, fin de run.
+- `src/stores/champion.ts` : le chrono (le store mesure le temps ; l'engine reçoit seulement « réponse » ou « temps écoulé »).
+- `src/db/database.ts` : le record perso (nouvelle version du schéma), `src/db/repository.ts`.
+- `src/config/game.json` et `src/engine/config.ts`.
+
+**Critères de fin :**
+- Même graine, même run : deux joueurs avec le même code auront les mêmes énigmes (préparation du Duel).
+- Tests : temps écoulé, série cassée, dernier tour, record battu ou non.
+- Le record perso survit à la fermeture de l'app (test avec fake-indexeddb, comme `src/db/database.test.ts`).
+
+## 18. Logique du mode Maître
+
+- **Niveau :** intermédiaire
+- **Pris par :** —
+- **Maquette :** PNG 7, page 8 du PDF
+- **Dépend de :** tâche 17 (déblocage « Après Champion »)
+
+**Contexte.** Pour chaque énigme, le joueur voit les 4 images puis **choisit comment répondre** : Duo, Carré ou Directe. Plus le format est difficile, plus il rapporte. La maquette affiche 25 %, 45 % et 100 %, ce qui correspond au rapport entre les points de chaque format et ceux du Direct dans `game.json` (25, 45, 100). Le chrono de 10 s (`timers.maitreSeconds`) démarre **après** le choix.
+
+**À faire valider par le pôle Game Design :**
+- la condition exacte de déblocage (« Après Champion » : un score minimal ? un run terminé ?) ;
+- la longueur d'une partie et le calcul du score ;
+- si les pourcentages affichés sont bien calculés à partir des points des formats.
+
+**Fichiers concernés :** `src/engine/maitre.ts` et `maitre.test.ts`, `src/stores/maitre.ts`, `src/config/game.json`, `src/engine/config.ts`.
+
+**Critères de fin :**
+- Le choix du format utilise `createRound` (`src/engine/round.ts`) : pas de nouvelle logique de propositions ni de plateau.
+- Les pourcentages sont calculés à partir de `game.json`, jamais écrits en dur.
+- Tests : chaque format choisi, temps écoulé après le choix, calcul du score.
+
+## 19. Écran Paramètres
+
+- **Niveau :** débutant
+- **Pris par :** —
+- **Maquette :** aucune pour l'instant, à demander au pôle Design (en attendant, s'inspirer de la Bibliothèque, PNG 16)
+- **Dépend de :** aucune tâche
+
+**Contexte.** Deux réglages :
+- **Son** activé ou désactivé. Il n'y a pas encore de son dans le jeu : on enregistre seulement le choix.
+- **Réinitialiser la progression** : efface Cauris, points, série, progression des régions, historique et anecdotes, **après confirmation**.
+
+**Composants du kit :** `ScreenHeader` (avec retour), `BaseButton` (le bouton de réinitialisation est **secondaire**, pas vert), `GameModal` pour la confirmation (« Tout effacer ? » avec « Effacer » et « Annuler »).
+
+**Fichiers concernés :**
+- `src/screens/SettingsScreen.vue`
+- `src/db/database.ts` : table `settings` pour le son (nouvelle version du schéma, **pas de localStorage**)
+- `src/db/repository.ts` : une fonction `resetProgress()` qui vide les tables du jeu
+- `src/stores/` : un store `settings`, et une action qui recharge `player` et `progress` après la réinitialisation
+- `src/i18n/fr.ts`, `src/router.ts`
+
+**Critères de fin :**
+- Rien n'est effacé sans confirmation, et « Annuler » ne touche à rien.
+- Après réinitialisation, le jeu revient à l'état de départ (seule la première région ouverte, 0 Cauri).
+- Le choix du son survit à la fermeture de l'app.
+- Test de `resetProgress()` avec fake-indexeddb.
+
+## 20. Demander au navigateur de garder la sauvegarde
+
+- **Niveau :** débutant
+- **Pris par :** —
+- **Dépend de :** aucune tâche
+
+**Contexte.** Sur un téléphone qui manque de place, le navigateur peut effacer les données d'un site, et donc la progression du joueur. `navigator.storage.persist()` demande au navigateur de ne pas le faire (Chrome l'accorde souvent quand la PWA est installée).
+
+**Fichiers concernés :** `src/db/` (une fonction `requestPersistentStorage()`), appelée une fois au démarrage (`src/main.ts` ou le store `player`).
+
+**Critères de fin :**
+- La demande est faite une seule fois, et un refus ou un navigateur qui ne connaît pas l'API ne provoque aucune erreur.
+- Le résultat (accordé ou non) est affiché dans la console en dev seulement.

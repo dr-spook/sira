@@ -2,5 +2,53 @@
   "_note": "Valeurs réglées par le pôle Game Design",
   "tiles": {
     "keepAccents": true
+  },
+  "formats": {
+    "duo": { "cauris": 10, "points": 25 },
+    "carre": { "cauris": 20, "points": 45 },
+    "direct": { "cauris": 50, "points": 100 }
+  },
+  "bonus": {
+    "streak": { "every": 5, "cauris": 20 },
+    "regionComplete": { "cauris": 50 }
+  },
+  "wrongAnswer": { "cauris": 0, "points": 0 },
+  "hints": {
+    "eliminer_2": { "cost": 15, "formats": ["carre"] },
+    "retirer_leurre": { "cost": 10, "formats": ["direct"] },
+    "placer_lettre": { "cost": 15, "formats": ["direct"] }
+  },
+  "direct": { "defaultDecoys": 4 },
+  "classique": {
+    "puzzlesPerRegion": 5,
+    "formatByPosition": ["carre", "carre", "carre", "direct", "direct"],
+    "reuseSolvedAnswers": true,
+    "retryGainFactor": 1,
+    "regionOrder": [
+      "guiriko",
+      "kadiogo",
+      "bankui",
+      "goulmou",
+      "djoro",
+      "kuilse",
+      "liptako",
+      "nakambe",
+      "nando",
+      "nazinon",
+      "oubri",
+      "sirba",
+      "soum",
+      "sourou",
+      "tannounyan",
+      "tapoa",
+      "yaadga"
+    ]
+  },
+  "unlocks": {
+    "champion": { "classiquePoints": 100 }
+  },
+  "timers": {
+    "championSeconds": 20,
+    "maitreSeconds": 10
   }
 }

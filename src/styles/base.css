@@ -27,6 +27,18 @@ h3 {
   outline-offset: var(--focus-ring-offset);
 }
 
+/* Message affiché par main.ts quand game.json est invalide. */
+.fatal-error {
+  margin: var(--space-16);
+  padding: var(--space-16);
+  border: var(--border-width) solid var(--state-error);
+  border-radius: var(--radius-md);
+  background: var(--state-error-bg);
+  color: var(--state-error-text);
+  font-size: var(--font-size-14);
+  white-space: pre-wrap;
+}
+
 /* Texte lu par les lecteurs d'écran mais invisible à l'écran. */
 .visually-hidden {
   position: absolute;

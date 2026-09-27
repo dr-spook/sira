@@ -50,4 +50,8 @@ export const fr = {
   infoCard: {
     title: 'Le savais-tu ?',
   },
+
+  errors: {
+    config: 'Le jeu ne peut pas démarrer : un réglage est invalide.',
+  },
 } as const
