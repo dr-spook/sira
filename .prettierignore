@@ -1,0 +1,8 @@
+dist/
+dev-dist/
+coverage/
+content-source/
+public/content/
+src/content/
+docs/
+package-lock.json

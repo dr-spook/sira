@@ -1,4 +1,7 @@
 node_modules/
 dist/
+dev-dist/
+coverage/
+*.local
 content-source/
 *.zip

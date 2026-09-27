@@ -1,0 +1,73 @@
+/* Couleurs SIRA : recopie de docs/design/couleurs-v1.md (§3 primitives, §4 sémantiques).
+   C'est le seul fichier du projet qui contient des hex. Les composants utilisent
+   uniquement les tokens sémantiques (2e bloc), jamais les primitives directement. */
+
+:root {
+  /* Primitives */
+  --red-50: #fff0f0;
+  --red-500: #ff3131;
+  --red-700: #ce1126;
+  --red-800: #a30d1e;
+
+  --green-50: #e8f7ef;
+  --green-500: #00be62;
+  --green-700: #00853f;
+  --green-800: #006b33;
+
+  --yellow-50: #fff8db;
+  --yellow-500: #ffd21f;
+  --yellow-800: #8c6a00;
+
+  --neutral-0: #ffffff;
+  --neutral-50: #f4f2ef;
+  --neutral-100: #e9e5e0;
+  --neutral-200: #d6d0c9;
+  --neutral-300: #b4ada6;
+  --neutral-600: #6b625b;
+  --neutral-900: #1c1714;
+  /* neutral-500 est volontairement absent : contraste trop faible (voir couleurs-v1.md §3). */
+
+  /* Tokens sémantiques */
+  --surface-page: var(--neutral-50);
+  --surface-card: var(--neutral-0);
+  --surface-locked: var(--neutral-100);
+  --surface-scrim: rgb(28 23 20 / 60%); /* neutral-900 à 60 % */
+
+  --text-high: var(--neutral-900);
+  --text-medium: var(--neutral-600);
+  --text-on-color: var(--neutral-0);
+
+  --border-strong: var(--neutral-900);
+  --border-soft: var(--neutral-200);
+
+  --action-primary: var(--green-700);
+  --action-primary-pressed: var(--green-800);
+  --action-secondary: var(--neutral-0);
+  --action-secondary-border: var(--neutral-900);
+
+  --state-success: var(--green-700);
+  --state-success-bg: var(--green-50);
+  --state-success-text: var(--green-800);
+
+  --state-error: var(--red-700);
+  --state-error-bg: var(--red-50);
+  --state-error-text: var(--red-800);
+
+  --state-locked-icon: var(--neutral-300);
+  --state-locked-text: var(--neutral-600);
+  --state-locked-bg: var(--neutral-100);
+
+  --progress-fill: var(--green-500);
+  --progress-track: var(--neutral-100);
+
+  --reward: var(--yellow-500);
+  --reward-text: var(--neutral-900);
+
+  --urgency: var(--red-700);
+
+  --brand: var(--red-500);
+
+  --focus-ring-color: var(--neutral-900);
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
+}
