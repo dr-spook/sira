@@ -54,7 +54,7 @@ src/
   styles/       tokens.css (couleurs, espacements, rayons)
   i18n/         fr.ts : tous les textes d'interface
 public/content/ images WebP GÉNÉRÉES
-scripts/        build-content (zip/dossiers → WebP + puzzles.json)
+scripts/        build-content (dossiers → WebP + puzzles.json)
 content-source/ contenu brut, IGNORÉ par git
 docs/           GDD, maquettes, couleurs
 ```
@@ -65,7 +65,7 @@ Règle : toute logique de jeu va dans `src/engine/` et a ses tests. Les composan
 
 Source : `content-source/` (non versionné, trop lourd). Arborescence : `<Région>(<Chef-lieu>)/<Réponse>/` avec 4 images + 1 fichier `.txt` (anecdote). **Le nom du dossier de réponse est la réponse.**
 
-`npm run content` produit `src/content/puzzles.json` et `public/content/**.webp`, et affiche un rapport d'erreurs (images manquantes, encodage, région inconnue). Seul ce résultat est versionné.
+`npm run content` produit `src/content/puzzles.json` et `public/content/img/*.webp`, et affiche un rapport d'erreurs (images manquantes, encodage, région inconnue). `npm run content -- --check` vérifie sans rien écrire. Seul `puzzles.json` est versionné : les WebP ne vont pas sur GitHub tant que les droits des images ne sont pas vérifiés, chaque membre les génère en local avec `npm run content`.
 
 Un fichier `meta.json` optionnel dans un dossier de réponse surcharge les valeurs par défaut (logique A/B, langue, leurres, source, crédits images).
 
