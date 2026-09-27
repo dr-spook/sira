@@ -16,10 +16,16 @@ import LetterTile from '@/components/LetterTile.vue'
 import ModeCard from '@/components/ModeCard.vue'
 import ProgressBar from '@/components/ProgressBar.vue'
 import ScreenHeader from '@/components/ScreenHeader.vue'
+import AnswerReveal from '@/components/AnswerReveal.vue'
+import PuzzleImages from '@/components/PuzzleImages.vue'
+import RegionNode from '@/components/RegionNode.vue'
+import ResultIcon from '@/components/ResultIcon.vue'
+import TagPill from '@/components/TagPill.vue'
 import { kit } from './kit-texts'
 
 const { states, demo } = kit
 const [answerA = '', answerB = '', answerC = '', answerD = ''] = demo.answers
+const resultVariants = ['success', 'neutral', 'reward', 'locked'] as const
 
 const modalOpen = ref(false)
 const dismissibleOpen = ref(false)
@@ -212,9 +218,19 @@ function log(name: string) {
             :subtitle="demo.lockedSubtitle"
             locked
             :lock-label="demo.lockedCondition"
-            @locked-click="log('ModeCard locked-click')"
           />
           <figcaption>{{ states.locked }}</figcaption>
+        </figure>
+        <figure>
+          <ModeCard
+            :title="demo.lockedTitle"
+            :subtitle="demo.lockedSubtitle"
+            locked
+            locked-clickable
+            :lock-label="demo.lockedCondition"
+            @locked-click="log('ModeCard locked-click')"
+          />
+          <figcaption>{{ states.lockedClickable }}</figcaption>
         </figure>
       </div>
     </section>
@@ -292,6 +308,12 @@ function log(name: string) {
           <ScreenHeader :title="demo.headerPlain" :subtitle="demo.headerSubtitle" />
           <figcaption>{{ states.withoutBack }}</figcaption>
         </figure>
+        <figure>
+          <ScreenHeader :title="demo.brand" brand>
+            <template #end><CauriChip :amount="245" /></template>
+          </ScreenHeader>
+          <figcaption>brand</figcaption>
+        </figure>
       </div>
     </section>
 
@@ -307,6 +329,71 @@ function log(name: string) {
           <figcaption>{{ states.withoutPattern }}</figcaption>
         </figure>
       </div>
+    </section>
+    <section class="kit__section">
+      <h2>TagPill</h2>
+      <div class="kit__row">
+        <figure>
+          <TagPill>{{ demo.tagFormat }}</TagPill>
+          <figcaption>neutral</figcaption>
+        </figure>
+        <figure>
+          <TagPill>{{ demo.tagStreak }}</TagPill>
+          <figcaption>neutral</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="kit__section">
+      <h2>ResultIcon</h2>
+      <div class="kit__row">
+        <figure v-for="variant in resultVariants" :key="variant">
+          <ResultIcon :variant="variant" />
+          <figcaption>{{ variant }}</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="kit__section">
+      <h2>AnswerReveal</h2>
+      <AnswerReveal :answer="demo.revealAnswer" />
+    </section>
+
+    <section class="kit__section">
+      <h2>RegionNode</h2>
+      <div class="kit__stack">
+        <figure>
+          <RegionNode :name="demo.regionDone" status="done" :successes="3" :target="3" />
+          <figcaption>{{ states.regionDone }}</figcaption>
+        </figure>
+        <figure>
+          <RegionNode
+            :name="demo.regionCurrent"
+            status="in-progress"
+            :successes="2"
+            :target="4"
+            selected
+            @select="log('RegionNode select')"
+          />
+          <figcaption>{{ states.regionCurrent }}</figcaption>
+        </figure>
+        <figure>
+          <RegionNode :name="demo.regionCurrent" status="in-progress" :successes="0" :target="4" />
+          <figcaption>{{ states.regionCurrentIdle }}</figcaption>
+        </figure>
+        <figure>
+          <RegionNode :name="demo.regionLocked" status="locked" label-side="left" />
+          <figcaption>{{ states.regionLocked }}</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="kit__section">
+      <h2>PuzzleImages</h2>
+      <figure>
+        <PuzzleImages :images="demo.missingImages" />
+        <figcaption>{{ states.imagesMissing }}</figcaption>
+      </figure>
     </section>
   </main>
 </template>

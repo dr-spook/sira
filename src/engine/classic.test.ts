@@ -8,6 +8,8 @@ import {
   isTourComplete,
   nextRegionId,
   recordAnswer,
+  regionTarget,
+  currentRegionId,
   startRegionRun,
   type RegionRun,
 } from './classic'
@@ -157,5 +159,25 @@ describe('progression entre régions', () => {
     for (const id of config.classique.regionOrder)
       progress = completeRegion(progress, id, 1, config)
     expect(isTourComplete(progress, config)).toBe(true)
+  })
+})
+
+describe('regionTarget et currentRegionId', () => {
+  it('donne l’objectif d’une région, réduit si elle manque d’énigmes', () => {
+    expect(regionTarget('oubri', PUZZLES, config)).toBe(1)
+    expect(regionTarget('bankui', PUZZLES, config)).toBe(4)
+    expect(regionTarget('yaadga', PUZZLES, config)).toBe(0)
+    const many = Array.from({ length: 8 }, (_, i) => makePuzzle('soum', `R${i}`))
+    expect(regionTarget('soum', many, config)).toBe(5)
+  })
+
+  it('met en avant la première région en cours dans l’ordre du Tour', () => {
+    let progress = initialProgress(config)
+    expect(currentRegionId(progress, config)).toBe('guiriko')
+    progress = completeRegion(progress, 'guiriko', 3, config)
+    expect(currentRegionId(progress, config)).toBe('kadiogo')
+    for (const id of config.classique.regionOrder)
+      progress = completeRegion(progress, id, 1, config)
+    expect(currentRegionId(progress, config)).toBeUndefined()
   })
 })

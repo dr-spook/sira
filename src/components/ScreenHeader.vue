@@ -8,10 +8,17 @@ import { ChevronLeft } from 'lucide-vue-next'
 import type { RouteLocationRaw } from 'vue-router'
 import { fr } from '@/i18n/fr'
 
-const { title, subtitle, back } = defineProps<{
+const {
+  title,
+  subtitle,
+  back,
+  brand = false,
+} = defineProps<{
   title: string
   subtitle?: string
   back?: RouteLocationRaw | true
+  /** Grand titre « SIRA » du Hub. */
+  brand?: boolean
 }>()
 
 const emit = defineEmits<{ back: [] }>()
@@ -37,7 +44,9 @@ const emit = defineEmits<{ back: [] }>()
       >
         <ChevronLeft :size="24" aria-hidden="true" />
       </button>
-      <h1 class="screen-header__title">{{ title }}</h1>
+      <h1 class="screen-header__title" :class="{ 'screen-header__title--brand': brand }">
+        {{ title }}
+      </h1>
       <div v-if="$slots.end" class="screen-header__end"><slot name="end" /></div>
     </div>
     <p v-if="subtitle" class="screen-header__subtitle">{{ subtitle }}</p>
@@ -77,6 +86,12 @@ const emit = defineEmits<{ back: [] }>()
   margin: 0;
   font-size: var(--font-size-24);
   font-weight: var(--font-weight-title);
+}
+
+.screen-header__title--brand {
+  font-size: var(--font-size-32);
+  font-weight: var(--font-weight-display);
+  letter-spacing: 0.08em;
 }
 
 .screen-header__end {

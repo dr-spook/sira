@@ -13,6 +13,13 @@ import {
 export const useProgressStore = defineStore('progress', () => {
   const regions = ref<RegionProgress>({})
   const loaded = ref(false)
+  let loading: Promise<void> | null = null
+
+  /** Charge depuis la sauvegarde une seule fois, même si plusieurs écrans le demandent en même temps. */
+  function ensureLoaded(): Promise<void> {
+    loading ??= load()
+    return loading
+  }
 
   async function load() {
     const saved = await loadRegionProgress()
@@ -40,5 +47,14 @@ export const useProgressStore = defineStore('progress', () => {
   }
   const tourComplete = () => isTourComplete(regions.value, gameConfig)
 
-  return { regions, loaded, load, recordSuccess, completeRegion, isUnlocked, tourComplete }
+  return {
+    regions,
+    loaded,
+    load,
+    ensureLoaded,
+    recordSuccess,
+    completeRegion,
+    isUnlocked,
+    tourComplete,
+  }
 })

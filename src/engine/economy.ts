@@ -1,5 +1,5 @@
 // Gains et dépenses. Tous les montants viennent de game.json (GameConfig).
-import type { Format, GameConfig } from './config'
+import type { Format, Gain, GameConfig } from './config'
 import { err, ok, type Result } from './result'
 
 export interface AnswerOutcome {
@@ -21,6 +21,13 @@ export interface Reward {
   streak: number
 }
 
+/** Gain d'une bonne réponse, hors bonus de série (affiché sur l'écran Question : « +20 »). */
+export function baseGain(format: Format, isRetry: boolean, config: GameConfig): Gain {
+  const base = config.formats[format]
+  const factor = isRetry ? config.classique.retryGainFactor : 1
+  return { cauris: Math.floor(base.cauris * factor), points: Math.floor(base.points * factor) }
+}
+
 export function answerReward(outcome: AnswerOutcome, config: GameConfig): Reward {
   if (!outcome.success) {
     return {
@@ -31,14 +38,13 @@ export function answerReward(outcome: AnswerOutcome, config: GameConfig): Reward
       streak: 0,
     }
   }
-  const base = config.formats[outcome.format]
-  const factor = outcome.isRetry ? config.classique.retryGainFactor : 1
+  const gain = baseGain(outcome.format, outcome.isRetry, config)
   const streak = outcome.streak + 1
   // Bonus à chaque multiple de `every` : 5, 10, 15…
   const streakBonus = streak % config.bonus.streak.every === 0 ? config.bonus.streak.cauris : 0
   return {
-    cauris: Math.floor(base.cauris * factor) + streakBonus,
-    points: Math.floor(base.points * factor),
+    cauris: gain.cauris + streakBonus,
+    points: gain.points,
     streakBonus,
     streak,
   }

@@ -8,6 +8,13 @@ import { addToBalance, isChampionUnlocked, spend, type Reward } from '@/engine/e
 export const usePlayerStore = defineStore('player', () => {
   const profile = ref<Profile>({ ...EMPTY_PROFILE })
   const loaded = ref(false)
+  let loading: Promise<void> | null = null
+
+  /** Charge depuis la sauvegarde une seule fois, même si plusieurs écrans le demandent en même temps. */
+  function ensureLoaded(): Promise<void> {
+    loading ??= load()
+    return loading
+  }
 
   async function load() {
     profile.value = await loadProfile()
@@ -44,5 +51,14 @@ export const usePlayerStore = defineStore('player', () => {
 
   const championUnlocked = () => isChampionUnlocked(profile.value.points, gameConfig)
 
-  return { profile, loaded, load, applyReward, addCauris, spendCauris, championUnlocked }
+  return {
+    profile,
+    loaded,
+    load,
+    ensureLoaded,
+    applyReward,
+    addCauris,
+    spendCauris,
+    championUnlocked,
+  }
 })

@@ -1,7 +1,9 @@
 <!--
   Carte d'un mode de jeu sur le Hub.
   Débloquée : bouton d'action. Verrouillée : grisée, avec un cadenas et la condition de
-  déblocage ; un toucher émet `locked-click` (pour ouvrir la modale « Champion verrouillé »).
+  déblocage. Une carte verrouillée n'est cliquable qu'avec `lockedClickable` (elle émet alors
+  `locked-click`, par exemple pour ouvrir la modale « Champion verrouillé ») : sinon, on ne
+  présente pas au joueur un bouton qui ne fait rien.
 -->
 <script setup lang="ts">
 import { Lock } from 'lucide-vue-next'
@@ -16,6 +18,7 @@ const {
   lockLabel,
   actionLabel = fr.common.play,
   to,
+  lockedClickable = false,
 } = defineProps<{
   title: string
   subtitle?: string
@@ -24,17 +27,20 @@ const {
   lockLabel?: string
   actionLabel?: string
   to?: RouteLocationRaw
+  lockedClickable?: boolean
 }>()
 
 const emit = defineEmits<{ play: []; 'locked-click': [] }>()
 </script>
 
 <template>
-  <button
+  <component
+    :is="lockedClickable ? 'button' : 'div'"
     v-if="locked"
-    type="button"
+    :type="lockedClickable ? 'button' : undefined"
     class="mode-card mode-card--locked"
-    @click="emit('locked-click')"
+    :class="{ 'mode-card--clickable': lockedClickable }"
+    @click="lockedClickable && emit('locked-click')"
   >
     <span class="mode-card__text">
       <span class="mode-card__title">{{ title }}</span>
@@ -45,7 +51,7 @@ const emit = defineEmits<{ play: []; 'locked-click': [] }>()
       <span class="visually-hidden">{{ fr.mode.locked }} :</span>
       {{ lockLabel }}
     </span>
-  </button>
+  </component>
 
   <div v-else class="mode-card">
     <span class="mode-card__text">
@@ -82,6 +88,9 @@ const emit = defineEmits<{ play: []; 'locked-click': [] }>()
   box-shadow: none;
   background: var(--surface-locked);
   color: var(--state-locked-text);
+}
+
+.mode-card--clickable {
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 }

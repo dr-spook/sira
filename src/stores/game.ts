@@ -31,6 +31,8 @@ export interface AnswerResult {
   /** Bonus de région, versé si cette réponse termine la région (0 sinon). */
   regionBonus: number
   regionComplete: boolean
+  /** Proposition choisie (Duo, Carré), pour l'afficher en vert ou en rouge. */
+  choiceId?: string
 }
 
 const puzzleById = new Map(catalog.puzzles.map((p) => [p.id, p]))
@@ -45,6 +47,9 @@ export const useGameStore = defineStore('game', () => {
   const round = shallowRef<Round | null>(null)
   const seed = ref<number | null>(null)
   const error = ref<string | null>(null)
+  /** Résultat de la dernière réponse. La manche reste affichée jusqu'à next(). */
+  const lastResult = shallowRef<AnswerResult | null>(null)
+  const answered = computed(() => lastResult.value !== null)
   // Le générateur n'est pas réactif : Vue n'a pas à suivre son état interne.
   let rng: Rng = createRng(0)
   // Dernière manche de chaque énigme ratée : sa reprise sera mélangée dans un autre ordre.
@@ -59,8 +64,7 @@ export const useGameStore = defineStore('game', () => {
   async function startRegion(regionId: string, forcedSeed?: number) {
     const player = usePlayerStore()
     const progress = useProgressStore()
-    if (!player.loaded) await player.load()
-    if (!progress.loaded) await progress.load()
+    await Promise.all([player.ensureLoaded(), progress.ensureLoaded()])
     if (!progress.isUnlocked(regionId)) {
       error.value = 'region-locked'
       return
@@ -70,6 +74,7 @@ export const useGameStore = defineStore('game', () => {
     rng = createRng(seed.value)
     previousRounds.clear()
     error.value = null
+    lastResult.value = null
 
     const solved = await solvedPuzzleIds()
     const inRegion = catalog.puzzles.filter((p) => p.regionId === regionId)
@@ -108,6 +113,7 @@ export const useGameStore = defineStore('game', () => {
       round.value = null
       return
     }
+    lastResult.value = null
     const result = createRound(
       puzzle,
       item.format,
@@ -125,12 +131,12 @@ export const useGameStore = defineStore('game', () => {
   }
 
   function tapTile(tileId: string) {
-    if (round.value?.format !== 'direct') return
+    if (round.value?.format !== 'direct' || answered.value) return
     round.value = { ...round.value, board: placeTile(round.value.board, tileId) }
   }
 
   function tapSlot(index: number) {
-    if (round.value?.format !== 'direct') return
+    if (round.value?.format !== 'direct' || answered.value) return
     round.value = { ...round.value, board: clearSlot(round.value.board, index) }
   }
 
@@ -156,7 +162,7 @@ export const useGameStore = defineStore('game', () => {
     const current = round.value
     const item = run.value && currentItem(run.value)
     const puzzle = item && puzzleById.get(item.puzzleId)
-    if (!current || !item || !puzzle || !run.value) return undefined
+    if (!current || !item || !puzzle || !run.value || answered.value) return undefined
     if (current.format === 'direct' ? !isBoardFull(current.board) : choiceId === undefined) {
       return undefined
     }
@@ -193,8 +199,8 @@ export const useGameStore = defineStore('game', () => {
       await progress.recordSuccess(run.value.regionId, run.value.successes)
     }
 
-    round.value = null
-    return { success, reward, puzzle, regionBonus: bonus, regionComplete }
+    lastResult.value = { success, reward, puzzle, regionBonus: bonus, regionComplete, choiceId }
+    return lastResult.value
   }
 
   /** Passe à l'énigme suivante de la file (après la modale Bravo ou Presque). */
@@ -207,6 +213,8 @@ export const useGameStore = defineStore('game', () => {
     round,
     seed,
     error,
+    lastResult,
+    answered,
     currentPuzzle,
     startRegion,
     tapTile,

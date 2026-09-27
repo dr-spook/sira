@@ -39,7 +39,10 @@ async function onOpen() {
   previouslyFocused = document.activeElement instanceof HTMLElement ? document.activeElement : null
   setBackgroundInert(true)
   await nextTick()
-  ;(focusableElements()[0] ?? card.value)?.focus()
+  // preventScroll : si la carte dépasse l'écran, on l'ouvre par le haut (titre visible),
+  // même quand le premier bouton est tout en bas.
+  ;(focusableElements()[0] ?? card.value)?.focus({ preventScroll: true })
+  card.value?.parentElement?.scrollTo({ top: 0 })
 }
 
 function onClosed() {
@@ -127,14 +130,16 @@ function onScrimClick() {
   position: fixed;
   inset: 0;
   z-index: 100;
-  display: grid;
-  place-items: center;
+  /* Centrage par marges automatiques : si la carte est plus haute que l'écran, elle défile
+     depuis son début (avec place-items: center, le haut serait coupé et inaccessible). */
+  display: flex;
   padding: var(--space-24) var(--space-16);
   overflow-y: auto;
   background: var(--surface-scrim);
 }
 
 .modal__card {
+  margin: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
