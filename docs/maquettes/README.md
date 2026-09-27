@@ -1,0 +1,1 @@
+Ces PNG donnent uniquement la disposition des écrans. Leurs couleurs sont à ignorer : les couleurs viennent de couleurs-v1.md et de maquettes-couleur-v1.pdf.
