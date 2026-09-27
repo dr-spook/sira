@@ -2,8 +2,6 @@
 
 # SIRA
 
-**(Le nom pue un peu mais bon… proposition ?)**
-
 **Game Design Document (GDD)**
 
 *Version 3.0 — mise à jour complète*

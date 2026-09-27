@@ -48,6 +48,7 @@ src/
   db/           schéma Dexie et migrations
   config/       game.json (chiffres réglables)
   content/      puzzles.json GÉNÉRÉ (ne pas éditer à la main)
+  assets/       fichiers de marque (logo…) importés par le code
   components/   composants réutilisables (boutons, puces, tuiles, modales)
   screens/      un fichier par écran des maquettes
   styles/       tokens.css (couleurs, espacements, rayons)
@@ -91,7 +92,7 @@ Téléphones modestes et 3G : images WebP compressées, précache par région, p
 
 - Code (variables, fonctions, fichiers) en anglais. Textes d'interface et commentaires en français.
 - Tous les textes d'interface dans `src/i18n/fr.ts`, pas en dur dans les composants.
-- Branches : `feat/…`, `fix/…`, `content/…`. Jamais de commit direct sur `main`.
+- Branches : `feat/…`, `fix/…`, `content/…`, `chore/…` (maintenance sans nouvelle fonctionnalité). Jamais de commit direct sur `main`.
 - Une PR = une tâche. Elle doit passer `lint`, `test` et `build`.
 - Messages de commit en français, à l'impératif : « Ajoute la modale Indice ».
 
