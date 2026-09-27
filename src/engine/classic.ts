@@ -39,6 +39,24 @@ export function formatsForCount(count: number, formatByPosition: readonly Format
   )
 }
 
+/**
+ * Objectif d'une région : puzzlesPerRegion, ou moins si la région manque d'énigmes.
+ * Sert à afficher « 3/5 » sur la carte avant même d'avoir commencé la région.
+ */
+export function regionTarget(
+  regionId: string,
+  puzzles: readonly Puzzle[],
+  config: GameConfig,
+): number {
+  const available = puzzles.filter((p) => p.regionId === regionId).length
+  return Math.min(config.classique.puzzlesPerRegion, available)
+}
+
+/** Région à mettre en avant : la première « en cours » dans l'ordre du Tour. */
+export function currentRegionId(progress: RegionProgress, config: GameConfig): string | undefined {
+  return config.classique.regionOrder.find((id) => progress[id]?.status === 'in-progress')
+}
+
 export interface RegionRunInput {
   regionId: string
   puzzles: readonly Puzzle[]

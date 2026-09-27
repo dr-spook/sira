@@ -1,5 +1,12 @@
 import { describe, expect, it } from 'vitest'
-import { addToBalance, answerReward, isChampionUnlocked, regionBonus, spend } from './economy'
+import {
+  addToBalance,
+  answerReward,
+  baseGain,
+  isChampionUnlocked,
+  regionBonus,
+  spend,
+} from './economy'
 import { testConfig } from './testing'
 
 const config = testConfig()
@@ -75,5 +82,15 @@ describe('soldes', () => {
     expect(regionBonus(config)).toBe(50)
     expect(isChampionUnlocked(99, config)).toBe(false)
     expect(isChampionUnlocked(100, config)).toBe(true)
+  })
+})
+
+describe('baseGain', () => {
+  it('donne le gain du format, réduit pour une reprise', () => {
+    expect(baseGain('carre', false, config)).toEqual({ cauris: 20, points: 45 })
+    expect(baseGain('direct', true, testConfig({ retryGainFactor: 0.5 }))).toEqual({
+      cauris: 25,
+      points: 50,
+    })
   })
 })
