@@ -53,6 +53,7 @@ src/
   screens/      un fichier par écran des maquettes
   styles/       tokens.css (couleurs, espacements, rayons)
   i18n/         fr.ts : tous les textes d'interface
+  dev/          outils de dev uniquement (page /kit), absents du build de production
 public/content/ images WebP GÉNÉRÉES
 scripts/        build-content (dossiers → WebP + puzzles.json)
 content-source/ contenu brut, IGNORÉ par git

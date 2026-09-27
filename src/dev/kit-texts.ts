@@ -1,0 +1,67 @@
+// Textes et données factices de la page /kit. Page de dev uniquement : ces textes restent
+// hors de src/i18n/fr.ts pour ne pas partir dans le bundle de production.
+
+export const kit = {
+  title: 'Kit visuel SIRA',
+  intro:
+    'Tous les composants de src/components/, dans tous leurs états. Page visible en dev uniquement.',
+  pressedNote:
+    'L’état « pressé » est figé ici avec la classe is-pressed ; en jeu, il suit le doigt.',
+
+  states: {
+    rest: 'repos',
+    pressed: 'pressé',
+    disabled: 'désactivé',
+    link: 'lien du router',
+    focus: 'focus : utilise Tab au clavier',
+    correct: 'juste',
+    wrong: 'faux',
+    eliminated: 'éliminé',
+    bank: 'en banque',
+    placed: 'placée',
+    removed: 'désactivée (leurre retiré)',
+    empty: 'vide',
+    filled: 'remplie',
+    unlocked: 'débloquée',
+    locked: 'verrouillée',
+    continuous: 'continue',
+    segmented: 'segmentée (17 cases)',
+    normal: 'normal',
+    urgent: 'urgent (5 s ou moins)',
+    withBack: 'avec retour et zone à droite',
+    withoutBack: 'sans retour',
+    withPattern: 'avec bande',
+    withoutPattern: 'sans bande',
+  },
+
+  modal: {
+    open: 'Ouvrir la modale',
+    openDismissible: 'Ouvrir (Échap autorisé)',
+    title: 'Utiliser un indice',
+    body: 'Le focus reste dans la modale. Tab et Maj+Tab tournent en boucle.',
+    confirm: 'Continuer',
+    close: 'Fermer',
+  },
+
+  demo: {
+    primary: 'Jouer',
+    secondary: 'Retour à la carte',
+    answers: ['Tô', 'Riz gras', 'Babenda', 'Couscous'],
+    letters: ['B', 'A', 'N', 'K', 'U', 'I', 'Ɛ', 'Ɔ', 'Ŋ', 'Ñ'],
+    modeTitle: 'Classique',
+    modeSubtitle: 'Le Tour du Faso',
+    lockedTitle: 'Champion',
+    lockedSubtitle: 'Rappel · 20 s',
+    lockedCondition: '100 pts en Classique',
+    progressLabel: 'Griot du Faso · 2/17',
+    progressPoints: '62 / 100 points',
+    headerTitle: 'Bankui · 2/5',
+    headerPlain: 'Bibliothèque',
+    headerSubtitle: 'Anecdotes débloquées · 8',
+    cauriUnit: 'Cauris',
+    cauriLabel: 'Cauris · bonus région',
+    anecdote: 'Dédougou (Bankui) accueille le FESTIMA, festival international des masques.',
+    lastAction: 'Dernier événement',
+    none: 'aucun',
+  },
+} as const
