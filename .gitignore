@@ -4,4 +4,7 @@ dev-dist/
 coverage/
 *.local
 content-source/
+# Images générées : droits pas encore vérifiés, chacun les génère en local (npm run content).
+public/content/*
+!public/content/.gitkeep
 *.zip

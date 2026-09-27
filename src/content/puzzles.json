@@ -1,0 +1,1269 @@
+{
+  "version": 1,
+  "regions": [
+    {
+      "id": "bankui",
+      "name": "Bankui",
+      "capital": "Dédougou"
+    },
+    {
+      "id": "djoro",
+      "name": "Djôrô",
+      "capital": "Gaoua"
+    },
+    {
+      "id": "goulmou",
+      "name": "Goulmou",
+      "capital": "Fada N’Gourma"
+    },
+    {
+      "id": "guiriko",
+      "name": "Guiriko",
+      "capital": "Bobo-Dioulasso"
+    },
+    {
+      "id": "kadiogo",
+      "name": "Kadiogo",
+      "capital": "Ouagadougou"
+    },
+    {
+      "id": "kuilse",
+      "name": "Kuilsé",
+      "capital": "Kaya"
+    },
+    {
+      "id": "liptako",
+      "name": "Liptako",
+      "capital": "Dori"
+    },
+    {
+      "id": "nakambe",
+      "name": "Nakambé",
+      "capital": "Tenkodogo"
+    },
+    {
+      "id": "nando",
+      "name": "Nando",
+      "capital": "Koudougou"
+    },
+    {
+      "id": "nazinon",
+      "name": "Nazinon",
+      "capital": "Manga"
+    },
+    {
+      "id": "oubri",
+      "name": "Oubri",
+      "capital": "Ziniaré"
+    },
+    {
+      "id": "sirba",
+      "name": "Sirba",
+      "capital": "Bogandé"
+    },
+    {
+      "id": "soum",
+      "name": "Soum",
+      "capital": "Djibo"
+    },
+    {
+      "id": "sourou",
+      "name": "Sourou",
+      "capital": "Tougan"
+    },
+    {
+      "id": "tannounyan",
+      "name": "Tannounyan",
+      "capital": "Banfora"
+    },
+    {
+      "id": "tapoa",
+      "name": "Tapoa",
+      "capital": "Diapaga"
+    },
+    {
+      "id": "yaadga",
+      "name": "Yaadga",
+      "capital": "Ouahigouya"
+    }
+  ],
+  "puzzles": [
+    {
+      "id": "bankui--bwaba",
+      "regionId": "bankui",
+      "answer": "Bwaba",
+      "tiles": [
+        "B",
+        "W",
+        "A",
+        "B",
+        "A"
+      ],
+      "lang": "fr",
+      "logic": "A",
+      "images": [
+        "96c72b358108.webp",
+        "8e996b3462ba.webp",
+        "169317728946.webp",
+        "1112a60c8306.webp"
+      ],
+      "anecdote": {
+        "title": "Bwaba",
+        "text": "Les Bwaba sont célèbres pour leurs immenses masques de planches en bois pouvant dépasser deux mètres de haut, peints de motifs géométriques noirs, blancs et rouges (les yeux en damier, les zigzags représentant le chemin des ancêtres). La prouesse physique des danseurs est légendaire : ils font virevolter ces masques géants uniquement à la force de leur mâchoire, en serrant une cordelette tressée entre leurs dents."
+      },
+      "distractors": [],
+      "decoyLetters": [],
+      "credits": [],
+      "source": null
+    },
+    {
+      "id": "bankui--marka",
+      "regionId": "bankui",
+      "answer": "Marka",
+      "tiles": [
+        "M",
+        "A",
+        "R",
+        "K",
+        "A"
+      ],
+      "lang": "fr",
+      "logic": "A",
+      "images": [
+        "d9f3465f19f5.webp",
+        "11ea9c899258.webp",
+        "8e42f7cfc8b2.webp",
+        "46b9679b09b0.webp"
+      ],
+      "anecdote": {
+        "title": "Marka",
+        "text": "Les Marka possèdent un savoir-faire séculaire dans la teinture des pagnes à l'indigo naturel. Une ancienne croyance locale voulait que les cuves de teinture indigo possèdent leur propre esprit féminin. Pour que la couleur soit d'un bleu profond et parfait, les teinturières devaient respecter des tabous stricts, comme ne jamais s'approcher des cuves en état de colère."
+      },
+      "distractors": [],
+      "decoyLetters": [],
+      "credits": [],
+      "source": null
+    },
+    {
+      "id": "bankui--mossi",
+      "regionId": "bankui",
+      "answer": "Mossi",
+      "tiles": [
+        "M",
+        "O",
+        "S",
+        "S",
+        "I"
+      ],
+      "lang": "fr",
+      "logic": "A",
+      "images": [
+        "afc99771181a.webp",
+        "a733f52b3a30.webp",
+        "4ea3301e7de2.webp",
+        "c803533e54fe.webp"
+      ],
+      "anecdote": {
+        "title": "Mossi",
+        "text": "Le premier empereur mossi, Moro Naba Oubri, était le fils d'une princesse guerrière (Yennenga) et d'un chasseur éléphant. En mémoire de leurs origines cavalières, chaque vendredi matin à Ouagadougou, le Moro Naba actuel mime son départ pour la guerre sur son cheval face à sa cour qui le supplie de rester pour préserver la paix. Il finit par descendre de cheval, signifiant qu'il choisit la paix pour son peuple."
+      },
+      "distractors": [],
+      "decoyLetters": [],
+      "credits": [],
+      "source": null
+    },
+    {
+      "id": "bankui--peul",
+      "regionId": "bankui",
+      "answer": "Peul",
+      "tiles": [
+        "P",
+        "E",
+        "U",
+        "L"
+      ],
+      "lang": "fr",
+      "logic": "A",
+      "images": [
+        "71eac528c367.webp",
+        "4614c032735f.webp",
+        "4529977a63e0.webp",
+        "a4b489f1d372.webp"
+      ],
+      "anecdote": {
+        "title": "Peul",
+        "text": "Une légende pastorale raconte que Dieu proposa aux ancêtres des Peuls de choisir entre des calebasses remplies d'or et des calebasses remplies de lait. Sans hésiter, ils choisirent le lait, liant à jamais leur destin à la vache sacrée. L'attachement d'un Peul à son cheptel est tel qu'un éleveur traditionnel connaît le nom, le caractère et la généalogie de chacune de ses bêtes."
+      },
+      "distractors": [],
+      "decoyLetters": [],
+      "credits": [],
+      "source": null
+    },
+    {
+      "id": "djoro--birifor",
+      "regionId": "djoro",
+      "answer": "Birifor",
+      "tiles": [
+        "B",
+        "I",
+        "R",
+        "I",
+        "F",
+        "O",
+        "R"
+      ],
+      "lang": "fr",
+      "logic": "A",
+      "images": [
+        "fda616493ce7.webp",
+        "f60c34fd48af.webp",
+        "d6a289112bd4.webp",
+        "d5d820ac20a4.webp"
+      ],
+      "anecdote": {
+        "title": "Birifor",
+        "text": "Chez les Birifor, un rituel de divination spectaculaire veut que les morts choisissent eux-mêmes leurs fossoyeurs lors des funérailles. Quatre hommes portent alors sur leurs épaules le corps enveloppé ou un autel mobile représentant l'esprit du défunt. Une force invisible est censée animer les porteurs en les poussant à reculer, avancer ou courir contre leur gré à travers la foule. Le cortège finit par se diriger soudainement vers des personnes précises et s'arrêter net devant elles, ce qui investit immédiatement ces élus de la charge sacrée et obligatoire de creuser la tombe."
+      },
+      "distractors": [],
+      "decoyLetters": [],
+      "credits": [],
+      "source": null
+    },
+    {
+      "id": "djoro--dagara",
+      "regionId": "djoro",
+      "answer": "Dagara",
+      "tiles": [
+        "D",
+        "A",
+        "G",
+        "A",
+        "R",
+        "A"
+      ],
+      "lang": "fr",
+      "logic": "A",
+      "images": [
+        "dec34bc392ee.webp",
+        "a7ee01253954.webp",
+        "d77efb545014.webp",
+        "e02c5351cc27.webp"
+      ],
+      "anecdote": {
+        "title": "Dagara",
+        "text": "Chez les Dagara, les funérailles ne sont pas seulement un moment de tristesse, mais une mise en scène de la vie du défunt. L'anecdote veut que l'on habille le corps du défunt avec ses plus beaux vêtements et qu'on le place sur une chaise haute, comme s'il était vivant, pour lui rendre un dernier hommage festif à travers des danses au son du xylophone en bois (le Gyil)."
+      },
+      "distractors": [],
+      "decoyLetters": [],
+      "credits": [],
+      "source": null
+    },
+    {
+      "id": "djoro--lobi",
+      "regionId": "djoro",
+      "answer": "Lobi",
+      "tiles": [
+        "L",
+        "O",
+        "B",
+        "I"
+      ],
+      "lang": "fr",
+      "logic": "A",
+      "images": [
+        "527e79b9cbc3.webp",
+        "4136b7719a45.webp",
+        "e058a72e4341.webp",
+        "30c06d0ab0ce.webp"
+      ],
+      "anecdote": {
+        "title": "Lobi",
+        "text": "Les Lobi n'ont jamais eu de roi ni de chef centralisé. Face aux razzias coloniales et négrières, ils ont conçu le Soukala, une concession en banco qui ressemble à une véritable forteresse militaire. Les murs sont aveugles (sans fenêtres vers l'extérieur) et l'accès au toit-terrasse se fait par une échelle sculptée en forme de \"Y\". Depuis le toit, les archers lobi, réputés redoutables, pouvaient flécher les envahisseurs à 360 degrés."
+      },
+      "distractors": [],
+      "decoyLetters": [],
+      "credits": [],
+      "source": null
+    },
+    {
+      "id": "goulmou--gourmantche",
+      "regionId": "goulmou",
+      "answer": "Gourmantché",
+      "tiles": [
+        "G",
+        "O",
+        "U",
+        "R",
+        "M",
+        "A",
+        "N",
+        "T",
+        "C",
+        "H",
+        "É"
+      ],
+      "lang": "fr",
+      "logic": "A",
+      "images": [
+        "8fbc020d5e46.webp",
+        "c10c58ae0d9f.webp",
+        "49b76c1440cb.webp",
+        "a6422024e1ad.webp"
+      ],
+      "anecdote": {
+        "title": "Gourmantché",
+        "text": "Les Gourmantché sont mondialement reconnus pour leur maîtrise de la divination par le sable (le Ticte). On raconte qu'historiquement, aucun roi du Gulmu ne prenait une décision politique, militaire ou agricole sans que les devins n'aient tracé des signes ésotériques dans le sable fin pour lire l'avenir du royaume."
+      },
+      "distractors": [],
+      "decoyLetters": [],
+      "credits": [],
+      "source": null
+    },
+    {
+      "id": "goulmou--peul",
+      "regionId": "goulmou",
+      "answer": "Peul",
+      "tiles": [
+        "P",
+        "E",
+        "U",
+        "L"
+      ],
+      "lang": "fr",
+      "logic": "A",
+      "images": [
+        "71eac528c367.webp",
+        "4614c032735f.webp",
+        "4529977a63e0.webp",
+        "a4b489f1d372.webp"
+      ],
+      "anecdote": {
+        "title": "Peul",
+        "text": "Une légende pastorale raconte que Dieu proposa aux ancêtres des Peuls de choisir entre des calebasses remplies d'or et des calebasses remplies de lait. Sans hésiter, ils choisirent le lait, liant à jamais leur destin à la vache sacrée. L'attachement d'un Peul à son cheptel est tel qu'un éleveur traditionnel connaît le nom, le caractère et la généalogie de chacune de ses bêtes."
+      },
+      "distractors": [],
+      "decoyLetters": [],
+      "credits": [],
+      "source": null
+    },
+    {
+      "id": "guiriko--bobo",
+      "regionId": "guiriko",
+      "answer": "Bobo",
+      "tiles": [
+        "B",
+        "O",
+        "B",
+        "O"
+      ],
+      "lang": "fr",
+      "logic": "A",
+      "images": [
+        "aca0842ab31f.webp",
+        "37de5f9c347f.webp",
+        "b57b4326e8d7.webp",
+        "d714da6b0ae4.webp"
+      ],
+      "anecdote": {
+        "title": "Bobo",
+        "text": "Lors des rites de purification en pays Bobo, les forgerons fabriquent des masques entièrement faits de feuilles fraîches et de fibres végétales pour incarner l'esprit Dô. L'anecdote veut que ces masques ne doivent jamais être touchés par les profanes sous peine de malédiction, et qu'après la danse, les feuilles sont entièrement détruites ou brûlées pour que l'esprit retourne invisible dans la nature."
+      },
+      "distractors": [],
+      "decoyLetters": [],
+      "credits": [],
+      "source": null
+    },
+    {
+      "id": "guiriko--bwaba",
+      "regionId": "guiriko",
+      "answer": "Bwaba",
+      "tiles": [
+        "B",
+        "W",
+        "A",
+        "B",
+        "A"
+      ],
+      "lang": "fr",
+      "logic": "A",
+      "images": [
+        "96c72b358108.webp",
+        "8e996b3462ba.webp",
+        "169317728946.webp",
+        "1112a60c8306.webp"
+      ],
+      "anecdote": {
+        "title": "Bwaba",
+        "text": "Les Bwaba sont célèbres pour leurs immenses masques de planches en bois pouvant dépasser deux mètres de haut, peints de motifs géométriques noirs, blancs et rouges (les yeux en damier, les zigzags représentant le chemin des ancêtres). La prouesse physique des danseurs est légendaire : ils font virevolter ces masques géants uniquement à la force de leur mâchoire, en serrant une cordelette tressée entre leurs dents."
+      },
+      "distractors": [],
+      "decoyLetters": [],
+      "credits": [],
+      "source": null
+    },
+    {
+      "id": "guiriko--toussian",
+      "regionId": "guiriko",
+      "answer": "Toussian",
+      "tiles": [
+        "T",
+        "O",
+        "U",
+        "S",
+        "S",
+        "I",
+        "A",
+        "N"
+      ],
+      "lang": "fr",
+      "logic": "A",
+      "images": [
+        "e6b34c680b9f.webp",
+        "8d124ed69eed.webp",
+        "91005999a8b0.webp",
+        "4c4f3b7219be.webp"
+      ],
+      "anecdote": {
+        "title": "Toussian",
+        "text": "Les Toussian se distinguent par un masque rituel unique en Afrique de l'Ouest, appelé Loniaken. Contrairement aux masques réalistes, il s'agit d'une planche de bois rectangulaire ou en losange, presque totalement abstraite, surmontée d'une tête d'oiseau (souvent l'épervier) et décorée de graines rouges et noires. Il sert à l'initiation des jeunes garçons pour leur donner la clairvoyance de l'oiseau de proie."
+      },
+      "distractors": [],
+      "decoyLetters": [],
+      "credits": [],
+      "source": null
+    },
+    {
+      "id": "kadiogo--mossi",
+      "regionId": "kadiogo",
+      "answer": "Mossi",
+      "tiles": [
+        "M",
+        "O",
+        "S",
+        "S",
+        "I"
+      ],
+      "lang": "fr",
+      "logic": "A",
+      "images": [
+        "afc99771181a.webp",
+        "a733f52b3a30.webp",
+        "4ea3301e7de2.webp",
+        "c803533e54fe.webp"
+      ],
+      "anecdote": {
+        "title": "Mossi",
+        "text": "Le premier empereur mossi, Moro Naba Oubri, était le fils d'une princesse guerrière (Yennenga) et d'un chasseur éléphant. En mémoire de leurs origines cavalières, chaque vendredi matin à Ouagadougou, le Moro Naba actuel mime son départ pour la guerre sur son cheval face à sa cour qui le supplie de rester pour préserver la paix. Il finit par descendre de cheval, signifiant qu'il choisit la paix pour son peuple."
+      },
+      "distractors": [],
+      "decoyLetters": [],
+      "credits": [],
+      "source": null
+    },
+    {
+      "id": "kadiogo--peul",
+      "regionId": "kadiogo",
+      "answer": "Peul",
+      "tiles": [
+        "P",
+        "E",
+        "U",
+        "L"
+      ],
+      "lang": "fr",
+      "logic": "A",
+      "images": [
+        "71eac528c367.webp",
+        "4614c032735f.webp",
+        "4529977a63e0.webp",
+        "a4b489f1d372.webp"
+      ],
+      "anecdote": {
+        "title": "Peul",
+        "text": "Une légende pastorale raconte que Dieu proposa aux ancêtres des Peuls de choisir entre des calebasses remplies d'or et des calebasses remplies de lait. Sans hésiter, ils choisirent le lait, liant à jamais leur destin à la vache sacrée. L'attachement d'un Peul à son cheptel est tel qu'un éleveur traditionnel connaît le nom, le caractère et la généalogie de chacune de ses bêtes."
+      },
+      "distractors": [],
+      "decoyLetters": [],
+      "credits": [],
+      "source": null
+    },
+    {
+      "id": "kuilse--fulse",
+      "regionId": "kuilse",
+      "answer": "Fulsé",
+      "tiles": [
+        "F",
+        "U",
+        "L",
+        "S",
+        "É"
+      ],
+      "lang": "fr",
+      "logic": "A",
+      "images": [
+        "62ba07dad07c.webp",
+        "8b8d32008617.webp",
+        "abc15441a6ba.webp",
+        "45a1dcf0cf77.webp"
+      ],
+      "anecdote": {
+        "title": "Fulsé",
+        "text": "Bien que la région du Yatenga (Ouahigouya) soit gouvernée politiquement par les Mossi, l'anecdote historique rappelle que les Fulsé/Kurumba sont les premiers occupants du sol. Pour cette raison, lors de l'intronisation du roi des Mossi (le Yatenga Naba), ce sont les chefs de terre Fulsé qui doivent valider spirituellement le pouvoir du roi mossi, illustrant un magnifique équilibre entre pouvoir politique et légitimité mystique."
+      },
+      "distractors": [],
+      "decoyLetters": [],
+      "credits": [],
+      "source": null
+    },
+    {
+      "id": "kuilse--mossi",
+      "regionId": "kuilse",
+      "answer": "Mossi",
+      "tiles": [
+        "M",
+        "O",
+        "S",
+        "S",
+        "I"
+      ],
+      "lang": "fr",
+      "logic": "A",
+      "images": [
+        "afc99771181a.webp",
+        "a733f52b3a30.webp",
+        "4ea3301e7de2.webp",
+        "c803533e54fe.webp"
+      ],
+      "anecdote": {
+        "title": "Mossi",
+        "text": "Le premier empereur mossi, Moro Naba Oubri, était le fils d'une princesse guerrière (Yennenga) et d'un chasseur éléphant. En mémoire de leurs origines cavalières, chaque vendredi matin à Ouagadougou, le Moro Naba actuel mime son départ pour la guerre sur son cheval face à sa cour qui le supplie de rester pour préserver la paix. Il finit par descendre de cheval, signifiant qu'il choisit la paix pour son peuple."
+      },
+      "distractors": [],
+      "decoyLetters": [],
+      "credits": [],
+      "source": null
+    },
+    {
+      "id": "kuilse--peul",
+      "regionId": "kuilse",
+      "answer": "Peul",
+      "tiles": [
+        "P",
+        "E",
+        "U",
+        "L"
+      ],
+      "lang": "fr",
+      "logic": "A",
+      "images": [
+        "71eac528c367.webp",
+        "4614c032735f.webp",
+        "4529977a63e0.webp",
+        "a4b489f1d372.webp"
+      ],
+      "anecdote": {
+        "title": "Peul",
+        "text": "Une légende pastorale raconte que Dieu proposa aux ancêtres des Peuls de choisir entre des calebasses remplies d'or et des calebasses remplies de lait. Sans hésiter, ils choisirent le lait, liant à jamais leur destin à la vache sacrée. L'attachement d'un Peul à son cheptel est tel qu'un éleveur traditionnel connaît le nom, le caractère et la généalogie de chacune de ses bêtes."
+      },
+      "distractors": [],
+      "decoyLetters": [],
+      "credits": [],
+      "source": null
+    },
+    {
+      "id": "liptako--peul",
+      "regionId": "liptako",
+      "answer": "Peul",
+      "tiles": [
+        "P",
+        "E",
+        "U",
+        "L"
+      ],
+      "lang": "fr",
+      "logic": "A",
+      "images": [
+        "71eac528c367.webp",
+        "4614c032735f.webp",
+        "4529977a63e0.webp",
+        "a4b489f1d372.webp"
+      ],
+      "anecdote": {
+        "title": "Peul",
+        "text": "Une légende pastorale raconte que Dieu proposa aux ancêtres des Peuls de choisir entre des calebasses remplies d'or et des calebasses remplies de lait. Sans hésiter, ils choisirent le lait, liant à jamais leur destin à la vache sacrée. L'attachement d'un Peul à son cheptel est tel qu'un éleveur traditionnel connaît le nom, le caractère et la généalogie de chacune de ses bêtes."
+      },
+      "distractors": [],
+      "decoyLetters": [],
+      "credits": [],
+      "source": null
+    },
+    {
+      "id": "liptako--tuareg",
+      "regionId": "liptako",
+      "answer": "Tuareg",
+      "tiles": [
+        "T",
+        "U",
+        "A",
+        "R",
+        "E",
+        "G"
+      ],
+      "lang": "fr",
+      "logic": "A",
+      "images": [
+        "e46ee8ee0aa0.webp",
+        "c5da628c844d.webp",
+        "c0fa60336054.webp",
+        "2d69716d6a19.webp"
+      ],
+      "anecdote": {
+        "title": "Tuareg",
+        "text": "Chez les Touaregs du Nord, la préparation du thé vert à la menthe est un art rigide chargé de symboles. L'anecdote réside dans la règle des trois verres successifs servis à l'invité. Le dicton populaire dit : \"Le premier verre est amer comme la vie, le deuxième est doux comme l'amour, le troisième est suave comme la mort.\" Refuser un verre est considéré comme un impair diplomatique majeur."
+      },
+      "distractors": [],
+      "decoyLetters": [],
+      "credits": [],
+      "source": null
+    },
+    {
+      "id": "nakambe--bissa",
+      "regionId": "nakambe",
+      "answer": "Bissa",
+      "tiles": [
+        "B",
+        "I",
+        "S",
+        "S",
+        "A"
+      ],
+      "lang": "fr",
+      "logic": "A",
+      "images": [
+        "0f55f8b08e65.webp",
+        "589495f6ac60.webp",
+        "eda726977b21.webp",
+        "2754c1ea2171.webp"
+      ],
+      "anecdote": {
+        "title": "Bissa",
+        "text": "Au Burkina Faso, il existe une plaisanterie nationale indéboulonnable : un Bissa ne peut pas passer une journée sans manger de l'arachide. Cette anecdote humoristique vient du fait que la région de Garango est le grenier historique de la culture de l'arachide, et la gastronomie bissa a su l'intégrer dans absolument tous ses plats (sauces, galettes, amuse-bouches)."
+      },
+      "distractors": [],
+      "decoyLetters": [],
+      "credits": [],
+      "source": null
+    },
+    {
+      "id": "nakambe--gourounsi",
+      "regionId": "nakambe",
+      "answer": "Gourounsi",
+      "tiles": [
+        "G",
+        "O",
+        "U",
+        "R",
+        "O",
+        "U",
+        "N",
+        "S",
+        "I"
+      ],
+      "lang": "fr",
+      "logic": "A",
+      "images": [
+        "e7d9d742c798.webp",
+        "519f85b62611.webp",
+        "2b48fda91b1b.webp",
+        "19a7902c904b.webp"
+      ],
+      "anecdote": {
+        "title": "Gourounsi",
+        "text": "Le mot Gourounsi est en realité le terme qu'utilisait le chef de guerre d'un empire voisin(Babato) pour designer les populations de cette zone. Aujourd'hui ces derniers réclament leur vrai noms identitaire : les Lyele, les Nuni ou les Kasséna."
+      },
+      "distractors": [],
+      "decoyLetters": [],
+      "credits": [],
+      "source": null
+    },
+    {
+      "id": "nakambe--mossi",
+      "regionId": "nakambe",
+      "answer": "Mossi",
+      "tiles": [
+        "M",
+        "O",
+        "S",
+        "S",
+        "I"
+      ],
+      "lang": "fr",
+      "logic": "A",
+      "images": [
+        "afc99771181a.webp",
+        "a733f52b3a30.webp",
+        "4ea3301e7de2.webp",
+        "c803533e54fe.webp"
+      ],
+      "anecdote": {
+        "title": "Mossi",
+        "text": "Le premier empereur mossi, Moro Naba Oubri, était le fils d'une princesse guerrière (Yennenga) et d'un chasseur éléphant. En mémoire de leurs origines cavalières, chaque vendredi matin à Ouagadougou, le Moro Naba actuel mime son départ pour la guerre sur son cheval face à sa cour qui le supplie de rester pour préserver la paix. Il finit par descendre de cheval, signifiant qu'il choisit la paix pour son peuple."
+      },
+      "distractors": [],
+      "decoyLetters": [],
+      "credits": [],
+      "source": null
+    },
+    {
+      "id": "nando--gourounsi",
+      "regionId": "nando",
+      "answer": "Gourounsi",
+      "tiles": [
+        "G",
+        "O",
+        "U",
+        "R",
+        "O",
+        "U",
+        "N",
+        "S",
+        "I"
+      ],
+      "lang": "fr",
+      "logic": "A",
+      "images": [
+        "e7d9d742c798.webp",
+        "519f85b62611.webp",
+        "2b48fda91b1b.webp",
+        "19a7902c904b.webp"
+      ],
+      "anecdote": {
+        "title": "Gourounsi",
+        "text": "Le mot Gourounsi est en realité le terme qu'utilisait le chef de guerre d'un empire voisin(Babato) pour designer les populations de cette zone. Aujourd'hui ces derniers réclament leur vrai noms identitaire : les Lyele, les Nuni ou les Kasséna."
+      },
+      "distractors": [],
+      "decoyLetters": [],
+      "credits": [],
+      "source": null
+    },
+    {
+      "id": "nando--mossi",
+      "regionId": "nando",
+      "answer": "Mossi",
+      "tiles": [
+        "M",
+        "O",
+        "S",
+        "S",
+        "I"
+      ],
+      "lang": "fr",
+      "logic": "A",
+      "images": [
+        "afc99771181a.webp",
+        "a733f52b3a30.webp",
+        "4ea3301e7de2.webp",
+        "c803533e54fe.webp"
+      ],
+      "anecdote": {
+        "title": "Mossi",
+        "text": "Le premier empereur mossi, Moro Naba Oubri, était le fils d'une princesse guerrière (Yennenga) et d'un chasseur éléphant. En mémoire de leurs origines cavalières, chaque vendredi matin à Ouagadougou, le Moro Naba actuel mime son départ pour la guerre sur son cheval face à sa cour qui le supplie de rester pour préserver la paix. Il finit par descendre de cheval, signifiant qu'il choisit la paix pour son peuple."
+      },
+      "distractors": [],
+      "decoyLetters": [],
+      "credits": [],
+      "source": null
+    },
+    {
+      "id": "nazinon--gourounsi",
+      "regionId": "nazinon",
+      "answer": "Gourounsi",
+      "tiles": [
+        "G",
+        "O",
+        "U",
+        "R",
+        "O",
+        "U",
+        "N",
+        "S",
+        "I"
+      ],
+      "lang": "fr",
+      "logic": "A",
+      "images": [
+        "e7d9d742c798.webp",
+        "519f85b62611.webp",
+        "2b48fda91b1b.webp",
+        "19a7902c904b.webp"
+      ],
+      "anecdote": {
+        "title": "Gourounsi",
+        "text": "Le mot Gourounsi est en realité le terme qu'utilisait le chef de guerre d'un empire voisin(Babato) pour designer les populations de cette zone. Aujourd'hui ces derniers réclament leur vrai noms identitaire : les Lyele, les Nuni ou les Kasséna."
+      },
+      "distractors": [],
+      "decoyLetters": [],
+      "credits": [],
+      "source": null
+    },
+    {
+      "id": "nazinon--mossi",
+      "regionId": "nazinon",
+      "answer": "Mossi",
+      "tiles": [
+        "M",
+        "O",
+        "S",
+        "S",
+        "I"
+      ],
+      "lang": "fr",
+      "logic": "A",
+      "images": [
+        "afc99771181a.webp",
+        "a733f52b3a30.webp",
+        "4ea3301e7de2.webp",
+        "c803533e54fe.webp"
+      ],
+      "anecdote": {
+        "title": "Mossi",
+        "text": "Le premier empereur mossi, Moro Naba Oubri, était le fils d'une princesse guerrière (Yennenga) et d'un chasseur éléphant. En mémoire de leurs origines cavalières, chaque vendredi matin à Ouagadougou, le Moro Naba actuel mime son départ pour la guerre sur son cheval face à sa cour qui le supplie de rester pour préserver la paix. Il finit par descendre de cheval, signifiant qu'il choisit la paix pour son peuple."
+      },
+      "distractors": [],
+      "decoyLetters": [],
+      "credits": [],
+      "source": null
+    },
+    {
+      "id": "oubri--mossi",
+      "regionId": "oubri",
+      "answer": "Mossi",
+      "tiles": [
+        "M",
+        "O",
+        "S",
+        "S",
+        "I"
+      ],
+      "lang": "fr",
+      "logic": "A",
+      "images": [
+        "afc99771181a.webp",
+        "a733f52b3a30.webp",
+        "4ea3301e7de2.webp",
+        "c803533e54fe.webp"
+      ],
+      "anecdote": {
+        "title": "Mossi",
+        "text": "Le premier empereur mossi, Moro Naba Oubri, était le fils d'une princesse guerrière (Yennenga) et d'un chasseur éléphant. En mémoire de leurs origines cavalières, chaque vendredi matin à Ouagadougou, le Moro Naba actuel mime son départ pour la guerre sur son cheval face à sa cour qui le supplie de rester pour préserver la paix. Il finit par descendre de cheval, signifiant qu'il choisit la paix pour son peuple."
+      },
+      "distractors": [],
+      "decoyLetters": [],
+      "credits": [],
+      "source": null
+    },
+    {
+      "id": "sirba--gourmantche",
+      "regionId": "sirba",
+      "answer": "Gourmantché",
+      "tiles": [
+        "G",
+        "O",
+        "U",
+        "R",
+        "M",
+        "A",
+        "N",
+        "T",
+        "C",
+        "H",
+        "É"
+      ],
+      "lang": "fr",
+      "logic": "A",
+      "images": [
+        "8fbc020d5e46.webp",
+        "c10c58ae0d9f.webp",
+        "49b76c1440cb.webp",
+        "a6422024e1ad.webp"
+      ],
+      "anecdote": {
+        "title": "Gourmantché",
+        "text": "Les Gourmantché sont mondialement reconnus pour leur maîtrise de la divination par le sable (le Ticte). On raconte qu'historiquement, aucun roi du Gulmu ne prenait une décision politique, militaire ou agricole sans que les devins n'aient tracé des signes ésotériques dans le sable fin pour lire l'avenir du royaume."
+      },
+      "distractors": [],
+      "decoyLetters": [],
+      "credits": [],
+      "source": null
+    },
+    {
+      "id": "sirba--mossi",
+      "regionId": "sirba",
+      "answer": "Mossi",
+      "tiles": [
+        "M",
+        "O",
+        "S",
+        "S",
+        "I"
+      ],
+      "lang": "fr",
+      "logic": "A",
+      "images": [
+        "afc99771181a.webp",
+        "a733f52b3a30.webp",
+        "4ea3301e7de2.webp",
+        "c803533e54fe.webp"
+      ],
+      "anecdote": {
+        "title": "Mossi",
+        "text": "Le premier empereur mossi, Moro Naba Oubri, était le fils d'une princesse guerrière (Yennenga) et d'un chasseur éléphant. En mémoire de leurs origines cavalières, chaque vendredi matin à Ouagadougou, le Moro Naba actuel mime son départ pour la guerre sur son cheval face à sa cour qui le supplie de rester pour préserver la paix. Il finit par descendre de cheval, signifiant qu'il choisit la paix pour son peuple."
+      },
+      "distractors": [],
+      "decoyLetters": [],
+      "credits": [],
+      "source": null
+    },
+    {
+      "id": "sirba--peul",
+      "regionId": "sirba",
+      "answer": "Peul",
+      "tiles": [
+        "P",
+        "E",
+        "U",
+        "L"
+      ],
+      "lang": "fr",
+      "logic": "A",
+      "images": [
+        "71eac528c367.webp",
+        "4614c032735f.webp",
+        "4529977a63e0.webp",
+        "a4b489f1d372.webp"
+      ],
+      "anecdote": {
+        "title": "Peul",
+        "text": "Une légende pastorale raconte que Dieu proposa aux ancêtres des Peuls de choisir entre des calebasses remplies d'or et des calebasses remplies de lait. Sans hésiter, ils choisirent le lait, liant à jamais leur destin à la vache sacrée. L'attachement d'un Peul à son cheptel est tel qu'un éleveur traditionnel connaît le nom, le caractère et la généalogie de chacune de ses bêtes."
+      },
+      "distractors": [],
+      "decoyLetters": [],
+      "credits": [],
+      "source": null
+    },
+    {
+      "id": "soum--bella",
+      "regionId": "soum",
+      "answer": "Bella",
+      "tiles": [
+        "B",
+        "E",
+        "L",
+        "L",
+        "A"
+      ],
+      "lang": "fr",
+      "logic": "A",
+      "images": [
+        "daabd47c4e23.webp",
+        "fbd019bc44d7.webp",
+        "18b5e99b47c1.webp",
+        "da0d615bd879.webp"
+      ],
+      "anecdote": {
+        "title": "Bella",
+        "text": "Chez les Bella les femmes possèdent un pouvoir économique exclusif sur la tente familiale qui inverse totalement les codes de propriété habituels. Ces dernières fabriquent entièrement les nattes de palmiers ou en peau utilisé pour les revêtements de la maison. En cas de divorce ou de dispute conjugale majeure, l'homme se retrouve instantanément sans abri, car la femme a le droit absolu de démonter la tente en quelques minutes et de repartir avec toute la structure, laissant son époux à découvert au milieu du désert."
+      },
+      "distractors": [],
+      "decoyLetters": [],
+      "credits": [],
+      "source": null
+    },
+    {
+      "id": "soum--peul",
+      "regionId": "soum",
+      "answer": "Peul",
+      "tiles": [
+        "P",
+        "E",
+        "U",
+        "L"
+      ],
+      "lang": "fr",
+      "logic": "A",
+      "images": [
+        "71eac528c367.webp",
+        "4614c032735f.webp",
+        "4529977a63e0.webp",
+        "a4b489f1d372.webp"
+      ],
+      "anecdote": {
+        "title": "Peul",
+        "text": "Une légende pastorale raconte que Dieu proposa aux ancêtres des Peuls de choisir entre des calebasses remplies d'or et des calebasses remplies de lait. Sans hésiter, ils choisirent le lait, liant à jamais leur destin à la vache sacrée. L'attachement d'un Peul à son cheptel est tel qu'un éleveur traditionnel connaît le nom, le caractère et la généalogie de chacune de ses bêtes."
+      },
+      "distractors": [],
+      "decoyLetters": [],
+      "credits": [],
+      "source": null
+    },
+    {
+      "id": "soum--tuareg",
+      "regionId": "soum",
+      "answer": "Tuareg",
+      "tiles": [
+        "T",
+        "U",
+        "A",
+        "R",
+        "E",
+        "G"
+      ],
+      "lang": "fr",
+      "logic": "A",
+      "images": [
+        "e46ee8ee0aa0.webp",
+        "c5da628c844d.webp",
+        "c0fa60336054.webp",
+        "2d69716d6a19.webp"
+      ],
+      "anecdote": {
+        "title": "Tuareg",
+        "text": "Chez les Touaregs du Nord, la préparation du thé vert à la menthe est un art rigide chargé de symboles. L'anecdote réside dans la règle des trois verres successifs servis à l'invité. Le dicton populaire dit : \"Le premier verre est amer comme la vie, le deuxième est doux comme l'amour, le troisième est suave comme la mort.\" Refuser un verre est considéré comme un impair diplomatique majeur."
+      },
+      "distractors": [],
+      "decoyLetters": [],
+      "credits": [],
+      "source": null
+    },
+    {
+      "id": "sourou--marka",
+      "regionId": "sourou",
+      "answer": "Marka",
+      "tiles": [
+        "M",
+        "A",
+        "R",
+        "K",
+        "A"
+      ],
+      "lang": "fr",
+      "logic": "A",
+      "images": [
+        "d9f3465f19f5.webp",
+        "11ea9c899258.webp",
+        "8e42f7cfc8b2.webp",
+        "46b9679b09b0.webp"
+      ],
+      "anecdote": {
+        "title": "Marka",
+        "text": "Les Marka possèdent un savoir-faire séculaire dans la teinture des pagnes à l'indigo naturel. Une ancienne croyance locale voulait que les cuves de teinture indigo possèdent leur propre esprit féminin. Pour que la couleur soit d'un bleu profond et parfait, les teinturières devaient respecter des tabous stricts, comme ne jamais s'approcher des cuves en état de colère."
+      },
+      "distractors": [],
+      "decoyLetters": [],
+      "credits": [],
+      "source": null
+    },
+    {
+      "id": "sourou--samo",
+      "regionId": "sourou",
+      "answer": "Samo",
+      "tiles": [
+        "S",
+        "A",
+        "M",
+        "O"
+      ],
+      "lang": "fr",
+      "logic": "A",
+      "images": [
+        "93d317dc4b05.webp",
+        "884b1966496d.webp",
+        "5ce80b1ba606.webp",
+        "6a3c031411c3.webp"
+      ],
+      "anecdote": {
+        "title": "Samo",
+        "text": "Les Samo et les Mossi partagent le rakiré (parenté à plaisanterie) le plus virulent et drôle du pays. L'anecdote veut qu'un Samo traitera toujours un Mossi de \"petit garçon peureux\" ou de \"consommateur de feuilles de haricot\", tandis que le Mossi répondra que le Samo est son \"esclave attitré\". Ces joutes verbales théâtrales permettent de désamorcer instantanément n'importe quelle dispute réelle dans la rue ou au marché."
+      },
+      "distractors": [],
+      "decoyLetters": [],
+      "credits": [],
+      "source": null
+    },
+    {
+      "id": "tannounyan--gouin",
+      "regionId": "tannounyan",
+      "answer": "Gouin",
+      "tiles": [
+        "G",
+        "O",
+        "U",
+        "I",
+        "N"
+      ],
+      "lang": "fr",
+      "logic": "A",
+      "images": [
+        "2782d6e15f75.webp",
+        "81772f7ce731.webp",
+        "4e6e65dda1d6.webp",
+        "17230cf34ba6.webp"
+      ],
+      "anecdote": {
+        "title": "Gouin",
+        "text": "Chez les Gouin, les masques sacrés ne sont pas les seuls objets spirituels importants. Lors des cérémonies traditionnelles, les chefs de terre et les patriarches utilisent des cannes sculptées spécifiques. Ces cannes ne servent pas seulement d'appui physique. Elles symbolisent le lien direct avec les ancêtres et l'autorité morale. Un chef ne prend jamais une décision communautaire grave sans tenir sa canne rituelle."
+      },
+      "distractors": [],
+      "decoyLetters": [],
+      "credits": [],
+      "source": null
+    },
+    {
+      "id": "tannounyan--senoufo",
+      "regionId": "tannounyan",
+      "answer": "Sénoufo",
+      "tiles": [
+        "S",
+        "É",
+        "N",
+        "O",
+        "U",
+        "F",
+        "O"
+      ],
+      "lang": "fr",
+      "logic": "A",
+      "images": [
+        "71dc90ff1db1.webp",
+        "72e2ac0defdb.webp",
+        "cd7cd524ca1e.webp",
+        "e9434621762b.webp"
+      ],
+      "anecdote": {
+        "title": "Sénoufo",
+        "text": "Pour les Sénoufo, le Calao (un oiseau au large bec) est l'animal primordial. Selon leur cosmogonie, cet oiseau a été l'un des premiers êtres vivants sur Terre et symbolise la protection et la connaissance. Les statuettes de calao ont une particularité physique unique : l'oiseau a un gros ventre rebondi, ce qui symbolise la fertilité, mais aussi le fait qu'il \"couve\" les secrets d'initiés que les jeunes apprennent dans le bois sacré (le Poro)."
+      },
+      "distractors": [],
+      "decoyLetters": [],
+      "credits": [],
+      "source": null
+    },
+    {
+      "id": "tapoa--gourmantche",
+      "regionId": "tapoa",
+      "answer": "Gourmantché",
+      "tiles": [
+        "G",
+        "O",
+        "U",
+        "R",
+        "M",
+        "A",
+        "N",
+        "T",
+        "C",
+        "H",
+        "É"
+      ],
+      "lang": "fr",
+      "logic": "A",
+      "images": [
+        "8fbc020d5e46.webp",
+        "c10c58ae0d9f.webp",
+        "49b76c1440cb.webp",
+        "a6422024e1ad.webp"
+      ],
+      "anecdote": {
+        "title": "Gourmantché",
+        "text": "Les Gourmantché sont mondialement reconnus pour leur maîtrise de la divination par le sable (le Ticte). On raconte qu'historiquement, aucun roi du Gulmu ne prenait une décision politique, militaire ou agricole sans que les devins n'aient tracé des signes ésotériques dans le sable fin pour lire l'avenir du royaume."
+      },
+      "distractors": [],
+      "decoyLetters": [],
+      "credits": [],
+      "source": null
+    },
+    {
+      "id": "tapoa--peul",
+      "regionId": "tapoa",
+      "answer": "Peul",
+      "tiles": [
+        "P",
+        "E",
+        "U",
+        "L"
+      ],
+      "lang": "fr",
+      "logic": "A",
+      "images": [
+        "71eac528c367.webp",
+        "4614c032735f.webp",
+        "4529977a63e0.webp",
+        "a4b489f1d372.webp"
+      ],
+      "anecdote": {
+        "title": "Peul",
+        "text": "Une légende pastorale raconte que Dieu proposa aux ancêtres des Peuls de choisir entre des calebasses remplies d'or et des calebasses remplies de lait. Sans hésiter, ils choisirent le lait, liant à jamais leur destin à la vache sacrée. L'attachement d'un Peul à son cheptel est tel qu'un éleveur traditionnel connaît le nom, le caractère et la généalogie de chacune de ses bêtes."
+      },
+      "distractors": [],
+      "decoyLetters": [],
+      "credits": [],
+      "source": null
+    },
+    {
+      "id": "yaadga--fulse",
+      "regionId": "yaadga",
+      "answer": "Fulsé",
+      "tiles": [
+        "F",
+        "U",
+        "L",
+        "S",
+        "É"
+      ],
+      "lang": "fr",
+      "logic": "A",
+      "images": [
+        "62ba07dad07c.webp",
+        "8b8d32008617.webp",
+        "abc15441a6ba.webp",
+        "45a1dcf0cf77.webp"
+      ],
+      "anecdote": {
+        "title": "Fulsé",
+        "text": "Bien que la région du Yatenga (Ouahigouya) soit gouvernée politiquement par les Mossi, l'anecdote historique rappelle que les Fulsé/Kurumba sont les premiers occupants du sol. Pour cette raison, lors de l'intronisation du roi des Mossi (le Yatenga Naba), ce sont les chefs de terre Fulsé qui doivent valider spirituellement le pouvoir du roi mossi, illustrant un magnifique équilibre entre pouvoir politique et légitimité mystique."
+      },
+      "distractors": [],
+      "decoyLetters": [],
+      "credits": [],
+      "source": null
+    },
+    {
+      "id": "yaadga--mossi",
+      "regionId": "yaadga",
+      "answer": "Mossi",
+      "tiles": [
+        "M",
+        "O",
+        "S",
+        "S",
+        "I"
+      ],
+      "lang": "fr",
+      "logic": "A",
+      "images": [
+        "afc99771181a.webp",
+        "a733f52b3a30.webp",
+        "4ea3301e7de2.webp",
+        "c803533e54fe.webp"
+      ],
+      "anecdote": {
+        "title": "Mossi",
+        "text": "Le premier empereur mossi, Moro Naba Oubri, était le fils d'une princesse guerrière (Yennenga) et d'un chasseur éléphant. En mémoire de leurs origines cavalières, chaque vendredi matin à Ouagadougou, le Moro Naba actuel mime son départ pour la guerre sur son cheval face à sa cour qui le supplie de rester pour préserver la paix. Il finit par descendre de cheval, signifiant qu'il choisit la paix pour son peuple."
+      },
+      "distractors": [],
+      "decoyLetters": [],
+      "credits": [],
+      "source": null
+    }
+  ]
+}
