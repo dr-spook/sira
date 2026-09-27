@@ -70,4 +70,66 @@
   --focus-ring-color: var(--neutral-900);
   --focus-ring-width: 2px;
   --focus-ring-offset: 2px;
+
+  /* Tokens de composants (couleurs-v1.md §5) */
+  --action-primary-edge: var(--green-800); /* « épaisseur 3D » sous le bouton principal */
+  --action-disabled-bg: var(--neutral-100);
+  --action-disabled-text: var(--neutral-600);
+  --surface-pressed: var(--neutral-100);
+  --edge-strong: var(--neutral-900); /* épaisseur 3D des cartes, puces et tuiles */
+  --slot-empty-border: var(--neutral-300);
+
+  /* Bande « Le savais-tu ? » : les teintes vives du logo (couleurs-v1.md §8.3) */
+  --pattern-red: var(--red-500);
+  --pattern-yellow: var(--yellow-500);
+  --pattern-green: var(--green-500);
+  --pattern-gap: var(--neutral-900);
+
+  /* Espacements (base 4 px) : le nom donne la valeur en px */
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-20: 20px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-40: 40px;
+  --space-48: 48px;
+
+  /* Rayons */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 22px;
+  --radius-pill: 999px;
+
+  /* Épaisseurs */
+  --border-width: 2px;
+  --border-width-strong: 3px;
+  --depth: 4px;
+  --depth-lg: 5px;
+
+  /* Typographie */
+  --font-family: 'Montserrat', system-ui, sans-serif;
+  --font-weight-display: 800;
+  --font-weight-title: 700;
+  --font-weight-body: 400;
+
+  --font-size-12: 0.75rem;
+  --font-size-14: 0.875rem;
+  --font-size-16: 1rem;
+  --font-size-20: 1.25rem;
+  --font-size-24: 1.5rem;
+  --font-size-32: 2rem;
+  --font-size-48: 3rem;
+
+  --line-height-body: 1.5;
+  --line-height-title: 1.1;
+
+  /* Mouvements (coupés par prefers-reduced-motion, voir base.css) */
+  --duration-fast: 120ms;
+  --duration-base: 200ms;
+
+  /* Cible tactile minimale */
+  --touch-target: 44px;
 }
