@@ -1,30 +1,90 @@
 # Tâches réservées à l'équipe
 
-Le **cœur jouable** (Splash, Hub, Tour du Faso, écran Question, Bravo, Réessayer, Région terminée, et les composants `ResultIcon`, `AnswerReveal`, `TagPill`, `RegionNode`) est construit par le responsable du dépôt. Les tâches ci-dessous viennent **s'y brancher** : 9 de niveau débutant, 9 de niveau intermédiaire.
+Le **cœur jouable** (Splash, Hub, Tour du Faso, écran Question, Bravo, Réessayer, Région terminée, et les composants `ResultIcon`, `AnswerReveal`, `TagPill`, `RegionNode`, `PuzzleImages`) est construit par le responsable du dépôt. Les tâches ci-dessous viennent **s'y brancher** : 9 de niveau débutant, 9 de niveau intermédiaire.
 
 Claude Code ne code aucune de ces tâches : quand il repère un travail hors de sa mission, il l'ajoute ici.
 
+**Avant tout :** installe le projet en suivant le [`README.md`](../README.md), et lis [`CLAUDE.md`](../CLAUDE.md).
+
+## Sommaire
+
+| | Tâche | Interrupteur | Dépend de |
+|---|---|---|---|
+| D1 | [Qualité WebP : moins de 40 Ko par image](#d1-qualité-webp--moins-de-40-ko-par-image) | — | — |
+| D2 | [Tableau de correspondance PNG ↔ PDF](#d2-tableau-de-correspondance-png--pdf-des-maquettes) | — | — |
+| D3 | [Modale « Pas assez de Cauris »](#d3-modale--pas-assez-de-cauris-) | — | — |
+| D4 | [Modale « Champion verrouillé »](#d4-modale--champion-verrouillé-) | — | — |
+| D5 | [Écran « Temps écoulé »](#d5-écran--temps-écoulé-) | — | — |
+| D6 | [Écran « Run terminé »](#d6-écran--run-terminé--variante-récompense-de-tagpill) | — | — |
+| D7 | [Écran Paramètres](#d7-écran-paramètres--son-et-réinitialisation) | `settings` | — |
+| D8 | [Garder la sauvegarde](#d8-demander-au-navigateur-de-garder-la-sauvegarde) | `persistStorage` | — |
+| D9 | [Icônes PWA à partir du logo](#d9-icônes-pwa-à-partir-du-logo) | — | — |
+| I1 | [CI GitHub Actions](#i1-intégration-continue--github-actions-sur-chaque-pr) | — | — |
+| I2 | [Option `--prune`](#i2-option---prune-du-script-de-contenu) | — | — |
+| I3 | [Modale Indice et les 3 indices](#i3-modale-indice-et-branchement-des-3-indices) | `hints` | D3 |
+| I4 | [Bibliothèque](#i4-bibliothèque-et-son-accès-depuis-le-hub) | `library` | — |
+| I5 | [Mode Champion](#i5-mode-champion--logique-et-écran) | `champion` | D4, D5, D6 |
+| I6 | [Mode Maître](#i6-mode-maître-avec-le-format-duo) | `maitre` | I5, D5 |
+| I7 | [Sons](#i7-intégration-des-sons) | `sounds` | D7 |
+| I8 | [Précache hors-ligne par région](#i8-précache-hors-ligne-par-région) | — | — |
+| I9 | [Duel local](#i9-duel-local-sur-le-même-téléphone) | `duelLocal` | — |
+
 ## Comment prendre une tâche
 
-1. Mets ton nom dans « Pris par », et préviens l'équipe.
-2. Crée une branche (`feat/…`, `fix/…`, `content/…` ou `chore/…`, voir CLAUDE.md).
-3. Une tâche = une PR. Elle doit passer `npm run lint`, `npm run test` et `npm run build`.
-4. Si ta tâche a un **interrupteur**, passe-le à `true` dans `src/config/features.ts` **dans ta PR**, et retire son nom de la liste `stillOff` de `src/config/features.test.ts`. Tant qu'il est à `false`, ta fonctionnalité ne doit laisser aucune trace dans le jeu.
+1. Mets ton nom dans « Pris par » (dans une petite PR, ou en prévenant le responsable), pour que deux personnes ne fassent pas la même chose.
+2. Crée ta branche depuis `main` à jour : `git switch main`, `git pull`, puis `git switch -c feat/…` (ou `fix/…`, `content/…`, `chore/…`).
+3. Une tâche = une PR. Avant de l'ouvrir : `npm run lint`, `npm run test` et `npm run build` doivent passer.
+4. Si ta tâche a un **interrupteur**, passe-le à `true` dans `src/config/features.ts` **dans ta PR**, et retire son nom de la liste `stillOff` de `src/config/features.test.ts`. Tant qu'il est à `false`, ta fonctionnalité ne doit laisser aucune trace dans le jeu (ni bouton, ni lien, ni écran vide).
+5. Mets dans la PR une capture à 375 px de large, à côté de la maquette couleur.
 
 **Niveaux :**
-- **Débutant :** assembler des composants existants, régler, observer, peu de logique.
-- **Intermédiaire :** de la logique en TypeScript, avec des tests.
+- **Débutant :** assembler des composants qui existent déjà, régler, observer ; peu de logique.
+- **Intermédiaire :** de la logique en TypeScript, avec des tests Vitest.
 
 ## Règles communes
 
 - **Maquettes :** les PNG de `docs/design/maquettes/` donnent la disposition ; les couleurs viennent de `maquettes-couleur-v1.pdf`, dont l'ordre des pages **n'est pas** celui des PNG. Chaque tâche indique les deux numéros.
-- **Composants :** uniquement ceux de `src/components/` (visibles sur `/kit` avec `npm run dev`). S'il en manque un, crée-le dans `src/components/` et ajoute-le à `/kit` avec tous ses états.
-- **Textes** dans `src/i18n/fr.ts`. **Couleurs, espacements, tailles** via `src/styles/tokens.css` (aucun hex). **Chiffres de jeu** dans `src/config/game.json`, validés par `src/engine/config.ts`. **Délais d'interface** dans `src/config/ui.ts`.
-- **Règles de jeu** dans `src/engine/` (TypeScript pur, testé ; hasard uniquement via `createRng`). Les écrans passent par les stores, **jamais par Dexie directement**.
-- **Sauvegarde :** une nouvelle table ou un nouveau champ = une **nouvelle version** du schéma (voir le commentaire en tête de `src/db/database.ts`). Si deux tâches en ont besoin en même temps, la première fusionnée prend la version 2, l'autre la version 3.
-- **Voir un écran pas encore relié au jeu :** ajoute une route `/dev/<écran>` avec des props factices dans le bloc `if (import.meta.env.DEV)` de `src/router.ts`.
-- **Accessibilité :** cibles tactiles d'au moins 44×44 px, un seul bouton principal (vert) par écran, jamais la couleur comme seul signal, aucun défilement horizontal à 375 px ni à 320 px.
-- La PR contient une capture à 375 px de large, à côté de la maquette couleur.
+- **Composants :** uniquement ceux de `src/components/`, visibles sur **http://localhost:5173/kit**. S'il en manque un, crée-le dans `src/components/` et ajoute-le à `/kit` (`src/dev/KitScreen.vue`, textes dans `src/dev/kit-texts.ts`) avec tous ses états.
+- **Où mettre quoi :**
+
+  | Quoi | Où |
+  |---|---|
+  | Texte affiché au joueur | `src/i18n/fr.ts` |
+  | Couleur, espacement, rayon, taille | un token de `src/styles/tokens.css` (`var(--space-16)`…) ; **aucun hex** dans un composant |
+  | Chiffre de jeu (gain, coût, seuil) | `src/config/game.json`, vérifié par `validateGameConfig` dans `src/engine/config.ts` |
+  | Délai d'interface | `src/config/ui.ts` |
+  | Règle de jeu | `src/engine/` (TypeScript pur, testé ; hasard **uniquement** via `createRng`) |
+  | Lecture ou écriture de la sauvegarde | `src/db/repository.ts`, appelé **par un store**, jamais par un écran |
+
+- **Sauvegarde :** une nouvelle table ou un nouveau champ = une **nouvelle version** du schéma (voir le commentaire en tête de `src/db/database.ts`, et le test de migration dans `src/db/database.test.ts`). Si deux tâches en ont besoin en même temps, la première fusionnée prend la version 2, l'autre la version 3.
+- **Voir un écran pas encore relié au jeu :** ajoute une route `/dev/<écran>` avec des props factices dans le bloc `if (import.meta.env.DEV)` de `src/router.ts` :
+
+  ```ts
+  routes.push({
+    path: '/dev/temps-ecoule',
+    component: () => import('@/screens/TimeUpModal.vue'),
+    props: { open: true, answer: 'Bankui' },
+  })
+  ```
+
+- **Accessibilité :** cibles tactiles d'au moins 44×44 px ; un seul bouton principal (vert) par écran ; jamais la couleur comme seul signal (ajoute une icône ou un texte) ; aucun défilement horizontal à 375 px ni à 320 px.
+
+## Aide-mémoire du code existant
+
+| Tu cherches… | C'est ici |
+|---|---|
+| L'état du joueur (Cauris, points, série) | `usePlayerStore()` dans `src/stores/player.ts` : `profile`, `spendCauris(cost)`, `addCauris(n)`, `championUnlocked()` |
+| La progression des régions | `useProgressStore()` dans `src/stores/progress.ts` : `regions`, `isUnlocked(id)`, `completeRegion(…)` |
+| La partie en cours du Classique | `useGameStore()` dans `src/stores/game.ts` : `round`, `run`, `lastResult`, `startRegion(id)`, `submit(choiceId?)`, `requestHint(hint)`, `next()` |
+| Préparer une énigme (propositions ou plateau) | `createRound()` dans `src/engine/round.ts` |
+| Les indices | `applyHint()` dans `src/engine/hints.ts` |
+| Les gains | `answerReward()`, `baseGain()`, `spend()` dans `src/engine/economy.ts` |
+| Le hasard reproductible | `createRng(seed)`, `seedFromString(code)` dans `src/engine/random.ts` |
+| Les réglages du jeu, typés | `gameConfig` dans `src/config/game.ts` |
+| Les énigmes et les régions | `catalog` dans `src/content/catalog.ts` |
+| Des données de test toutes prêtes | `testConfig()`, `makePuzzle()`, `PUZZLES` dans `src/engine/testing.ts` |
+| Un exemple de test de composant | `src/components/GameModal.test.ts`, `src/screens/screens.test.ts` |
+| Un exemple de test avec la sauvegarde | `src/db/database.test.ts` (fake-indexeddb) |
 
 ---
 
@@ -36,6 +96,8 @@ Claude Code ne code aucune de ces tâches : quand il repère un travail hors de 
 - **Maquette :** aucune
 - **Interrupteur :** aucun
 - **Dépend de :** aucune tâche
+
+**En bref :** trouver la qualité WebP qui garde de belles photos tout en passant sous 40 Ko par image.
 
 **Contexte.** Le jeu vise des téléphones modestes et la 3G : chaque image d'énigme devrait peser moins de 40 Ko. Avec la qualité actuelle (70), 10 images dépassent :
 
@@ -52,14 +114,29 @@ Claude Code ne code aucune de ces tâches : quand il repère un travail hors de 
 | Mossi | `images1.jpg` | 41,8 Ko |
 | Bobo | `Bobo.jpg` | 40,1 Ko |
 
-Baisser la qualité allège les fichiers mais peut rendre les photos floues : il faut trouver le compromis **en regardant** les images dans l'écran Question.
+**À lire avant de commencer :** le haut de `scripts/build-content.ts` (les constantes de réglage) et la fonction `convertImage`, qui fait la conversion avec `sharp`.
 
-**Fichiers concernés :** `scripts/build-content.ts`, constante `WEBP_QUALITY` en haut du fichier. Attention : le script ne reconvertit pas une image dont le WebP existe déjà. Avant chaque essai, vide `public/content/img/` (dossier non versionné), puis relance `npm run content`.
+**Fichiers :**
+
+| Fichier | Action | Ce qu'il faut faire |
+|---|---|---|
+| `scripts/build-content.ts` | modifier | changer la valeur de `WEBP_QUALITY` (ligne `const WEBP_QUALITY = 70`) |
+
+**Étapes :**
+1. Lance `npm run dev` et ouvre une région où apparaît une image lourde (Mossi : Kadiogo ; Bobo : Guiriko).
+2. Supprime le dossier `public/content/img/` (il n'est pas versionné, il se régénère). **Sans ça, le script garde les anciennes images.**
+3. Mets `WEBP_QUALITY` à 60, lance `npm run content`, recharge le jeu, fais une capture de l'écran Question à 375 px.
+4. Recommence avec 50 (et une autre valeur si besoin).
+5. Compare les captures : visages, textures des masques, textes sur les images.
+
+**Vérifier :** le rapport de `npm run content` affiche la ligne « Poids WebP » et les avertissements « WebP de plus de 40 Ko ».
 
 **Critères de fin :**
-- Au moins trois valeurs essayées (par exemple 70, 60, 50), et les 10 images comparées dans l'écran Question à 375 px.
-- La PR contient les captures et explique le choix.
-- Le rapport de `npm run content` n'affiche plus « WebP de plus de 40 Ko », ou chaque exception restante est justifiée.
+- [ ] Au moins 3 valeurs essayées, avec les captures de comparaison dans la PR.
+- [ ] Le choix est expliqué dans la PR.
+- [ ] Le rapport n'affiche plus « WebP de plus de 40 Ko », ou chaque exception restante est justifiée.
+
+**Pièges :** oublier de vider `public/content/img/` entre deux essais (tu compares alors les mêmes images) ; juger sur l'ordinateur au lieu de la largeur téléphone.
 
 ## D2. Tableau de correspondance PNG ↔ PDF des maquettes
 
@@ -68,110 +145,206 @@ Baisser la qualité allège les fichiers mais peut rendre les photos floues : il
 - **Interrupteur :** aucun
 - **Dépend de :** aucune tâche
 
-**Contexte.** Les PNG de `docs/design/maquettes/` et les pages de `maquettes-couleur-v1.pdf` ne sont pas dans le même ordre (la Bibliothèque est le PNG 16 mais la page 4 du PDF). C'est une source d'erreurs pour toute l'équipe.
+**En bref :** un tableau qui dit, pour chaque écran, quel PNG et quelle page du PDF le montrent.
 
-**Fichiers concernés :** `docs/design/maquettes/README.md`.
+**Contexte.** Les PNG de `docs/design/maquettes/` (noir et blanc, disposition) et les pages de `maquettes-couleur-v1.pdf` (couleurs) ne sont pas dans le même ordre : la Bibliothèque est le PNG 16 mais la page 4 du PDF. Toute l'équipe se trompe.
 
-**Critères de fin :** le README contient un tableau « écran → PNG → page du PDF » pour les 17 écrans, vérifié en ouvrant chaque fichier.
+**Fichiers :**
+
+| Fichier | Action | Ce qu'il faut faire |
+|---|---|---|
+| `docs/design/maquettes/README.md` | modifier | ajouter le tableau sous la phrase existante |
+
+**Étapes :**
+1. Ouvre chaque PNG (1 à 17) et note le nom de l'écran (Splash, Hub, Tour du Faso, Question Carré…).
+2. Ouvre le PDF et note, pour chaque page, l'écran qu'elle montre.
+3. Écris le tableau en Markdown : `| Écran | PNG | Page du PDF |`.
+
+**Critères de fin :**
+- [ ] Les 17 écrans y sont, vérifiés en ouvrant chaque fichier (pas recopiés de ce document).
+- [ ] Le tableau s'affiche correctement sur GitHub.
 
 ## D3. Modale « Pas assez de Cauris »
 
 - **Pris par :** —
 - **Maquette :** PNG 13, page 15 du PDF
 - **Interrupteur :** aucun (elle sera ouverte par la modale Indice, tâche I3)
-- **Dépend de :** cœur jouable fusionné (`ResultIcon`)
+- **Dépend de :** aucune tâche
 
-**Contexte.** S'affiche quand le joueur choisit un indice trop cher : « Il te faut 15 Cauris pour cet indice (tu en as 8). »
+**En bref :** la modale qui dit « Il te faut 15 Cauris pour cet indice (tu en as 8). »
 
-**Composants du kit :** `GameModal`, `ResultIcon` (variante `reward`), `BaseButton` (« Continuer sans indice »).
+**À lire avant de commencer :**
+- `src/screens/RetryModal.vue` : une modale du jeu complète et courte, **le meilleur modèle à copier**.
+- `src/components/GameModal.vue` (la modale), `src/components/ResultIcon.vue` (le disque, variante `reward`).
+- Les sections « GameModal » et « ResultIcon » de `/kit`.
 
-**Props attendues :** `open: boolean`, `cost: number`, `balance: number`. Événement `close`.
+**Fichiers :**
 
-**Fichiers concernés :** `src/screens/NotEnoughCaurisModal.vue`, `src/i18n/fr.ts` (une fonction qui reçoit les deux nombres, comme `fr.cauri.count`), `src/router.ts` (route `/dev/pas-assez-de-cauris`).
+| Fichier | Action | Ce qu'il faut faire |
+|---|---|---|
+| `src/screens/NotEnoughCaurisModal.vue` | créer | la modale, sur le modèle de `RetryModal.vue` |
+| `src/i18n/fr.ts` | modifier | ajouter une section, par exemple `notEnoughCauris: { title, need: (cost, balance) => …, hint, button }` |
+| `src/router.ts` | modifier | ajouter `/dev/pas-assez-de-cauris` dans le bloc `DEV` |
 
-**Critères de fin :** conforme à la maquette ; les deux nombres en gras ; la phrase secondaire en `text-medium` ; le bouton émet `close`.
+**Props :** `open: boolean`, `cost: number`, `balance: number`. **Événement :** `close`.
+
+**Étapes :**
+1. Copie `RetryModal.vue` en `NotEnoughCaurisModal.vue`.
+2. Remplace la variante de `ResultIcon` par `reward`, le titre par « Pas assez de Cauris », et le bouton par « Continuer sans indice » (qui émet `close`).
+3. Écris dans `fr.ts` une **fonction** qui reçoit les deux nombres (sur le modèle de `fr.cauri.count`). Pour mettre les nombres en gras, découpe la phrase en morceaux plutôt que d'écrire du HTML dans `fr.ts`.
+4. Ajoute la route de dev avec `props: { open: true, cost: 15, balance: 8 }` et ouvre http://localhost:5173/dev/pas-assez-de-cauris.
+
+**Critères de fin :**
+- [ ] Conforme à la maquette couleur (page 15).
+- [ ] Les deux nombres sont en gras ; la phrase « Gagnes-en en répondant juste… » est en `text-medium`.
+- [ ] Le bouton émet `close`.
+- [ ] Aucun texte en dur dans le `.vue` : tout vient de `fr.ts`.
+
+**Pièges :** écrire « 15 » dans le fichier au lieu d'utiliser la prop `cost` ; oublier que le coût vient de `game.json` (c'est la tâche I3 qui passera la vraie valeur).
 
 ## D4. Modale « Champion verrouillé »
 
 - **Pris par :** —
 - **Maquette :** PNG 14, page 16 du PDF
 - **Interrupteur :** aucun (elle ne sera visible dans le jeu qu'avec `champion`, tâche I5)
-- **Dépend de :** cœur jouable fusionné (`ResultIcon`)
+- **Dépend de :** aucune tâche
 
-**Contexte.** Quand le mode Champion existera, toucher sa carte verrouillée sur le Hub ouvrira cette modale : la condition de déblocage (`unlocks.champion.classiquePoints` dans `game.json`) et la progression du joueur vers elle.
+**En bref :** la modale qui explique comment débloquer le mode Champion (« Atteins 100 points en Classique ») et montre où en est le joueur.
 
-**Composants du kit :** `GameModal` (`dismissible`), `ResultIcon` (variante `locked`), `ProgressBar` (libellé « 62 / 100 points »), `BaseButton` (« Jouer en Classique »).
+**À lire avant de commencer :** `src/screens/RetryModal.vue` (modèle), `src/components/ProgressBar.vue`, et `src/screens/HubScreen.vue` (la liste `otherModes`, où est construite la carte Champion).
 
-**Props attendues :** `open: boolean`, `points: number`, `required: number`. Événements `close` et `play-classic`.
+**Fichiers :**
 
-**Fichiers concernés :** `src/screens/ChampionLockedModal.vue`, `src/i18n/fr.ts`, `src/router.ts` (route `/dev/champion-verrouille`). Dans `src/screens/HubScreen.vue`, prépare l'ouverture **seulement quand `features.champion` vaut `true`** : aujourd'hui la carte affiche « Bientôt » et ne réagit pas.
+| Fichier | Action | Ce qu'il faut faire |
+|---|---|---|
+| `src/screens/ChampionLockedModal.vue` | créer | la modale |
+| `src/i18n/fr.ts` | modifier | titre, phrase avec le nombre de points (fonction), libellé « 62 / 100 points » (fonction), bouton |
+| `src/router.ts` | modifier | route `/dev/champion-verrouille` avec `props: { open: true, points: 62, required: 100 }` |
+| `src/screens/HubScreen.vue` | modifier | ouvrir la modale au toucher de la carte Champion verrouillée, **seulement si `features.champion` vaut `true`** |
 
-**Critères de fin :** la barre suit `points / required` ; « Jouer en Classique » émet `play-classic` ; Échap ferme la modale ; avec `champion` à `false`, rien ne change sur le Hub.
+**Props :** `open: boolean`, `points: number`, `required: number`. **Événements :** `close`, `play-classic`.
+
+**Étapes :**
+1. Crée la modale : `GameModal` avec `dismissible` (Échap et toucher du voile ferment), `ResultIcon variant="locked"`, `ProgressBar :value="points" :max="required"`, `BaseButton` « Jouer en Classique ».
+2. Dans le Hub, la carte Champion doit devenir cliquable **uniquement si** `features.champion` est `true` et que le mode est verrouillé : passe alors `locked-clickable` à `ModeCard` et écoute `@locked-click`. La valeur à passer en `required` est `gameConfig.unlocks.champion.classiquePoints`, et `points` vient de `usePlayerStore().profile.points`.
+3. Vérifie sur `/dev/champion-verrouille`, puis passe temporairement `champion` à `true` dans `features.ts` pour tester le Hub, **et remets-le à `false`** avant la PR.
+
+**Critères de fin :**
+- [ ] La barre suit `points / required`.
+- [ ] « Jouer en Classique » émet `play-classic` ; Échap ferme la modale.
+- [ ] Avec `champion` à `false`, le Hub ne change pas (carte « Bientôt », non cliquable) : `src/screens/screens.test.ts` doit toujours passer.
+
+**Pièges :** laisser `features.champion` à `true` dans la PR ; écrire 100 en dur.
 
 ## D5. Écran « Temps écoulé »
 
 - **Pris par :** —
 - **Maquette :** PNG 10, page 12 du PDF
 - **Interrupteur :** aucun (il sera utilisé par Champion et Maître, tâches I5 et I6)
-- **Dépend de :** cœur jouable fusionné (`AnswerReveal`)
+- **Dépend de :** aucune tâche
 
-**Contexte.** S'affiche quand le chrono arrive à 0. Le 0 est rouge : c'est le temps qui est en cause, pas le joueur (couleurs-v1.md §6).
+**En bref :** la modale « Temps écoulé », avec le chrono à 0 en rouge et la bonne réponse.
 
-**Composants du kit :** `GameModal`, `ChronoRing` (`seconds` à 0), `AnswerReveal`, `BaseButton` (« Continuer »).
+**Contexte.** En mode chrono, quand le temps est fini, on **montre** la réponse (contrairement au Classique, où le joueur réessaie). Le 0 est rouge : c'est le temps qui est en cause, pas le joueur (couleurs-v1.md §6).
 
-**Props attendues :** `open: boolean`, `answer: string`. Événement `next`.
+**À lire avant de commencer :** `src/screens/RetryModal.vue` (modèle), `src/components/ChronoRing.vue`, `src/components/AnswerReveal.vue` (déjà prêt pour cet écran).
 
-**Fichiers concernés :** `src/screens/TimeUpModal.vue`, `src/i18n/fr.ts`, `src/router.ts` (route `/dev/temps-ecoule`).
+**Fichiers :**
 
-**Critères de fin :** conforme à la maquette ; le bouton émet `next` ; la modale ne se ferme pas avec Échap.
+| Fichier | Action | Ce qu'il faut faire |
+|---|---|---|
+| `src/screens/TimeUpModal.vue` | créer | la modale |
+| `src/i18n/fr.ts` | modifier | « Temps écoulé », « Continuer » |
+| `src/router.ts` | modifier | route `/dev/temps-ecoule` avec `props: { open: true, answer: 'Bankui' }` |
+
+**Props :** `open: boolean`, `answer: string`. **Événement :** `next`.
+
+**Étapes :**
+1. `GameModal` (pas `dismissible`), avec dans l'emplacement `icon` un `ChronoRing :seconds="0" :total="1"`.
+2. `AnswerReveal :answer="answer"`, puis `BaseButton` « Continuer » qui émet `next`.
+
+**Critères de fin :**
+- [ ] Conforme à la maquette couleur (page 12).
+- [ ] Le bouton émet `next` ; Échap ne ferme pas la modale.
+
+**Piège :** `ChronoRing` affiche aussi « sec » sous le chiffre : vérifie avec le pôle Design si la maquette le veut ; sinon, ajoute une prop au composant et mets `/kit` à jour.
 
 ## D6. Écran « Run terminé » (variante récompense de `TagPill`)
 
 - **Pris par :** —
 - **Maquette :** PNG 12, page 14 du PDF
 - **Interrupteur :** aucun (il sera utilisé par Champion, tâche I5)
-- **Dépend de :** cœur jouable fusionné (`TagPill`)
+- **Dépend de :** aucune tâche
 
-**Contexte.** Fin d'une partie Champion : le score en très grand, un éventuel « Nouveau record perso ! », deux cartes de statistiques (bonnes réponses, série max), puis « Rejouer » et « Retour au hub ».
+**En bref :** l'écran de fin d'une partie Champion : score en très grand, record perso, deux cartes de statistiques.
 
-**Composants du kit :** `TagPill`, `BaseButton`.
+**À lire avant de commencer :** `src/components/TagPill.vue` (variante `neutral` seulement), `src/screens/RegionDoneScreen.vue` (un écran de fin complet, bon modèle de mise en page).
 
-**À faire :**
-- Ajouter à `TagPill` (qui existe en variante `neutral`) une variante **`reward`** : fond `reward`, texte `reward-text`, icône trophée (lucide `Trophy`). La montrer sur `/kit`.
-- Créer dans l'écran les deux cartes de statistiques.
-- Le score dépasse la plus grande taille de l'échelle (48 px) : demander la taille au pôle Design et l'ajouter comme token dans `tokens.css` (par exemple `--font-size-display`), pas en dur dans l'écran.
+**Fichiers :**
 
-**Props attendues :** `score: number`, `isRecord: boolean`, `correct: number`, `total: number`, `bestStreak: number`. Événements `replay` et `back-to-hub`.
+| Fichier | Action | Ce qu'il faut faire |
+|---|---|---|
+| `src/components/TagPill.vue` | modifier | ajouter la variante `reward` : fond `var(--reward)`, texte `var(--reward-text)`, icône `Trophy` de `lucide-vue-next` |
+| `src/dev/KitScreen.vue` + `src/dev/kit-texts.ts` | modifier | montrer `TagPill variant="reward"` |
+| `src/styles/tokens.css` | modifier | un token pour la taille du score (par exemple `--font-size-display`), valeur à demander au pôle Design |
+| `src/screens/RunDoneScreen.vue` | créer | l'écran |
+| `src/i18n/fr.ts` | modifier | « Run terminé », « Score », « Nouveau record perso ! », « Bonnes réponses », « Série max », « Rejouer », « Retour au hub » |
+| `src/router.ts` | modifier | route `/dev/run-termine` |
 
-**Fichiers concernés :** `src/components/TagPill.vue`, `src/dev/KitScreen.vue`, `src/screens/RunDoneScreen.vue`, `src/styles/tokens.css`, `src/i18n/fr.ts`, `src/router.ts` (route `/dev/run-termine`).
+**Props :** `score`, `isRecord`, `correct`, `total`, `bestStreak`. **Événements :** `replay`, `back-to-hub`.
 
-**Critères de fin :** les 2 variantes de `TagPill` sont sur `/kit` ; « Nouveau record perso ! » n'apparaît que si `isRecord` vaut `true`.
+**Étapes :**
+1. Ajoute la variante `reward` à `TagPill` (le type de la prop devient `'neutral' | 'reward'`), et vérifie-la sur `/kit`.
+2. Construis l'écran : titre, score, `TagPill variant="reward"` affichée **seulement si** `isRecord`, deux cartes de statistiques (dans l'écran, pas besoin d'un composant partagé), puis les deux boutons (principal « Rejouer », secondaire « Retour au hub »).
+3. Route de dev avec `props: { score: 145, isRecord: true, correct: 12, total: 15, bestStreak: 6 }`.
+
+**Critères de fin :**
+- [ ] Les 2 variantes de `TagPill` sont sur `/kit`.
+- [ ] « Nouveau record perso ! » n'apparaît que si `isRecord` vaut `true`.
+- [ ] Aucune taille en `px` écrite en dur pour le score : elle vient d'un token.
 
 ## D7. Écran Paramètres : son et réinitialisation
 
 - **Pris par :** —
 - **Maquette :** aucune : à demander au pôle Design (en attendant, s'inspirer de la Bibliothèque, PNG 16)
 - **Interrupteur :** `settings`
-- **Dépend de :** cœur jouable fusionné
+- **Dépend de :** aucune tâche
 
-**Contexte.** Deux réglages :
-- **Son** activé ou désactivé. La ligne n'apparaît que si `features.sounds` vaut `true` (tâche I7) ; le choix est quand même enregistré.
-- **Réinitialiser la progression** : efface Cauris, points, série, progression des régions, historique et anecdotes, **après confirmation**.
+**En bref :** un écran avec un réglage « Son » et un bouton « Réinitialiser ma progression » (avec confirmation).
 
-**Composants du kit :** `ScreenHeader` (avec retour), `BaseButton` (la réinitialisation est un bouton **secondaire**), `GameModal` pour la confirmation (« Tout effacer ? », « Effacer », « Annuler »).
+**Contexte.**
+- **Son** : la ligne n'apparaît que si `features.sounds` vaut `true` (tâche I7) ; le choix est enregistré quand même.
+- **Réinitialiser** : efface Cauris, points, série, progression, historique et anecdotes, **après confirmation**.
 
-**Fichiers concernés :**
-- `src/screens/SettingsScreen.vue`, route `/parametres` dans `src/router.ts`, et un accès depuis le Hub (visible seulement avec `settings`).
-- `src/db/database.ts` : une table `settings` (nouvelle version du schéma, **pas de localStorage**) ; `src/db/repository.ts` : `resetProgress()`.
-- `src/stores/` : un store `settings`, et le rechargement de `player` et `progress` après réinitialisation.
-- `src/i18n/fr.ts`.
+**À lire avant de commencer :** `src/db/database.ts` (commentaire sur les migrations), `src/db/repository.ts`, `src/db/database.test.ts` (tests avec fake-indexeddb), `src/stores/player.ts` et `src/stores/progress.ts` (fonction `load`).
+
+**Fichiers :**
+
+| Fichier | Action | Ce qu'il faut faire |
+|---|---|---|
+| `src/db/database.ts` | modifier | ajouter `this.version(2).stores({ settings: 'key' })` (sans toucher à la version 1) et le type `SettingRow` |
+| `src/db/repository.ts` | modifier | `loadSettings()`, `saveSetting(key, value)`, et `resetProgress()` qui vide `profile`, `regionProgress`, `history` et `anecdotes` |
+| `src/db/database.test.ts` | modifier | tests de `resetProgress()` et des réglages |
+| `src/stores/settings.ts` | créer | store `useSettingsStore` (son activé ou non) |
+| `src/screens/SettingsScreen.vue` | créer | l'écran |
+| `src/router.ts` | modifier | route `/parametres` (hors du bloc `DEV`, mais seulement si `features.settings`) |
+| `src/screens/HubScreen.vue` | modifier | un accès aux Paramètres (par exemple une icône `Settings` de lucide dans l'en-tête), seulement si `features.settings` |
+| `src/i18n/fr.ts` | modifier | textes de l'écran et de la confirmation |
+| `src/config/features.ts` + `features.test.ts` | modifier | `settings: true`, et retirer `settings` de `stillOff` |
+
+**Étapes :**
+1. Sauvegarde : version 2, fonctions du repository, **tests d'abord** (`npm run test -- src/db`).
+2. Store `settings`, puis l'écran : `ScreenHeader` avec retour, une ligne « Son » (si `features.sounds`), un `BaseButton variant="secondary"` « Réinitialiser ma progression ».
+3. La confirmation : `GameModal` « Tout effacer ? » avec « Effacer » et « Annuler ». Après « Effacer » : `resetProgress()`, puis recharger les stores `player` et `progress` (leur fonction `load()`), puis retour au Hub.
 
 **Critères de fin :**
-- Rien n'est effacé sans confirmation ; « Annuler » ne touche à rien.
-- Après réinitialisation, le jeu revient à l'état de départ (première région seule ouverte, 0 Cauri).
-- Le choix du son survit à la fermeture de l'onglet.
-- Test de `resetProgress()` avec fake-indexeddb (sur le modèle de `src/db/database.test.ts`).
-- Avec `settings` à `false`, aucun accès aux Paramètres.
+- [ ] Rien n'est effacé sans confirmation ; « Annuler » ne touche à rien.
+- [ ] Après réinitialisation : 0 Cauri, seule la première région ouverte.
+- [ ] Le choix du son survit à la fermeture de l'onglet.
+- [ ] Tests de `resetProgress()` et de la migration vers la version 2.
+- [ ] Avec `settings` à `false`, aucun accès aux Paramètres (ni lien, ni route).
+
+**Pièges :** modifier la version 1 du schéma au lieu d'en ajouter une (les joueurs perdraient leur partie) ; utiliser `localStorage` (interdit pour les données du jeu) ; oublier de recharger les stores (l'écran afficherait encore les anciens Cauris).
 
 ## D8. Demander au navigateur de garder la sauvegarde
 
@@ -180,13 +353,29 @@ Baisser la qualité allège les fichiers mais peut rendre les photos floues : il
 - **Interrupteur :** `persistStorage`
 - **Dépend de :** aucune tâche
 
-**Contexte.** Sur un téléphone qui manque de place, le navigateur peut effacer les données d'un site, donc la progression du joueur. `navigator.storage.persist()` lui demande de ne pas le faire (Chrome l'accorde souvent quand la PWA est installée).
+**En bref :** demander au navigateur de ne jamais effacer la partie du joueur quand le téléphone manque de place.
 
-**Fichiers concernés :** `src/db/` (une fonction `requestPersistentStorage()`), appelée une fois au démarrage (`src/main.ts` ou le store `player`), seulement si `features.persistStorage` vaut `true`.
+**Contexte.** `navigator.storage.persist()` demande au navigateur de protéger les données du site. Chrome l'accorde souvent quand la PWA est installée. Documentation : [MDN, StorageManager.persist](https://developer.mozilla.org/fr/docs/Web/API/StorageManager/persist).
+
+**Fichiers :**
+
+| Fichier | Action | Ce qu'il faut faire |
+|---|---|---|
+| `src/db/persist.ts` | créer | `requestPersistentStorage(): Promise<boolean>` |
+| `src/db/persist.test.ts` | créer | tests : API absente, refus, accord |
+| `src/main.ts` | modifier | l'appeler une fois au démarrage si `features.persistStorage` |
+| `src/config/features.ts` + `features.test.ts` | modifier | `persistStorage: true`, et retirer le nom de `stillOff` |
+
+**Étapes :**
+1. Dans `persist.ts` : si `navigator.storage?.persist` n'existe pas, renvoyer `false` ; sinon, vérifier `navigator.storage.persisted()` d'abord, et ne demander que si ce n'est pas déjà accordé.
+2. Tout entourer d'un `try/catch` : une erreur ne doit jamais empêcher le jeu de démarrer.
+3. En dev seulement (`import.meta.env.DEV`), écrire le résultat dans la console.
+4. Tests : remplace `navigator.storage` par un faux objet avec `vi.stubGlobal`.
 
 **Critères de fin :**
-- La demande est faite une seule fois ; un refus, ou un navigateur qui ne connaît pas l'API, ne provoque aucune erreur.
-- Le résultat (accordé ou non) s'affiche dans la console en dev seulement.
+- [ ] Une seule demande par démarrage, et aucune si c'est déjà accordé.
+- [ ] Navigateur sans l'API ou refus : aucune erreur.
+- [ ] Le résultat n'apparaît dans la console qu'en dev.
 
 ## D9. Icônes PWA à partir du logo
 
@@ -195,19 +384,29 @@ Baisser la qualité allège les fichiers mais peut rendre les photos floues : il
 - **Interrupteur :** aucun
 - **Dépend de :** aucune tâche
 
-**Contexte.** Les icônes de `public/icons/` sont provisoires (un « S » blanc pixelisé sur fond vert). L'icône définitive est **le cercle rouge avec le S** du logo. Ne modifie pas le logo original.
+**En bref :** remplacer les icônes provisoires (un « S » pixelisé sur fond vert) par le cercle rouge avec le S du logo.
 
-**Tailles attendues** (les noms ne changent pas, le manifest les cite déjà dans `vite.config.ts`) :
-- `icon-192.png` (192×192) et `icon-512.png` (512×512) ;
-- `maskable-512.png` (512×512) : le cercle doit tenir dans la **zone sûre** (le cercle central de 80 %), car Android peut rogner les bords ;
-- `apple-touch-icon.png` (180×180, sans transparence).
+**Contexte.** Ces icônes apparaissent sur l'écran d'accueil du téléphone quand le jeu est installé. Le manifest (dans `vite.config.ts`) cite déjà les noms de fichiers : on remplace les fichiers, **sans changer leurs noms**. Ne modifie pas le logo original.
 
-**Fichiers concernés :** `public/icons/*.png`. Pour les produire : un logiciel d'image, ou un petit script avec `sharp` (déjà dans le projet, comme dans `scripts/build-content.ts`).
+**Tailles attendues :**
+
+| Fichier | Taille | Particularité |
+|---|---|---|
+| `public/icons/icon-192.png` | 192×192 | — |
+| `public/icons/icon-512.png` | 512×512 | — |
+| `public/icons/maskable-512.png` | 512×512 | le cercle doit tenir dans la **zone sûre** (le disque central de 80 %), car Android peut rogner les bords |
+| `public/icons/apple-touch-icon.png` | 180×180 | sans transparence (fond plein) |
+
+**Deux façons de faire :**
+- **Avec un logiciel d'image** (GIMP, Photopea…) : recadrer le cercle rouge, exporter aux 4 tailles.
+- **Avec un petit script** `sharp` (déjà installé, voir `scripts/build-content.ts`) : `sharp(source).extract({ left, top, width, height }).resize(512).png().toFile(…)`. Lance-le une fois avec `node`, sans l'ajouter au projet.
+
+**Vérifier :** `npm run build` puis `npm run preview`, ouvre http://localhost:4173, puis `F12` → onglet *Application* → *Manifest* : les icônes s'affichent, avec un aperçu « maskable ». Pour tester la zone sûre : [maskable.app](https://maskable.app).
 
 **Critères de fin :**
-- Les 4 fichiers remplacent les provisoires, chacun de moins de 30 Ko.
-- Dans Chrome (outils de développement → Application → Manifest), les icônes s'affichent sans erreur, y compris en mode « maskable ».
-- L'app installée sur un téléphone montre le cercle rouge, non rogné.
+- [ ] Les 4 fichiers remplacent les provisoires, avec les mêmes noms, chacun de moins de 30 Ko.
+- [ ] Aucune erreur dans l'onglet *Manifest* de Chrome.
+- [ ] L'app installée sur un téléphone montre le cercle rouge, non rogné.
 
 ---
 
@@ -220,16 +419,30 @@ Baisser la qualité allège les fichiers mais peut rendre les photos floues : il
 - **Interrupteur :** aucun
 - **Dépend de :** aucune tâche
 
-**Contexte.** Aujourd'hui, chacun doit penser à lancer `lint`, `test` et `build` avant d'ouvrir une PR. Une vérification automatique évite de fusionner du code cassé dans `main`.
+**En bref :** GitHub vérifie tout seul `lint`, `test`, `build` et le contenu à chaque PR.
 
-**Fichiers concernés :** `.github/workflows/ci.yml` (à créer) ; `CLAUDE.md`, section Conventions (la CI doit être verte avant de fusionner).
+**À lire avant de commencer :** `package.json` (les scripts), et la documentation [GitHub Actions pour Node.js](https://docs.github.com/fr/actions/use-cases-and-examples/building-and-testing/building-and-testing-nodejs).
+
+**Fichiers :**
+
+| Fichier | Action | Ce qu'il faut faire |
+|---|---|---|
+| `.github/workflows/ci.yml` | créer | le workflow |
+| `CLAUDE.md` | modifier | section Conventions : « la CI doit être verte avant de fusionner » |
+| `README.md` | modifier | mentionner la CI dans « Travailler sur une tâche » |
+
+**Étapes :**
+1. Déclencheurs : `pull_request` vers `main`, et `push` sur `main`.
+2. Étapes : `actions/checkout`, `actions/setup-node` (Node 24, `cache: npm`), `npm ci`, puis `npm run lint`, `npm run test`, `npm run build`, `npm run content -- --check`.
+3. Ouvre une PR de test : elle doit passer au vert. Puis casse volontairement un type (dans une branche jetable) : elle doit passer au rouge.
 
 **Critères de fin :**
-- Le workflow se lance sur chaque PR vers `main` et sur chaque push sur `main`.
-- Il utilise Node 24 (`package.json` demande au moins Node 22.18), installe avec `npm ci`, et met en cache les paquets npm.
-- Il lance, dans cet ordre : `npm run lint`, `npm run test`, `npm run build`, `npm run content -- --check`.
-- `content-source/` n'est pas sur GitHub : `--check` affiche alors un message et réussit. C'est voulu.
-- Preuve : une PR de test verte, et une PR volontairement cassée marquée en rouge.
+- [ ] Le workflow tourne sur chaque PR vers `main` et sur chaque push sur `main`.
+- [ ] Node 24, `npm ci`, cache npm.
+- [ ] Les 4 commandes, dans cet ordre.
+- [ ] Preuve dans la PR : une exécution verte, et une rouge sur une erreur volontaire.
+
+**Piège :** `content-source/` n'est pas sur GitHub. C'est voulu : `npm run content -- --check` affiche alors un message et **réussit**. N'essaie pas de télécharger le contenu dans la CI.
 
 ## I2. Option `--prune` du script de contenu
 
@@ -238,61 +451,111 @@ Baisser la qualité allège les fichiers mais peut rendre les photos floues : il
 - **Interrupteur :** aucun
 - **Dépend de :** aucune tâche
 
-**Contexte.** `npm run content` enregistre chaque image sous le nom de son empreinte (`3f9a1c0b2d4e.webp`). Quand une image source est remplacée ou supprimée, l'ancien WebP reste dans `public/content/img/` : inutile, il prend de la place et fausse le poids total.
+**En bref :** `npm run content -- --prune` supprime les images WebP qui ne servent plus.
 
-**Fichiers concernés :** `scripts/build-content.ts` ; la logique testable dans `scripts/content/` (par exemple `prune.ts` et `prune.test.ts`) ; `CLAUDE.md`, section Contenu.
+**Contexte.** Chaque image est enregistrée sous le nom de son empreinte (`3f9a1c0b2d4e.webp`). Quand une image source est remplacée ou supprimée, l'ancien WebP reste dans `public/content/img/` : inutile, il prend de la place et fausse le poids total.
+
+**À lire avant de commencer :** `scripts/build-content.ts` (la fonction `main`, et `checkOnly` pour la gestion de `--check`), `scripts/content/regions.ts` et `regions.test.ts` (modèle d'un module testé).
+
+**Fichiers :**
+
+| Fichier | Action | Ce qu'il faut faire |
+|---|---|---|
+| `scripts/content/prune.ts` | créer | une fonction pure : `filesToPrune(existingFiles, referencedFiles): string[]` |
+| `scripts/content/prune.test.ts` | créer | ses tests |
+| `scripts/build-content.ts` | modifier | lire l'option `--prune`, appeler `filesToPrune`, supprimer (ou seulement lister avec `--check`), l'ajouter au rapport |
+| `CLAUDE.md` et `README.md` | modifier | documenter l'option |
+
+**Étapes :**
+1. Écris `filesToPrune` et ses tests : ne garder que les `.webp` non référencés ; ne jamais renvoyer `.gitkeep` ni un fichier qui ne se termine pas par `.webp`.
+2. Dans `build-content.ts`, après l'écriture de `puzzles.json` (donc seulement s'il n'y a pas d'erreur), liste `public/content/img/`, calcule les fichiers à supprimer, supprime-les (`unlink` de `node:fs/promises`).
+3. Avec `--check --prune` : n'affiche que la liste, sans rien supprimer.
+4. Ajoute au rapport final une ligne « Supprimés : N fichiers (X Ko) ».
 
 **Critères de fin :**
-- `npm run content -- --prune` supprime les `.webp` de `public/content/img/` qui ne sont cités par aucune énigme de `puzzles.json`.
-- Rien n'est supprimé s'il y a une erreur bloquante ; aucun autre fichier n'est touché (`.gitkeep` compris).
-- `npm run content -- --check --prune` affiche ce qui **serait** supprimé, sans rien supprimer.
-- Le rapport affiche le nombre et le poids des fichiers supprimés.
-- Un test Vitest couvre le choix des fichiers à supprimer.
+- [ ] `--prune` supprime les `.webp` qui ne sont cités par aucune énigme.
+- [ ] Rien n'est supprimé s'il y a une erreur bloquante ; aucun autre fichier n'est touché.
+- [ ] `--check --prune` liste sans supprimer.
+- [ ] Le rapport affiche le nombre et le poids des fichiers supprimés.
+- [ ] Tests de `filesToPrune`.
 
 ## I3. Modale Indice et branchement des 3 indices
 
 - **Pris par :** —
 - **Maquette :** PNG 15, page 17 du PDF (et PNG 4 et 5 pour le bouton Indice)
 - **Interrupteur :** `hints`
-- **Dépend de :** cœur jouable fusionné (écran Question) ; tâche D3 (modale « Pas assez de Cauris »)
+- **Dépend de :** tâche D3 (modale « Pas assez de Cauris »)
 
-**Contexte.** Les 3 indices existent déjà dans l'engine (`src/engine/hints.ts`) et dans le store (`useGameStore().requestHint`), avec leurs erreurs typées : `insufficient-cauris`, `wrong-format`, `nothing-left`. Il reste l'interface.
+**En bref :** le joueur qui bloque peut acheter un indice avec ses Cauris.
 
-**Composants du kit :** `GameModal` (`dismissible`), `CauriChip` (`sm`), `BaseButton` (secondaire « Fermer ») ; dans l'écran Question : `AnswerOption` (état `eliminated`), `LetterTile` (état `disabled`), `LetterSlot`.
+**Contexte.** Tout existe déjà côté règles : `applyHint()` dans `src/engine/hints.ts`, et `useGameStore().requestHint(hint)`, qui paie et applique l'indice. Il renvoie `{ ok: true }` ou une erreur typée : `insufficient-cauris`, `wrong-format`, `nothing-left`. Les coûts et les formats sont dans `game.json` (`hints.eliminer_2`, `hints.retirer_leurre`, `hints.placer_lettre`). Il reste l'interface.
 
-**À faire :**
-- Dans `src/screens/QuestionScreen.vue`, le bouton « Indice » (avec son coût) en bas à gauche, **seulement si `features.hints`**.
-- `src/screens/HintModal.vue` : n'afficher que les indices du format en cours (`hints.*.formats` de `game.json`). Une ligne trop chère montre « il te manque X » (couleurs-v1.md §6, écran 15) et ouvre la modale de D3 au toucher. Une ligne qui renverrait `nothing-left` est grisée avec un texte explicatif.
-- Afficher le résultat : options éliminées barrées, leurre retiré grisé, lettre placée verrouillée.
+**À lire avant de commencer :**
+- `src/screens/QuestionScreen.vue` : le bouton Indice existe déjà (caché par `v-if="features.hints"`), et ouvre `hintsOpen`.
+- `src/engine/hints.ts` et `hints.test.ts` : ce que fait chaque indice.
+- `src/components/AnswerOption.vue` (état `eliminated`), `LetterTile.vue` (état `disabled`).
 
-**Fichiers concernés :** `src/screens/QuestionScreen.vue`, `src/screens/HintModal.vue`, `src/i18n/fr.ts`, `src/config/features.ts`.
+**Fichiers :**
+
+| Fichier | Action | Ce qu'il faut faire |
+|---|---|---|
+| `src/screens/HintModal.vue` | créer | la liste des indices du format en cours, avec leur coût |
+| `src/screens/QuestionScreen.vue` | modifier | brancher `hintsOpen` sur `HintModal`, gérer les erreurs, ouvrir D3 si le solde est insuffisant |
+| `src/i18n/fr.ts` | modifier | libellés des 3 indices, « il te manque X », « plus rien à retirer », « Fermer » |
+| `src/screens/HintModal.test.ts` | créer | tests de la modale |
+| `src/config/features.ts` + `features.test.ts` | modifier | `hints: true`, et retirer `hints` de `stillOff` |
+
+**Étapes :**
+1. `HintModal` reçoit `open`, `format` (le format de la manche en cours) et `balance` (les Cauris). Elle ne montre que les indices dont `gameConfig.hints[id].formats` contient le format, chacun avec un `CauriChip size="sm"` du coût.
+2. Une ligne trop chère affiche « il te manque X » (couleurs-v1.md §6, écran 15), reste cliquable et ouvre la modale de D3.
+3. Au toucher d'une ligne disponible : `await game.requestHint(id)`. Si c'est `nothing-left`, grise la ligne avec un texte explicatif ; si c'est `ok`, ferme la modale.
+4. Vérifie l'affichage du résultat dans l'écran Question : options éliminées barrées, leurre retiré grisé, lettre placée verrouillée (ces états existent déjà dans les composants).
+5. Le bouton Indice du bas : affiche le coût le moins cher du format (par exemple avec un `CauriChip`), et désactive-le pendant l'affichage du résultat (c'est déjà fait avec `game.answered`).
 
 **Critères de fin :**
-- Les Cauris baissent du coût exact, et jamais un indice inutile n'est payé.
-- Tests de composants (sur le modèle de `src/components/GameModal.test.ts`) pour les 3 erreurs.
-- Avec `hints` à `false`, aucun bouton Indice.
+- [ ] Les Cauris baissent exactement du coût ; un indice inutile n'est jamais payé.
+- [ ] « Éliminer 2 » n'apparaît qu'au Carré ; « Retirer un leurre » et « Placer une lettre » qu'au Direct.
+- [ ] Tests de composant pour les 3 erreurs (sur le modèle de `src/components/GameModal.test.ts`).
+- [ ] Avec `hints` à `false`, aucun bouton Indice (`src/screens/screens.test.ts` le vérifie).
+
+**Piège :** recalculer le coût ou le solde dans la modale ; tout est déjà dans `gameConfig` et `usePlayerStore().profile.cauris`.
 
 ## I4. Bibliothèque et son accès depuis le Hub
 
 - **Pris par :** —
 - **Maquette :** PNG 16, page 4 du PDF
 - **Interrupteur :** `library`
-- **Dépend de :** cœur jouable fusionné (`TagPill`)
+- **Dépend de :** aucune tâche
 
-**Contexte.** Chaque énigme réussie débloque son anecdote (table `anecdotes` de Dexie, fonction `listAnecdotes` de `src/db/repository.ts`). La Bibliothèque les liste, avec le titre honorifique en cours (« Titre : Griot du Faso · en cours · 2/17 régions »).
+**En bref :** l'écran qui liste les anecdotes gagnées, et le titre « Griot du Faso » en cours.
 
-**Composants du kit :** `ScreenHeader` (retour et sous-titre « Anecdotes débloquées · 8 »), `TagPill`, la bande de motif d'`InfoCard` (tu peux la sortir dans un petit composant ; mets alors `/kit` à jour).
+**Contexte.** Chaque énigme réussie débloque son anecdote (table `anecdotes`, fonction `listAnecdotes` de `src/db/repository.ts`). Les titres et les textes sont dans `catalog.puzzles` (`puzzle.anecdote.title` et `.text`).
 
-**À faire :**
-- Un store `library` qui lit les anecdotes via le repository (jamais Dexie dans l'écran).
-- `src/screens/LibraryScreen.vue`, route `/bibliotheque`, et un accès depuis le Hub **seulement si `features.library`**.
-- Une ligne par anecdote : titre (`anecdote.title` de `puzzles.json`) et région, chevron si elle est débloquée ; grisée avec un cadenas et « Anecdote verrouillée » sinon. Toucher une ligne débloquée ouvre l'anecdote (une `InfoCard` dans une `GameModal`, par exemple).
-- **Point à trancher avec le pôle Contenu :** une même anecdote est aujourd'hui copiée dans plusieurs régions (Mossi ×9). Faut-il l'afficher une seule fois ?
+**À lire avant de commencer :** `src/db/repository.ts`, `src/stores/player.ts` (modèle d'un store qui lit la sauvegarde), `src/screens/TourScreen.vue` (un écran avec `ScreenHeader`), `src/components/InfoCard.vue` (la bande de motif).
+
+**Fichiers :**
+
+| Fichier | Action | Ce qu'il faut faire |
+|---|---|---|
+| `src/stores/library.ts` | créer | store `useLibraryStore` : charge `listAnecdotes()`, expose les anecdotes débloquées |
+| `src/screens/LibraryScreen.vue` | créer | l'écran |
+| `src/components/PatternBand.vue` | créer (conseillé) | sortir la bande de motif d'`InfoCard` pour la réutiliser dans la carte du titre ; mettre `InfoCard` et `/kit` à jour |
+| `src/router.ts` | modifier | route `/bibliotheque`, seulement si `features.library` |
+| `src/screens/HubScreen.vue` | modifier | un accès à la Bibliothèque, seulement si `features.library` |
+| `src/i18n/fr.ts` | modifier | textes de l'écran |
+| `src/config/features.ts` + `features.test.ts` | modifier | `library: true`, et retirer `library` de `stillOff` |
+
+**Étapes :**
+1. Le store, et un test avec fake-indexeddb (sur le modèle de `src/stores/game.test.ts`).
+2. L'écran : `ScreenHeader` (retour, sous-titre « Anecdotes débloquées · N »), la carte du titre (bande de motif, « Titre : Griot du Faso », `TagPill` « en cours · x/17 régions »), puis une ligne par anecdote.
+3. Une ligne débloquée affiche le titre, la région et un chevron, et ouvre l'anecdote (une `InfoCard` dans une `GameModal`, par exemple). Une ligne verrouillée est grisée, avec un cadenas et « Anecdote verrouillée ».
+
+**Question à trancher avec le pôle Contenu :** une même anecdote est aujourd'hui copiée dans plusieurs régions (Mossi ×9). Faut-il l'afficher une seule fois ?
 
 **Critères de fin :**
-- Une anecdote débloquée en jouant apparaît dans la Bibliothèque, y compris après fermeture de l'onglet.
-- Les lignes font au moins 44 px de haut ; une ligne verrouillée n'est pas cliquable.
-- Avec `library` à `false`, aucun accès.
+- [ ] Une anecdote gagnée en jouant apparaît, même après fermeture de l'onglet.
+- [ ] Lignes d'au moins 44 px de haut ; une ligne verrouillée n'est pas cliquable.
+- [ ] Avec `library` à `false`, aucun accès.
 
 ## I5. Mode Champion : logique et écran
 
@@ -301,29 +564,47 @@ Baisser la qualité allège les fichiers mais peut rendre les photos floues : il
 - **Interrupteur :** `champion`
 - **Dépend de :** tâches D4 (Champion verrouillé), D5 (Temps écoulé), D6 (Run terminé)
 
-**Contexte.** Mode contre la montre, débloqué à 100 points en Classique (`unlocks.champion.classiquePoints`, fonction `isChampionUnlocked`). Chaque énigme a un chrono de 20 s (`timers.championSeconds`). Le joueur enchaîne les énigmes, avec une série (« Série ×4 ») et un score, jusqu'à l'écran « Run terminé ».
+**En bref :** un mode contre la montre : 20 secondes par énigme, une série, un score, un record.
 
-**Questions au pôle Game Design, à trancher avant de coder** (puis à ranger dans `game.json`) :
+**Contexte.** Débloqué à 100 points en Classique (`unlocks.champion.classiquePoints`, fonction `isChampionUnlocked`). Chrono de 20 s par énigme (`timers.championSeconds`).
+
+**Questions au pôle Game Design, à trancher AVANT de coder** (puis à ranger dans `game.json`) :
 - Combien d'énigmes dans un run ? (La maquette montre 15.) Quel format ? (La maquette montre un Carré en 2×2.)
 - Comment se calcule le score : points du format, bonus de série, bonus de temps restant ?
 - Le temps écoulé compte-t-il comme une réponse fausse ?
 - Le run se termine-t-il seulement au bout des N énigmes, ou aussi après X erreurs ?
 - Le Champion rapporte-t-il aussi des Cauris ?
 
-**Composants du kit :** `ChronoRing`, `AnswerOption`, `TagPill` (« Série ×4 »), `GameModal` ; les écrans de D4, D5 et D6.
+**À lire avant de commencer :** `src/engine/classic.ts` (modèle d'une progression : file, `recordAnswer`), `src/stores/game.ts` (modèle d'un store de partie), `src/engine/round.ts` (`createRound`, à réutiliser), `src/screens/QuestionScreen.vue` (modèle d'écran de question), `src/components/ChronoRing.vue`.
 
-**Fichiers concernés :**
-- `src/engine/champion.ts` et `champion.test.ts` : tirage du run (avec graine), score, série, fin de run.
-- `src/stores/champion.ts` : le chrono (le store mesure le temps ; l'engine reçoit seulement « réponse » ou « temps écoulé »).
-- `src/screens/ChampionScreen.vue`, route, et la carte du Hub (débloquée selon les points, sinon modale D4).
-- `src/db/database.ts` et `repository.ts` : le record perso (nouvelle version du schéma).
-- `src/config/game.json`, `src/engine/config.ts` et son test.
+**Fichiers :**
+
+| Fichier | Action | Ce qu'il faut faire |
+|---|---|---|
+| `src/config/game.json` | modifier | une section `champion` (nombre d'énigmes, format, score…) selon les réponses du pôle Game Design |
+| `src/engine/config.ts` + `config.test.ts` | modifier | type et vérification de la nouvelle section |
+| `src/engine/champion.ts` + `champion.test.ts` | créer | tirage du run (avec graine), score, série, fin de run |
+| `src/stores/champion.ts` | créer | la partie en cours et le chrono |
+| `src/db/database.ts` + `repository.ts` | modifier | le record perso (nouvelle version du schéma) |
+| `src/screens/ChampionScreen.vue` | créer | l'écran de question Champion |
+| `src/router.ts` | modifier | route `/champion` |
+| `src/screens/HubScreen.vue` | modifier | carte Champion : jouable si débloqué, sinon modale de D4 |
+| `src/i18n/fr.ts` | modifier | textes |
+| `src/config/features.ts` + `features.test.ts` | modifier | `champion: true`, et retirer `champion` de `stillOff` |
+
+**Étapes :**
+1. Fais valider les questions ci-dessus, puis écris la section `champion` de `game.json` et sa vérification.
+2. `champion.ts` : fonctions pures, testées, qui reçoivent un `Rng`. **Le chrono n'est pas dans l'engine** : l'engine reçoit seulement « réponse » ou « temps écoulé ».
+3. Le store : `setInterval` pour le chrono, arrêté quand l'écran se ferme ; le temps écoulé ouvre la modale de D5.
+4. L'écran : `ChronoRing`, `TagPill` « Série ×N », `PuzzleImages`, les `AnswerOption` (via `createRound`), puis l'écran Run terminé (D6) à la fin.
+5. Le record : version suivante du schéma Dexie, test de migration.
 
 **Critères de fin :**
-- Même graine, même run (préparation du Duel).
-- Tests : temps écoulé, série cassée, dernier tour, record battu ou non.
-- Le record perso survit à la fermeture de l'onglet (test avec fake-indexeddb).
-- Avec `champion` à `false`, la carte reste « Bientôt ».
+- [ ] Même graine, même run (test) : préparation du Duel.
+- [ ] Tests : temps écoulé, série cassée, dernier tour, record battu ou non.
+- [ ] Le record survit à la fermeture de l'onglet (test avec fake-indexeddb).
+- [ ] Le chrono s'arrête quand on quitte l'écran (pas de minuterie qui tourne en arrière-plan).
+- [ ] Avec `champion` à `false`, la carte reste « Bientôt ».
 
 ## I6. Mode Maître (avec le format Duo)
 
@@ -332,23 +613,34 @@ Baisser la qualité allège les fichiers mais peut rendre les photos floues : il
 - **Interrupteur :** `maitre`
 - **Dépend de :** tâches I5 (déblocage « Après Champion ») et D5 (Temps écoulé)
 
-**Contexte.** Pour chaque énigme, le joueur voit les 4 images puis **choisit comment répondre** : Duo, Carré ou Directe. Plus le format est difficile, plus il rapporte : la maquette affiche 25 %, 45 % et 100 %, ce qui correspond au rapport des points de chaque format à ceux du Direct dans `game.json` (25, 45, 100). Le chrono de 10 s (`timers.maitreSeconds`) démarre **après** le choix. C'est le seul mode qui utilise le Duo : l'engine et l'écran Question le gèrent déjà.
+**En bref :** pour chaque énigme, le joueur choisit comment répondre (Duo, Carré ou Directe) ; plus c'est dur, plus ça rapporte. 10 s de chrono après le choix.
 
-**Questions au pôle Game Design, à trancher avant de coder :**
+**Contexte.** La maquette affiche 25 %, 45 % et 100 % : c'est le rapport des points de chaque format à ceux du Direct dans `game.json` (25, 45, 100). Le chrono de 10 s (`timers.maitreSeconds`) démarre **après** le choix. C'est le seul mode qui utilise le Duo : `createRound` et l'écran Question le gèrent déjà.
+
+**Questions au pôle Game Design, à trancher AVANT de coder :**
 - Quelle est la condition exacte de déblocage (« Après Champion » : un score minimal ? un run terminé ?) ?
 - Combien d'énigmes dans une partie, et comment se calcule le score ?
 - Les pourcentages affichés sont-ils bien calculés à partir des points des formats ?
 - Le Maître rapporte-t-il des Cauris, et selon quel barème ?
 
-**Composants du kit :** `ModeCard` ou des cartes sur son modèle pour le choix, `ChronoRing` ; l'écran Question pour répondre.
+**À lire avant de commencer :** tout ce qui est listé pour I5, plus le travail d'I5 une fois fusionné (même structure).
 
-**Fichiers concernés :** `src/engine/maitre.ts` et `maitre.test.ts`, `src/stores/maitre.ts`, `src/screens/MaitreScreen.vue`, route, carte du Hub, `src/config/game.json`, `src/engine/config.ts`.
+**Fichiers :**
+
+| Fichier | Action | Ce qu'il faut faire |
+|---|---|---|
+| `src/config/game.json` + `src/engine/config.ts` | modifier | section `maitre` |
+| `src/engine/maitre.ts` + `maitre.test.ts` | créer | règles du mode |
+| `src/stores/maitre.ts` | créer | partie en cours et chrono |
+| `src/screens/MaitreScreen.vue` | créer | écran de choix du format (maquette 7), puis la question |
+| `src/router.ts`, `src/screens/HubScreen.vue`, `src/i18n/fr.ts` | modifier | route, carte du Hub, textes |
+| `src/config/features.ts` + `features.test.ts` | modifier | `maitre: true`, et retirer `maitre` de `stillOff` |
 
 **Critères de fin :**
-- Le choix du format passe par `createRound` (`src/engine/round.ts`) : aucune nouvelle logique de propositions ni de plateau.
-- Les pourcentages viennent de `game.json`, jamais écrits en dur.
-- Tests : chaque format choisi, temps écoulé après le choix, score.
-- Avec `maitre` à `false`, la carte reste « Bientôt ».
+- [ ] Le format choisi passe par `createRound` : aucune nouvelle logique de propositions ni de plateau.
+- [ ] Les pourcentages sont calculés depuis `game.json`, jamais écrits en dur.
+- [ ] Tests : chaque format, temps écoulé après le choix, score.
+- [ ] Avec `maitre` à `false`, la carte reste « Bientôt ».
 
 ## I7. Intégration des sons
 
@@ -357,59 +649,96 @@ Baisser la qualité allège les fichiers mais peut rendre les photos floues : il
 - **Interrupteur :** `sounds`
 - **Dépend de :** tâche D7 (réglage du son)
 
-**Contexte.** Des sons courts pour les moments clés : bonne réponse, réponse fausse, toucher d'une tuile, région terminée. Les fichiers sont à fournir par le pôle Design (ambiance sonore, GDD §14).
+**En bref :** des sons courts aux moments clés, coupables dans les Paramètres.
 
-**À faire :**
-- Un petit module (par exemple `src/audio/`) qui joue un son par son nom, et ne joue rien si `features.sounds` vaut `false` ou si le joueur a coupé le son (D7).
-- Des fichiers audio courts et légers (par exemple en `.webm`/Opus, quelques Ko chacun), jouables hors-ligne.
-- Aucun son au démarrage : les navigateurs bloquent le son avant le premier toucher.
+**Contexte.** Moments visés : bonne réponse, réponse fausse, toucher d'une tuile, région terminée. Les fichiers sont à fournir par le pôle Design (ambiance sonore, GDD §14).
 
-**Fichiers concernés :** le module audio, les fichiers sons (dans `public/` ou `src/assets/`), les écrans qui déclenchent les sons, `src/config/features.ts`.
+**Fichiers :**
+
+| Fichier | Action | Ce qu'il faut faire |
+|---|---|---|
+| `src/audio/sounds.ts` | créer | `playSound(name)` ; ne joue rien si `features.sounds` vaut `false` ou si le son est coupé (store de D7) |
+| `src/audio/sounds.test.ts` | créer | tests (son coupé, interrupteur à `false`) |
+| `src/assets/sounds/*.webm` (ou `public/sounds/`) | créer | les fichiers audio |
+| `src/screens/QuestionScreen.vue`, `RegionDoneScreen.vue` | modifier | déclencher les sons |
+| `src/config/features.ts` + `features.test.ts` | modifier | `sounds: true`, et retirer `sounds` de `stillOff` |
+
+**Étapes :**
+1. Récupère ou prépare des sons très courts, en `.webm` (Opus) ou `.mp3`, de quelques Ko chacun.
+2. `playSound` : crée l'élément `Audio` au premier usage seulement (les navigateurs bloquent le son avant le premier toucher du joueur).
+3. Branche les sons dans les écrans, puis vérifie qu'ils ne partent pas en double.
 
 **Critères de fin :**
-- Chaque son pèse moins de 20 Ko, et l'ensemble moins de 100 Ko.
-- Couper le son dans les Paramètres coupe tout, immédiatement.
-- Avec `sounds` à `false`, aucun fichier son n'est téléchargé.
+- [ ] Chaque son pèse moins de 20 Ko, l'ensemble moins de 100 Ko.
+- [ ] Couper le son dans les Paramètres coupe tout, immédiatement.
+- [ ] Avec `sounds` à `false`, aucun fichier son n'est téléchargé (vérifie dans l'onglet *Network* de `F12`).
+- [ ] Les sons se jouent hors-ligne.
 
 ## I8. Précache hors-ligne par région
 
 - **Pris par :** —
 - **Maquette :** aucune
 - **Interrupteur :** aucun
-- **Dépend de :** cœur jouable fusionné
+- **Dépend de :** aucune tâche
 
-**Contexte.** Le service worker (`vite-plugin-pwa`) précache déjà le code et les polices, mais **pas les images des énigmes** (`public/content/img/`) : sans réseau, les images d'une région pas encore vue ne s'affichent pas. Tout précacher à l'installation coûterait trop de data (plus de 2 Mo). CLAUDE.md demande un **précache par région**.
+**En bref :** les images d'une région se téléchargent à l'avance, pour que le jeu marche sans réseau.
 
-**À faire :**
-- Une règle de cache pour `/content/img/*.webp` (cache d'abord, puis réseau), dans la configuration `workbox` de `vite.config.ts`.
-- Quand le joueur ouvre une région (ou la carte), télécharger en arrière-plan les images de la région en cours et de la suivante (la liste est dans `puzzles.json`).
-- Une limite de taille du cache, pour ne pas remplir le téléphone.
+**Contexte.** Le service worker (`vite-plugin-pwa`) précache le code et les polices, mais **pas les images des énigmes** (`public/content/img/`, voir `workbox.globPatterns` dans `vite.config.ts`). Sans réseau, les images d'une région pas encore vue ne s'affichent pas. Tout précacher à l'installation coûterait plus de 2 Mo de data : CLAUDE.md demande un **précache par région**.
 
-**Fichiers concernés :** `vite.config.ts`, un module de précache (par exemple `src/offline/`), l'appel depuis le store `game` ou l'écran Tour du Faso.
+**À lire avant de commencer :** `vite.config.ts` (bloc `VitePWA`), la documentation de [vite-plugin-pwa](https://vite-pwa-org.netlify.app/) et de [Workbox runtimeCaching](https://developer.chrome.com/docs/workbox/modules/workbox-build#generatesw), `src/content/catalog.ts` (la liste des images par énigme : `puzzle.images`).
+
+**Fichiers :**
+
+| Fichier | Action | Ce qu'il faut faire |
+|---|---|---|
+| `vite.config.ts` | modifier | `workbox.runtimeCaching` pour `/content/img/*.webp` (stratégie « cache d'abord »), avec une limite (`expiration.maxEntries`) |
+| `src/offline/precache.ts` | créer | `precacheRegion(regionId)` : télécharge en arrière-plan les images de la région |
+| `src/offline/precache.test.ts` | créer | tests : liste des images d'une région, sans doublon |
+| `src/stores/game.ts` ou `src/screens/TourScreen.vue` | modifier | précacher la région en cours et la suivante |
+
+**Étapes :**
+1. La règle `runtimeCaching` dans `vite.config.ts`, avec un nom de cache (par exemple `sira-images`).
+2. `precacheRegion` : récupère les images des énigmes de la région (et de la suivante dans `regionOrder`), puis les charge avec `fetch` pour qu'elles entrent dans le cache.
+3. Teste sur la version finale : `npm run build`, `npm run preview`, ouvre une région, puis `F12` → *Network* → « Offline », recharge, et joue.
 
 **Critères de fin :**
-- En mode avion, une région déjà ouverte se joue en entier avec ses images, même après fermeture de l'onglet.
-- À la première installation, seules les images de la première région sont téléchargées.
-- Une nouvelle version du contenu ne laisse pas d'anciennes images en cache indéfiniment.
+- [ ] En mode avion, une région déjà ouverte se joue en entier avec ses images, même après fermeture de l'onglet.
+- [ ] À la première installation, seules les images de la première région sont téléchargées.
+- [ ] Une nouvelle version du contenu ne laisse pas d'anciennes images en cache indéfiniment.
+
+**Piège :** le service worker n'existe pas en `npm run dev` : teste toujours avec `build` puis `preview`.
 
 ## I9. Duel local sur le même téléphone
 
 - **Pris par :** —
 - **Maquette :** aucune : à demander au pôle Design
 - **Interrupteur :** `duelLocal`
-- **Dépend de :** cœur jouable fusionné
+- **Dépend de :** aucune tâche
 
-**Contexte.** Deux joueurs se passent le téléphone et répondent tour à tour aux **mêmes énigmes** ; les scores sont comparés à la fin (GDD §8). Le hasard à graine (`createRng`) garantit que les deux joueurs voient les mêmes énigmes et les mêmes propositions.
+**En bref :** deux joueurs se passent le téléphone et répondent aux mêmes énigmes ; le meilleur score gagne (GDD §8).
 
-**Questions au pôle Game Design :** combien d'énigmes, quels formats, comment se calcule le score, et le duel rapporte-t-il des Cauris ?
+**Contexte.** Le hasard à graine garantit que les deux joueurs voient les mêmes énigmes et les mêmes propositions : même `createRng(seed)` ⇒ même tirage.
 
-**Fichiers concernés :** `src/engine/duel.ts` et `duel.test.ts`, `src/stores/duel.ts`, `src/screens/` (choix des noms, écran « passe le téléphone à… », résultat), route, accès depuis le Hub **seulement si `features.duelLocal`**.
+**Questions au pôle Game Design :** combien d'énigmes, quels formats, quel calcul du score, et le duel rapporte-t-il des Cauris ?
+
+**À lire avant de commencer :** `src/engine/random.ts`, `src/engine/round.ts`, `src/engine/classic.ts` (`startRegionRun` : un tirage d'énigmes avec une graine), `src/stores/game.ts`.
+
+**Fichiers :**
+
+| Fichier | Action | Ce qu'il faut faire |
+|---|---|---|
+| `src/config/game.json` + `src/engine/config.ts` | modifier | section `duel` |
+| `src/engine/duel.ts` + `duel.test.ts` | créer | tirage commun, scores, vainqueur |
+| `src/stores/duel.ts` | créer | la partie à deux (sans toucher à la progression du Tour) |
+| `src/screens/` | créer | choix des noms, « Passe le téléphone à … », questions, résultat |
+| `src/router.ts`, `src/screens/HubScreen.vue`, `src/i18n/fr.ts` | modifier | route, accès depuis le Hub (seulement si `features.duelLocal`), textes |
+| `src/config/features.ts` + `features.test.ts` | modifier | `duelLocal: true`, et retirer le nom de `stillOff` |
 
 **Critères de fin :**
-- Même graine : les deux joueurs voient exactement les mêmes énigmes, dans le même ordre, avec les mêmes propositions (test).
-- Un écran de transition empêche le joueur 2 de voir les réponses du joueur 1.
-- Le duel ne modifie pas la progression du Tour du Faso.
-- Avec `duelLocal` à `false`, aucun accès.
+- [ ] Même graine : les deux joueurs voient exactement les mêmes énigmes, dans le même ordre, avec les mêmes propositions (test).
+- [ ] Un écran de transition empêche le joueur 2 de voir les réponses du joueur 1.
+- [ ] Le duel ne modifie ni les Cauris ni la progression du Tour (sauf décision contraire du pôle Game Design).
+- [ ] Avec `duelLocal` à `false`, aucun accès.
 
 ---
 
