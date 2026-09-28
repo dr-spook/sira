@@ -113,13 +113,14 @@ export function currentItem(run: RegionRun): QueueItem | undefined {
 
 /**
  * Enregistre la réponse à l'énigme en tête de file. Réussie : elle sort de la file.
- * Ratée : elle revient en fin de file, avec le même format.
+ * Ratée : elle reste en tête, le joueur la réessaie tout de suite (avec le même format ;
+ * propositions ou tuiles sont re-mélangées par createRound). La réponse n'est jamais montrée.
  */
 export function recordAnswer(run: RegionRun, success: boolean): RegionRun {
   const [head, ...rest] = run.queue
   if (!head) return run
   if (success) return { ...run, successes: run.successes + 1, queue: rest }
-  return { ...run, queue: [...rest, { ...head, failures: head.failures + 1 }] }
+  return { ...run, queue: [{ ...head, failures: head.failures + 1 }, ...rest] }
 }
 
 export function isRegionComplete(run: RegionRun): boolean {

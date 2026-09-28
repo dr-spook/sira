@@ -122,15 +122,20 @@ export const fr = {
 
   result: {
     bravo: 'Bravo !',
-    almost: 'Presque !',
     answerWas: 'La réponse était',
     points: (points: number) => `+${numberFormat.format(points)} points`,
     streakBonus: (streak: number, cauris: number) =>
       `Série de ${streak} : +${cauris} ${plural(cauris, 'Cauri', 'Cauris')}`,
-    noLoss: 'Aucun Cauri perdu — on apprend !',
+    noLoss: 'Aucun Cauri perdu.',
     loss: (cauris: number) => `${cauris} ${plural(cauris, 'Cauri perdu', 'Cauris perdus')}`,
     next: 'Énigme suivante',
     continue: 'Continuer',
+  },
+
+  retry: {
+    title: 'Pas tout à fait !',
+    text: 'Regarde bien les 4 images : quel mot les relie ?',
+    button: 'Réessayer',
   },
 
   regionDone: {

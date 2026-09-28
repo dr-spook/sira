@@ -107,13 +107,16 @@ describe('file d’attente', () => {
   const start = (): RegionRun =>
     startRegionRun({ regionId: 'bankui', puzzles: PUZZLES }, config, createRng(1))
 
-  it('une énigme ratée revient en fin de file, avec son format', () => {
+  it('une énigme ratée reste en tête : le joueur la réessaie tout de suite, avec son format', () => {
     const run = start()
     const first = currentItem(run)!
-    const after = recordAnswer(run, false)
+    const after = recordAnswer(recordAnswer(run, false), false)
     expect(after.successes).toBe(0)
     expect(after.queue).toHaveLength(4)
-    expect(after.queue.at(-1)).toEqual({ ...first, failures: 1 })
+    expect(currentItem(after)).toEqual({ ...first, failures: 2 })
+    // Une fois trouvée, on passe à l'énigme suivante.
+    const solved = recordAnswer(after, true)
+    expect(currentItem(solved)?.puzzleId).toBe(run.queue[1]!.puzzleId)
   })
 
   it('la région est validée quand l’objectif est atteint', () => {

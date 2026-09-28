@@ -1,6 +1,6 @@
 # Tâches réservées à l'équipe
 
-Le **cœur jouable** (Splash, Hub, Tour du Faso, écran Question, Bravo, Presque, Région terminée, et les composants `ResultIcon`, `AnswerReveal`, `TagPill`, `RegionNode`) est construit par le responsable du dépôt. Les tâches ci-dessous viennent **s'y brancher** : 9 de niveau débutant, 9 de niveau intermédiaire.
+Le **cœur jouable** (Splash, Hub, Tour du Faso, écran Question, Bravo, Réessayer, Région terminée, et les composants `ResultIcon`, `AnswerReveal`, `TagPill`, `RegionNode`) est construit par le responsable du dépôt. Les tâches ci-dessous viennent **s'y brancher** : 9 de niveau débutant, 9 de niveau intermédiaire.
 
 Claude Code ne code aucune de ces tâches : quand il repère un travail hors de sa mission, il l'ajoute ici.
 
@@ -424,3 +424,4 @@ Hors V1, ou à reprendre après les tâches ci-dessus.
 
 - **Icône cauri définitive :** `src/components/icons/IconCauri.vue` est un dessin provisoire. Le pôle Design fournit un dessin de 24×24 (`viewBox="0 0 24 24"`), en traits `currentColor` d'épaisseur 2 comme les icônes lucide, lisible à 12 px et à 40 px. Un développeur remplace ensuite le contenu du `<svg>`, sans changer les props.
 - **Maquettes manquantes :** écran Paramètres (D7), écrans du Duel local (I9).
+- **Maquette 9 et `couleurs-v1.md` à mettre à jour** (décision du responsable, septembre 2026) : après une erreur au Classique, le jeu ne montre **plus** la réponse ni l'anecdote. La modale « Presque ! » est remplacée par « Pas tout à fait ! » avec un bouton « Réessayer », et le joueur réessaie aussitôt la même énigme (propositions ou tuiles re-mélangées). La bonne option ne passe plus en vert après une erreur (couleurs-v1.md §5, option « Juste »). L'anecdote ne s'affiche qu'avec Bravo. L'encadré « La réponse était » (`AnswerReveal`) sert encore pour « Temps écoulé » (D5).
