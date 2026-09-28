@@ -82,7 +82,7 @@ describe('store game (Classique)', () => {
     expect(await listAnecdotes()).toHaveLength(target)
   })
 
-  it('une réponse fausse ne coûte rien, remet la série à 0, et l’énigme revient en fin de file', async () => {
+  it('une réponse fausse ne coûte rien, remet la série à 0, et la même énigme revient re-mélangée', async () => {
     const game = useGameStore()
     await game.startRegion(first, 7)
     const firstPuzzle = game.run!.queue[0]!.puzzleId
@@ -91,7 +91,11 @@ describe('store game (Classique)', () => {
     expect(result?.success).toBe(false)
     expect(result?.reward.cauris).toBe(0)
     expect(usePlayerStore().profile).toMatchObject({ cauris: 0, streak: 0 })
-    expect(game.run!.queue.at(-1)).toMatchObject({ puzzleId: firstPuzzle, failures: 1 })
+    expect(game.run!.queue[0]).toMatchObject({ puzzleId: firstPuzzle, failures: 1 })
+    const before = game.round
+    game.next()
+    expect(game.round?.puzzleId).toBe(firstPuzzle)
+    expect(game.round).not.toBe(before)
   })
 
   it('même graine, même tirage de la région', async () => {

@@ -78,8 +78,9 @@ describe('écran Question', () => {
     const feedback = wrapper.find('.question__feedback')
     expect(feedback.text()).toContain('Faux')
     expect(feedback.find('svg').exists()).toBe(true)
-    // La bonne réponse est montrée en vert, avec sa coche.
-    expect(wrapper.findAll('.answer-option--correct')).toHaveLength(1)
+    // Seule l'option choisie est marquée fausse : la bonne réponse n'est jamais montrée.
+    expect(wrapper.findAll('.answer-option--wrong')).toHaveLength(1)
+    expect(wrapper.findAll('.answer-option--correct')).toHaveLength(0)
     wrapper.unmount()
   })
 })

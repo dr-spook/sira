@@ -1,8 +1,9 @@
 <!--
   Écran Question (maquettes 4 et 5) : formats Carré, Duo et Direct.
-  Après la réponse, le résultat reste visible (bonne réponse en vert, message « Juste ! » ou
-  « Faux » avec une icône) pendant ui.resultRevealMs, puis la modale Bravo ou Presque s'ouvre.
-  Toucher l'écran pendant ce délai ouvre la modale tout de suite.
+  Après la réponse, le résultat reste visible (message « Juste ! » ou « Faux » avec une icône)
+  pendant ui.resultRevealMs, puis la modale Bravo ou Réessayer s'ouvre. Toucher l'écran pendant
+  ce délai ouvre la modale tout de suite.
+  Après une erreur, la bonne réponse n'est JAMAIS montrée : le joueur réessaie la même énigme.
 -->
 <script setup lang="ts">
 import { Check, X } from 'lucide-vue-next'
@@ -27,8 +28,8 @@ import { baseGain } from '@/engine/economy'
 import { fr } from '@/i18n/fr'
 import { useGameStore } from '@/stores/game'
 import { usePlayerStore } from '@/stores/player'
-import AlmostModal from './AlmostModal.vue'
 import BravoModal from './BravoModal.vue'
+import RetryModal from './RetryModal.vue'
 
 const { regionId } = defineProps<{ regionId: string }>()
 
@@ -72,10 +73,9 @@ function optionState(id: string): AnswerOptionState {
   const set = choices.value
   if (!set) return 'idle'
   if (set.eliminated.includes(id)) return 'eliminated'
-  if (!result.value) return 'idle'
-  // La bonne réponse passe en vert même si le joueur s'est trompé (couleurs-v1.md §5).
-  if (id === set.correctId) return 'correct'
-  return id === result.value.choiceId ? 'wrong' : 'idle'
+  if (!result.value || id !== result.value.choiceId) return 'idle'
+  // Seule l'option choisie change d'état : en cas d'erreur, la bonne réponse reste cachée.
+  return result.value.success ? 'correct' : 'wrong'
 }
 
 // --- Direct ---
@@ -240,14 +240,7 @@ onBeforeUnmount(() => clearTimeout(revealTimer))
         :region-complete="result.regionComplete"
         @next="next"
       />
-      <AlmostModal
-        v-else
-        :open="phase === 'modal'"
-        :answer="result.puzzle.answer"
-        :anecdote="result.puzzle.anecdote.text"
-        :loss="-result.reward.cauris"
-        @next="next"
-      />
+      <RetryModal v-else :open="phase === 'modal'" :loss="-result.reward.cauris" @retry="next" />
     </template>
   </main>
 </template>
