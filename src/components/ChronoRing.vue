@@ -11,11 +11,14 @@ const {
   seconds,
   total,
   urgentAt = 5,
+  showUnit = true,
 } = defineProps<{
   seconds: number
   total: number
   /** Seuil visuel d'urgence, en secondes (5 d'après couleurs-v1.md §5). */
   urgentAt?: number
+  /** Affiche « sec » sous le chiffre (désactivé dans la modale « Temps écoulé »). */
+  showUnit?: boolean
 }>()
 
 const RADIUS = 42
@@ -47,7 +50,7 @@ const dashOffset = computed(() => CIRCUMFERENCE * (1 - ratio.value))
     </svg>
     <span class="chrono__value" aria-hidden="true">
       <span class="chrono__seconds">{{ seconds }}</span>
-      <span class="chrono__unit">{{ fr.chrono.unit }}</span>
+      <span v-if="showUnit" class="chrono__unit">{{ fr.chrono.unit }}</span>
     </span>
   </div>
 </template>

@@ -140,7 +140,7 @@ Claude Code ne code aucune de ces tâches : quand il repère un travail hors de 
 
 ## D2. Tableau de correspondance PNG ↔ PDF des maquettes
 
-- **Pris par :** —
+- **Pris par :** fatao
 - **Maquette :** toutes
 - **Interrupteur :** aucun
 - **Dépend de :** aucune tâche
@@ -238,7 +238,7 @@ Claude Code ne code aucune de ces tâches : quand il repère un travail hors de 
 
 ## D5. Écran « Temps écoulé »
 
-- **Pris par :** —
+- **Pris par :** fatao
 - **Maquette :** PNG 10, page 12 du PDF
 - **Interrupteur :** aucun (il sera utilisé par Champion et Maître, tâches I5 et I6)
 - **Dépend de :** aucune tâche

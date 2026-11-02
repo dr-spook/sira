@@ -43,6 +43,11 @@ export const routes: RouteRecordRaw[] = [
 // et supprime ce bloc, elles ne sont pas du tout dans le build.
 if (import.meta.env.DEV) {
   routes.push({ path: '/kit', name: 'kit', component: () => import('@/dev/KitScreen.vue') })
+  routes.push({
+    path: '/dev/temps-ecoule',
+    component: () => import('@/screens/TimeUpModal.vue'),
+    props: { open: true, answer: 'Bankui' },
+  })
 }
 
 // Adresse inconnue : on renvoie au Hub plutôt que d'afficher une page vide.
