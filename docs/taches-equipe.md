@@ -8,26 +8,26 @@ Claude Code ne code aucune de ces tâches : quand il repère un travail hors de 
 
 ## Sommaire
 
-| | Tâche | Interrupteur | Dépend de |
-|---|---|---|---|
-| D1 | [Qualité WebP : moins de 40 Ko par image](#d1-qualité-webp--moins-de-40-ko-par-image) | — | — |
-| D2 | [Tableau de correspondance PNG ↔ PDF](#d2-tableau-de-correspondance-png--pdf-des-maquettes) | — | — |
-| D3 | [Modale « Pas assez de Cauris »](#d3-modale--pas-assez-de-cauris-) | — | — |
-| D4 | [Modale « Champion verrouillé »](#d4-modale--champion-verrouillé-) | — | — |
-| D5 | [Écran « Temps écoulé »](#d5-écran--temps-écoulé-) | — | — |
-| D6 | [Écran « Run terminé »](#d6-écran--run-terminé--variante-récompense-de-tagpill) | — | — |
-| D7 | [Écran Paramètres](#d7-écran-paramètres--son-et-réinitialisation) | `settings` | — |
-| D8 | [Garder la sauvegarde](#d8-demander-au-navigateur-de-garder-la-sauvegarde) | `persistStorage` | — |
-| D9 | [Icônes PWA à partir du logo](#d9-icônes-pwa-à-partir-du-logo) | — | — |
-| I1 | [CI GitHub Actions](#i1-intégration-continue--github-actions-sur-chaque-pr) | — | — |
-| I2 | [Option `--prune`](#i2-option---prune-du-script-de-contenu) | — | — |
-| I3 | [Modale Indice et les 3 indices](#i3-modale-indice-et-branchement-des-3-indices) | `hints` | D3 |
-| I4 | [Bibliothèque](#i4-bibliothèque-et-son-accès-depuis-le-hub) | `library` | — |
-| I5 | [Mode Champion](#i5-mode-champion--logique-et-écran) | `champion` | D4, D5, D6 |
-| I6 | [Mode Maître](#i6-mode-maître-avec-le-format-duo) | `maitre` | I5, D5 |
-| I7 | [Sons](#i7-intégration-des-sons) | `sounds` | D7 |
-| I8 | [Précache hors-ligne par région](#i8-précache-hors-ligne-par-région) | — | — |
-| I9 | [Duel local](#i9-duel-local-sur-le-même-téléphone) | `duelLocal` | — |
+| | Tâche | Interrupteur | Dépend de | État |
+|---|---|---|---|---|
+| D1 | [Qualité WebP : moins de 40 Ko par image](#d1-qualité-webp--moins-de-40-ko-par-image) | — | — | — |
+| D2 | [Tableau de correspondance PNG ↔ PDF](#d2-tableau-de-correspondance-png--pdf-des-maquettes) | — | — | ✅ terminé (fatao), à fusionner |
+| D3 | [Modale « Pas assez de Cauris »](#d3-modale--pas-assez-de-cauris-) | — | — | — |
+| D4 | [Modale « Champion verrouillé »](#d4-modale--champion-verrouillé-) | — | — | — |
+| D5 | [Écran « Temps écoulé »](#d5-écran--temps-écoulé-) | — | — | 🔁 en cours (fatao) : corrections demandées |
+| D6 | [Écran « Run terminé »](#d6-écran--run-terminé--variante-récompense-de-tagpill) | — | — | — |
+| D7 | [Écran Paramètres](#d7-écran-paramètres--son-et-réinitialisation) | `settings` | — | — |
+| D8 | [Garder la sauvegarde](#d8-demander-au-navigateur-de-garder-la-sauvegarde) | `persistStorage` | — | — |
+| D9 | [Icônes PWA à partir du logo](#d9-icônes-pwa-à-partir-du-logo) | — | — | — |
+| I1 | [CI GitHub Actions](#i1-intégration-continue--github-actions-sur-chaque-pr) | — | — | — |
+| I2 | [Option `--prune`](#i2-option---prune-du-script-de-contenu) | — | — | — |
+| I3 | [Modale Indice et les 3 indices](#i3-modale-indice-et-branchement-des-3-indices) | `hints` | D3 | — |
+| I4 | [Bibliothèque](#i4-bibliothèque-et-son-accès-depuis-le-hub) | `library` | — | — |
+| I5 | [Mode Champion](#i5-mode-champion--logique-et-écran) | `champion` | D4, D5, D6 | — |
+| I6 | [Mode Maître](#i6-mode-maître-avec-le-format-duo) | `maitre` | I5, D5 | — |
+| I7 | [Sons](#i7-intégration-des-sons) | `sounds` | D7 | — |
+| I8 | [Précache hors-ligne par région](#i8-précache-hors-ligne-par-région) | — | — | — |
+| I9 | [Duel local](#i9-duel-local-sur-le-même-téléphone) | `duelLocal` | — | — |
 
 ## Comment prendre une tâche
 
@@ -140,7 +140,7 @@ Claude Code ne code aucune de ces tâches : quand il repère un travail hors de 
 
 ## D2. Tableau de correspondance PNG ↔ PDF des maquettes
 
-- **Pris par :** —
+- **Pris par :** fatao
 - **Maquette :** toutes
 - **Interrupteur :** aucun
 - **Dépend de :** aucune tâche
@@ -238,7 +238,7 @@ Claude Code ne code aucune de ces tâches : quand il repère un travail hors de 
 
 ## D5. Écran « Temps écoulé »
 
-- **Pris par :** —
+- **Pris par :** fatao
 - **Maquette :** PNG 10, page 12 du PDF
 - **Interrupteur :** aucun (il sera utilisé par Champion et Maître, tâches I5 et I6)
 - **Dépend de :** aucune tâche
