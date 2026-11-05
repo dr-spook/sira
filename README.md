@@ -139,6 +139,7 @@ Puis ouvre http://localhost:4173 : Chrome propose l'installation dans la barre d
    ```
 
 4. Commite en français, à l'impératif (« Ajoute la modale Indice »), pousse, et ouvre une Pull Request vers `main`. **Jamais de commit directement sur `main`.**
+5. GitHub Actions relance tout seul `lint`, `test`, `build` et `content -- --check` sur ta PR (onglet « Checks »). **On ne fusionne que si la CI est verte** ; si elle est rouge, ouvre le détail, corrige et pousse à nouveau sur la même branche.
 
 ---
 
