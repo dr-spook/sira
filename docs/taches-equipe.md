@@ -19,7 +19,7 @@ Claude Code ne code aucune de ces tâches : quand il repère un travail hors de 
 | D7 | [Écran Paramètres](#d7-écran-paramètres--son-et-réinitialisation) | `settings` | — | — |
 | D8 | [Garder la sauvegarde](#d8-demander-au-navigateur-de-garder-la-sauvegarde) | `persistStorage` | — | — |
 | D9 | [Icônes PWA à partir du logo](#d9-icônes-pwa-à-partir-du-logo) | — | — | — |
-| I1 | [CI GitHub Actions](#i1-intégration-continue--github-actions-sur-chaque-pr) | — | — | — |
+| I1 | [CI GitHub Actions](#i1-intégration-continue--github-actions-sur-chaque-pr) | — | — | 🔁 en cours (dr-spook) |
 | I2 | [Option `--prune`](#i2-option---prune-du-script-de-contenu) | — | — | — |
 | I3 | [Modale Indice et les 3 indices](#i3-modale-indice-et-branchement-des-3-indices) | `hints` | D3 | — |
 | I4 | [Bibliothèque](#i4-bibliothèque-et-son-accès-depuis-le-hub) | `library` | — | — |
@@ -414,7 +414,7 @@ Claude Code ne code aucune de ces tâches : quand il repère un travail hors de 
 
 ## I1. Intégration continue : GitHub Actions sur chaque PR
 
-- **Pris par :** —
+- **Pris par :** dr-spook
 - **Maquette :** aucune
 - **Interrupteur :** aucun
 - **Dépend de :** aucune tâche
