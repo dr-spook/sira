@@ -138,6 +138,11 @@ export const fr = {
     button: 'Réessayer',
   },
 
+  timeUp: {
+    title: 'Temps écoulé',
+    button: 'Continuer',
+  },
+
   regionDone: {
     title: 'Région terminée !',
     bonusLabel: 'Cauris · bonus région',
