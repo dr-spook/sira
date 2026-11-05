@@ -33,7 +33,7 @@ Claude Code ne code aucune de ces tâches : quand il repère un travail hors de 
 
 1. Mets ton nom dans « Pris par » (dans une petite PR, ou en prévenant le responsable), pour que deux personnes ne fassent pas la même chose.
 2. Crée ta branche depuis `main` à jour : `git switch main`, `git pull`, puis `git switch -c feat/…` (ou `fix/…`, `content/…`, `chore/…`).
-3. Une tâche = une PR. Avant de l'ouvrir : `npm run lint`, `npm run test` et `npm run build` doivent passer.
+3. Une tâche = une PR. Avant de l'ouvrir : `npm run lint`, `npm run test` et `npm run build` doivent passer. La CI les relance sur la PR : tant qu'elle n'est pas verte, GitHub bloque la fusion.
 4. Si ta tâche a un **interrupteur**, passe-le à `true` dans `src/config/features.ts` **dans ta PR**, et retire son nom de la liste `stillOff` de `src/config/features.test.ts`. Tant qu'il est à `false`, ta fonctionnalité ne doit laisser aucune trace dans le jeu (ni bouton, ni lien, ni écran vide).
 5. Mets dans la PR une capture à 375 px de large, à côté de la maquette couleur.
 
@@ -161,8 +161,8 @@ Claude Code ne code aucune de ces tâches : quand il repère un travail hors de 
 3. Écris le tableau en Markdown : `| Écran | PNG | Page du PDF |`.
 
 **Critères de fin :**
-- [ ] Les 17 écrans y sont, vérifiés en ouvrant chaque fichier (pas recopiés de ce document).
-- [ ] Le tableau s'affiche correctement sur GitHub.
+- [x] Les 17 écrans y sont, vérifiés en ouvrant chaque fichier (pas recopiés de ce document).
+- [x] Le tableau s'affiche correctement sur GitHub.
 
 ## D3. Modale « Pas assez de Cauris »
 
@@ -264,8 +264,8 @@ Claude Code ne code aucune de ces tâches : quand il repère un travail hors de 
 2. `AnswerReveal :answer="answer"`, puis `BaseButton` « Continuer » qui émet `next`.
 
 **Critères de fin :**
-- [ ] Conforme à la maquette couleur (page 12).
-- [ ] Le bouton émet `next` ; Échap ne ferme pas la modale.
+- [ ] Conforme à la maquette couleur (page 12) : voir « Reste à corriger » ci-dessous.
+- [x] Le bouton émet `next` ; Échap ne ferme pas la modale.
 
 **Reste à corriger (revue de la PR #10, fusionnée incomplète) :**
 - [ ] **L'anneau doit être rouge et plein.** Avec `:seconds="0"`, `dashOffset` vaut la circonférence entière : l'arc rouge disparaît et il ne reste que la piste grise (`--progress-track`). La maquette (page 12) montre un cercle rouge complet et fin autour du 0.
@@ -443,10 +443,11 @@ Claude Code ne code aucune de ces tâches : quand il repère un travail hors de 
 3. Ouvre une PR de test : elle doit passer au vert. Puis casse volontairement un type (dans une branche jetable) : elle doit passer au rouge.
 
 **Critères de fin :**
-- [ ] Le workflow tourne sur chaque PR vers `main` et sur chaque push sur `main`.
-- [ ] Node 24, `npm ci`, cache npm.
-- [ ] Les 4 commandes, dans cet ordre.
-- [ ] Preuve dans la PR : une exécution verte, et une rouge sur une erreur volontaire.
+- [x] Le workflow tourne sur chaque PR vers `main` et sur chaque push sur `main`.
+- [x] Node 24, `npm ci`, cache npm.
+- [x] Les 4 commandes, dans cet ordre.
+- [x] Preuve : [exécution verte](https://github.com/dr-spook/sira/actions/runs/42017249724) (PR #14), [exécution rouge](https://github.com/dr-spook/sira/actions/runs/42016397980) sur une erreur volontaire (PR #12).
+- [x] `main` est protégée : la fusion est bloquée tant que le check « lint, test, build, contenu » n'est pas vert, pour tout le monde.
 
 **Piège :** `content-source/` n'est pas sur GitHub. C'est voulu : `npm run content -- --check` affiche alors un message et **réussit**. N'essaie pas de télécharger le contenu dans la CI.
 
