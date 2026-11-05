@@ -11,10 +11,10 @@ Claude Code ne code aucune de ces tâches : quand il repère un travail hors de 
 | | Tâche | Interrupteur | Dépend de | État |
 |---|---|---|---|---|
 | D1 | [Qualité WebP : moins de 40 Ko par image](#d1-qualité-webp--moins-de-40-ko-par-image) | — | — | — |
-| D2 | [Tableau de correspondance PNG ↔ PDF](#d2-tableau-de-correspondance-png--pdf-des-maquettes) | — | — | ✅ terminé (fatao), à fusionner |
+| D2 | [Tableau de correspondance PNG ↔ PDF](#d2-tableau-de-correspondance-png--pdf-des-maquettes) | — | — | ✅ terminé (fatao) |
 | D3 | [Modale « Pas assez de Cauris »](#d3-modale--pas-assez-de-cauris-) | — | — | — |
 | D4 | [Modale « Champion verrouillé »](#d4-modale--champion-verrouillé-) | — | — | — |
-| D5 | [Écran « Temps écoulé »](#d5-écran--temps-écoulé-) | — | — | 🔁 en cours (fatao) : corrections demandées |
+| D5 | [Écran « Temps écoulé »](#d5-écran--temps-écoulé-) | — | — | 🔁 fusionné, 2 corrections à faire (fatao) |
 | D6 | [Écran « Run terminé »](#d6-écran--run-terminé--variante-récompense-de-tagpill) | — | — | — |
 | D7 | [Écran Paramètres](#d7-écran-paramètres--son-et-réinitialisation) | `settings` | — | — |
 | D8 | [Garder la sauvegarde](#d8-demander-au-navigateur-de-garder-la-sauvegarde) | `persistStorage` | — | — |
@@ -266,6 +266,12 @@ Claude Code ne code aucune de ces tâches : quand il repère un travail hors de 
 **Critères de fin :**
 - [ ] Conforme à la maquette couleur (page 12).
 - [ ] Le bouton émet `next` ; Échap ne ferme pas la modale.
+
+**Reste à corriger (revue de la PR #10, fusionnée incomplète) :**
+- [ ] **L'anneau doit être rouge et plein.** Avec `:seconds="0"`, `dashOffset` vaut la circonférence entière : l'arc rouge disparaît et il ne reste que la piste grise (`--progress-track`). La maquette (page 12) montre un cercle rouge complet et fin autour du 0.
+- [ ] **Le chrono ne doit pas battre.** À 0, `chrono--urgent` lance l'animation `pulse` à l'infini ; la maquette est fixe.
+- [ ] Piste : une variante « terminé » de `ChronoRing` (prop `expired`, ou traitement automatique à `seconds === 0`) qui dessine l'anneau entier en `var(--urgency)` sans animation, montrée dans `/kit`.
+- [ ] Dans la PR de correction (branche `fix/…`), une capture à 375 px à côté de la page 12 du PDF.
 
 **Piège :** `ChronoRing` affiche aussi « sec » sous le chiffre : vérifie avec le pôle Design si la maquette le veut ; sinon, ajoute une prop au composant et mets `/kit` à jour.
 
