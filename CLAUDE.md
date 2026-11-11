@@ -95,7 +95,7 @@ Téléphones modestes et 3G : images WebP compressées, précache par région, p
 - Tous les textes d'interface dans `src/i18n/fr.ts`, pas en dur dans les composants.
 - Branches : `feat/…`, `fix/…`, `content/…`, `chore/…` (maintenance sans nouvelle fonctionnalité). Jamais de commit direct sur `main`.
 - Une PR = une tâche. Elle doit passer `lint`, `test` et `build`.
-- La CI (GitHub Actions, `.github/workflows/ci.yml`) doit être verte avant de fusionner.
+- La CI (GitHub Actions, `.github/workflows/ci.yml`) doit être verte avant de fusionner : `main` est protégée, GitHub bloque la fusion sinon.
 - Messages de commit en français, à l'impératif : « Ajoute la modale Indice ».
 
 ## Ce qu'il ne faut pas faire
