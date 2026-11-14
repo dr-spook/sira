@@ -2,6 +2,7 @@
   Chrono des modes Champion et Maître : un anneau qui se vide.
   Sous le seuil d'urgence, anneau et chiffre passent en rouge et pulsent (couleurs-v1.md §5).
   Le chiffre reste toujours affiché : la couleur n'est jamais le seul signal.
+  Une fois le temps écoulé (prop expired) : anneau rouge plein et fixe, sans pulsation.
 -->
 <script setup lang="ts">
 import { computed } from 'vue'
@@ -12,6 +13,7 @@ const {
   total,
   urgentAt = 5,
   showUnit = true,
+  expired = false,
 } = defineProps<{
   seconds: number
   total: number
@@ -19,21 +21,24 @@ const {
   urgentAt?: number
   /** Affiche « sec » sous le chiffre (désactivé dans la modale « Temps écoulé »). */
   showUnit?: boolean
+  /** Temps écoulé : anneau rouge plein et fixe, comme sur la maquette « Temps écoulé ». */
+  expired?: boolean
 }>()
 
 const RADIUS = 42
 const CIRCUMFERENCE = 2 * Math.PI * RADIUS
 
-const urgent = computed(() => seconds <= urgentAt)
+const urgent = computed(() => !expired && seconds <= urgentAt)
 const ratio = computed(() => (total > 0 ? Math.min(Math.max(seconds / total, 0), 1) : 0))
 // L'arc visible est la part de temps restante ; le reste du cercle est « masqué ».
-const dashOffset = computed(() => CIRCUMFERENCE * (1 - ratio.value))
+// Temps écoulé : l'arc fait le tour complet.
+const dashOffset = computed(() => (expired ? 0 : CIRCUMFERENCE * (1 - ratio.value)))
 </script>
 
 <template>
   <div
     class="chrono"
-    :class="{ 'chrono--urgent': urgent }"
+    :class="{ 'chrono--urgent': urgent, 'chrono--expired': expired }"
     role="timer"
     :aria-label="fr.chrono.remaining(seconds)"
   >
@@ -116,6 +121,15 @@ const dashOffset = computed(() => CIRCUMFERENCE * (1 - ratio.value))
 }
 
 .chrono--urgent .chrono__arc {
+  stroke: var(--urgency);
+}
+
+/* Temps écoulé : anneau plein et fixe, sans pulsation (maquette page 12). */
+.chrono--expired {
+  color: var(--urgency);
+}
+
+.chrono--expired .chrono__arc {
   stroke: var(--urgency);
 }
 

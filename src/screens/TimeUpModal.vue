@@ -21,7 +21,7 @@ const emit = defineEmits<{ next: [] }>()
 
 <template>
   <GameModal :open="open" :title="fr.timeUp.title">
-    <template #icon><ChronoRing :seconds="0" :total="1" :show-unit="false" /></template>
+    <template #icon><ChronoRing :seconds="0" :total="1" expired :show-unit="false" /></template>
     <AnswerReveal :answer="answer" />
     <template #actions>
       <BaseButton block @click="emit('next')">{{ fr.timeUp.button }}</BaseButton>
