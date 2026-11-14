@@ -143,6 +143,20 @@ export const fr = {
     button: 'Continuer',
   },
 
+  notEnoughCauris: {
+    title: 'Pas assez de Cauris',
+    /** La phrase est découpée en morceaux pour que l'écran mette les deux nombres en gras. */
+    need: (cost: number, balance: number) => ({
+      before: 'Il te faut ',
+      cost: `${numberFormat.format(cost)} ${plural(cost, 'Cauri', 'Cauris')}`,
+      middle: ' pour cet indice (tu en as ',
+      balance: numberFormat.format(balance),
+      after: ').',
+    }),
+    hint: 'Gagnes-en en répondant juste ou en terminant une région.',
+    button: 'Continuer sans indice',
+  },
+
   regionDone: {
     title: 'Région terminée !',
     bonusLabel: 'Cauris · bonus région',
