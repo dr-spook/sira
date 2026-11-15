@@ -265,8 +265,8 @@ function log(name: string) {
           <figcaption>{{ states.urgent }}</figcaption>
         </figure>
         <figure>
-          <ChronoRing :seconds="0" :total="1" :show-unit="false" />
-          <figcaption>{{ states.noUnit }}</figcaption>
+          <ChronoRing :seconds="0" :total="1" expired :show-unit="false" />
+          <figcaption>{{ states.expired }}</figcaption>
         </figure>
       </div>
     </section>
