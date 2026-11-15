@@ -48,6 +48,11 @@ if (import.meta.env.DEV) {
     component: () => import('@/screens/TimeUpModal.vue'),
     props: { open: true, answer: 'Bankui' },
   })
+  routes.push({
+    path: '/dev/pas-assez-de-cauris',
+    component: () => import('@/screens/NotEnoughCaurisModal.vue'),
+    props: { open: true, cost: 15, balance: 8 },
+  })
 }
 
 // Adresse inconnue : on renvoie au Hub plutôt que d'afficher une page vide.
