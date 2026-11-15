@@ -16,7 +16,7 @@ Claude Code ne code aucune de ces tâches : quand il repère un travail hors de 
 | D4 | [Modale « Champion verrouillé »](#d4-modale--champion-verrouillé-) | — | — | 🚧 en cours (fatao) |
 | D5 | [Écran « Temps écoulé »](#d5-écran--temps-écoulé-) | — | — | ✅ terminé (fatao) |
 | D6 | [Écran « Run terminé »](#d6-écran--run-terminé--variante-récompense-de-tagpill) | — | — | — |
-| D7 | [Écran Paramètres](#d7-écran-paramètres--son-et-réinitialisation) | `settings` | — | — |
+| D7 | [Écran Paramètres](#d7-écran-paramètres--son-et-réinitialisation) | `settings` | — | 🚧 en cours (Aina) |
 | D8 | [Garder la sauvegarde](#d8-demander-au-navigateur-de-garder-la-sauvegarde) | `persistStorage` | — | — |
 | D9 | [Icônes PWA à partir du logo](#d9-icônes-pwa-à-partir-du-logo) | — | — | — |
 | I1 | [CI GitHub Actions](#i1-intégration-continue--github-actions-sur-chaque-pr) | — | — | ✅ terminé (dr-spook) |
@@ -313,7 +313,7 @@ Claude Code ne code aucune de ces tâches : quand il repère un travail hors de 
 
 ## D7. Écran Paramètres : son et réinitialisation
 
-- **Pris par :** —
+- **Pris par :** Aina (@Driverr0x)
 - **Maquette :** aucune : à demander au pôle Design (en attendant, s'inspirer de la Bibliothèque, PNG 16)
 - **Interrupteur :** `settings`
 - **Dépend de :** aucune tâche
