@@ -28,7 +28,7 @@ export const kit = {
     segmented: 'segmentée (17 cases)',
     normal: 'normal',
     urgent: 'urgent (5 s ou moins)',
-    noUnit: 'sans « sec » (show-unit à false)',
+    expired: 'terminé (expired), sans « sec »',
     withBack: 'avec retour et zone à droite',
     withoutBack: 'sans retour',
     lockedClickable: 'verrouillée, cliquable (lockedClickable)',
