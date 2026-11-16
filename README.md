@@ -140,6 +140,7 @@ Puis ouvre http://localhost:4173 : Chrome propose l'installation dans la barre d
 
 4. Commite en français, à l'impératif (« Ajoute la modale Indice »), pousse, et ouvre une Pull Request vers `main`. **Jamais de commit directement sur `main`.**
 5. GitHub Actions relance tout seul `lint`, `test`, `build` et `content -- --check` sur ta PR (onglet « Checks »). **La fusion est bloquée tant que la CI n'est pas verte** (`main` est protégée) ; si elle est rouge, ouvre le détail, corrige et pousse à nouveau sur la même branche.
+6. **Il faut aussi une approbation** d'un membre avec droits d'écriture (onglet « Files changed » → « Review changes » → « Approve »). On ne peut pas approuver sa propre PR : demande une relecture. Une fois la CI verte et la PR approuvée, clique sur « Merge pull request ».
 
 ---
 

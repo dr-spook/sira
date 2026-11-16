@@ -12,12 +12,12 @@ Claude Code ne code aucune de ces tâches : quand il repère un travail hors de 
 |---|---|---|---|---|
 | D1 | [Qualité WebP : moins de 40 Ko par image](#d1-qualité-webp--moins-de-40-ko-par-image) | — | — | — |
 | D2 | [Tableau de correspondance PNG ↔ PDF](#d2-tableau-de-correspondance-png--pdf-des-maquettes) | — | — | ✅ terminé (fatao) |
-| D3 | [Modale « Pas assez de Cauris »](#d3-modale--pas-assez-de-cauris-) | — | — | — |
-| D4 | [Modale « Champion verrouillé »](#d4-modale--champion-verrouillé-) | — | — | — |
-| D5 | [Écran « Temps écoulé »](#d5-écran--temps-écoulé-) | — | — | 🔁 fusionné, 2 corrections à faire (fatao) |
-| D6 | [Écran « Run terminé »](#d6-écran--run-terminé--variante-récompense-de-tagpill) | — | — | — |
-| D7 | [Écran Paramètres](#d7-écran-paramètres--son-et-réinitialisation) | `settings` | — | — |
-| D8 | [Garder la sauvegarde](#d8-demander-au-navigateur-de-garder-la-sauvegarde) | `persistStorage` | — | — |
+| D3 | [Modale « Pas assez de Cauris »](#d3-modale--pas-assez-de-cauris-) | — | — | ✅ terminé (fatao), 1 retouche mineure |
+| D4 | [Modale « Champion verrouillé »](#d4-modale--champion-verrouillé-) | — | — | 🚧 en cours (fatao) |
+| D5 | [Écran « Temps écoulé »](#d5-écran--temps-écoulé-) | — | — | ✅ terminé (fatao) |
+| D6 | [Écran « Run terminé »](#d6-écran--run-terminé--variante-récompense-de-tagpill) | — | — | 🚧 en cours (Adama) |
+| D7 | [Écran Paramètres](#d7-écran-paramètres--son-et-réinitialisation) | `settings` | — | 🚧 en cours (Aina) |
+| D8 | [Garder la sauvegarde](#d8-demander-au-navigateur-de-garder-la-sauvegarde) | `persistStorage` | — | 🚧 en cours (Adama) |
 | D9 | [Icônes PWA à partir du logo](#d9-icônes-pwa-à-partir-du-logo) | — | — | — |
 | I1 | [CI GitHub Actions](#i1-intégration-continue--github-actions-sur-chaque-pr) | — | — | ✅ terminé (dr-spook) |
 | I2 | [Option `--prune`](#i2-option---prune-du-script-de-contenu) | — | — | — |
@@ -33,7 +33,7 @@ Claude Code ne code aucune de ces tâches : quand il repère un travail hors de 
 
 1. Mets ton nom dans « Pris par » (dans une petite PR, ou en prévenant le responsable), pour que deux personnes ne fassent pas la même chose.
 2. Crée ta branche depuis `main` à jour : `git switch main`, `git pull`, puis `git switch -c feat/…` (ou `fix/…`, `content/…`, `chore/…`).
-3. Une tâche = une PR. Avant de l'ouvrir : `npm run lint`, `npm run test` et `npm run build` doivent passer. La CI les relance sur la PR : tant qu'elle n'est pas verte, GitHub bloque la fusion.
+3. Une tâche = une PR. Avant de l'ouvrir : `npm run lint`, `npm run test` et `npm run build` doivent passer. La CI les relance sur la PR : tant qu'elle n'est pas verte **et** qu'un membre avec droits d'écriture n'a pas approuvé la PR, GitHub bloque la fusion. On ne peut pas approuver sa propre PR.
 4. Si ta tâche a un **interrupteur**, passe-le à `true` dans `src/config/features.ts` **dans ta PR**, et retire son nom de la liste `stillOff` de `src/config/features.test.ts`. Tant qu'il est à `false`, ta fonctionnalité ne doit laisser aucune trace dans le jeu (ni bouton, ni lien, ni écran vide).
 5. Mets dans la PR une capture à 375 px de large, à côté de la maquette couleur.
 
@@ -166,7 +166,7 @@ Claude Code ne code aucune de ces tâches : quand il repère un travail hors de 
 
 ## D3. Modale « Pas assez de Cauris »
 
-- **Pris par :** —
+- **Pris par :** fatao (PR #17)
 - **Maquette :** PNG 13, page 15 du PDF
 - **Interrupteur :** aucun (elle sera ouverte par la modale Indice, tâche I3)
 - **Dépend de :** aucune tâche
@@ -195,16 +195,18 @@ Claude Code ne code aucune de ces tâches : quand il repère un travail hors de 
 4. Ajoute la route de dev avec `props: { open: true, cost: 15, balance: 8 }` et ouvre http://localhost:5173/dev/pas-assez-de-cauris.
 
 **Critères de fin :**
-- [ ] Conforme à la maquette couleur (page 15).
-- [ ] Les deux nombres sont en gras ; la phrase « Gagnes-en en répondant juste… » est en `text-medium`.
-- [ ] Le bouton émet `close`.
-- [ ] Aucun texte en dur dans le `.vue` : tout vient de `fr.ts`.
+- [x] Conforme à la maquette couleur (page 15).
+- [x] Les deux nombres sont en gras ; la phrase « Gagnes-en en répondant juste… » est en `text-medium`.
+- [x] Le bouton émet `close`.
+- [x] Aucun texte en dur dans le `.vue` : tout vient de `fr.ts`.
+
+**Retouche mineure (revue de la PR #17) :** le gras porte sur « 15 Cauris » ; `couleurs-v1.md` (écran 13) ne demande en gras que les chiffres « 15 » et « 8 ». À trancher avec le pôle Design, et à corriger dans `fr.notEnoughCauris.need` si besoin.
 
 **Pièges :** écrire « 15 » dans le fichier au lieu d'utiliser la prop `cost` ; oublier que le coût vient de `game.json` (c'est la tâche I3 qui passera la vraie valeur).
 
 ## D4. Modale « Champion verrouillé »
 
-- **Pris par :** —
+- **Pris par :** fatao
 - **Maquette :** PNG 14, page 16 du PDF
 - **Interrupteur :** aucun (elle ne sera visible dans le jeu qu'avec `champion`, tâche I5)
 - **Dépend de :** aucune tâche
@@ -264,20 +266,20 @@ Claude Code ne code aucune de ces tâches : quand il repère un travail hors de 
 2. `AnswerReveal :answer="answer"`, puis `BaseButton` « Continuer » qui émet `next`.
 
 **Critères de fin :**
-- [ ] Conforme à la maquette couleur (page 12) : voir « Reste à corriger » ci-dessous.
+- [x] Conforme à la maquette couleur (page 12), après la correction de la PR #16.
 - [x] Le bouton émet `next` ; Échap ne ferme pas la modale.
 
-**Reste à corriger (revue de la PR #10, fusionnée incomplète) :**
-- [ ] **L'anneau doit être rouge et plein.** Avec `:seconds="0"`, `dashOffset` vaut la circonférence entière : l'arc rouge disparaît et il ne reste que la piste grise (`--progress-track`). La maquette (page 12) montre un cercle rouge complet et fin autour du 0.
-- [ ] **Le chrono ne doit pas battre.** À 0, `chrono--urgent` lance l'animation `pulse` à l'infini ; la maquette est fixe.
-- [ ] Piste : une variante « terminé » de `ChronoRing` (prop `expired`, ou traitement automatique à `seconds === 0`) qui dessine l'anneau entier en `var(--urgency)` sans animation, montrée dans `/kit`.
-- [ ] Dans la PR de correction (branche `fix/…`), une capture à 375 px à côté de la page 12 du PDF.
+**Corrigé dans la PR #16 (revue de la PR #10, fusionnée incomplète) :**
+- [x] **L'anneau doit être rouge et plein.** Avec `:seconds="0"`, `dashOffset` vaut la circonférence entière : l'arc rouge disparaît et il ne reste que la piste grise (`--progress-track`). La maquette (page 12) montre un cercle rouge complet et fin autour du 0.
+- [x] **Le chrono ne doit pas battre.** À 0, `chrono--urgent` lance l'animation `pulse` à l'infini ; la maquette est fixe.
+- [x] Piste : une variante « terminé » de `ChronoRing` (prop `expired`, ou traitement automatique à `seconds === 0`) qui dessine l'anneau entier en `var(--urgency)` sans animation, montrée dans `/kit`.
+- [x] Dans la PR de correction (branche `fix/…`), une capture à 375 px à côté de la page 12 du PDF.
 
-**Piège :** `ChronoRing` affiche aussi « sec » sous le chiffre : vérifie avec le pôle Design si la maquette le veut ; sinon, ajoute une prop au composant et mets `/kit` à jour.
+**Piège :** `ChronoRing` affiche aussi « sec » sous le chiffre : vérifie avec le pôle Design si la maquette le veut ; sinon, ajoute une prop au composant et mets `/kit` à jour. (Réglé : prop `showUnit`, à `false` dans cette modale.)
 
 ## D6. Écran « Run terminé » (variante récompense de `TagPill`)
 
-- **Pris par :** —
+- **Pris par :** Adama (@adama-traore-github)
 - **Maquette :** PNG 12, page 14 du PDF
 - **Interrupteur :** aucun (il sera utilisé par Champion, tâche I5)
 - **Dépend de :** aucune tâche
@@ -311,7 +313,7 @@ Claude Code ne code aucune de ces tâches : quand il repère un travail hors de 
 
 ## D7. Écran Paramètres : son et réinitialisation
 
-- **Pris par :** —
+- **Pris par :** Aina (@Driverr0x)
 - **Maquette :** aucune : à demander au pôle Design (en attendant, s'inspirer de la Bibliothèque, PNG 16)
 - **Interrupteur :** `settings`
 - **Dépend de :** aucune tâche
@@ -354,7 +356,7 @@ Claude Code ne code aucune de ces tâches : quand il repère un travail hors de 
 
 ## D8. Demander au navigateur de garder la sauvegarde
 
-- **Pris par :** —
+- **Pris par :** Adama (@adama-traore-github)
 - **Maquette :** aucune
 - **Interrupteur :** `persistStorage`
 - **Dépend de :** aucune tâche
