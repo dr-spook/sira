@@ -157,6 +157,15 @@ export const fr = {
     button: 'Continuer sans indice',
   },
 
+  championLocked: {
+    title: 'Champion verrouillé',
+    text: (required: number) =>
+      `Atteins ${numberFormat.format(required)} ${plural(required, 'point', 'points')} en Classique pour débloquer ce mode.`,
+    progress: (points: number, required: number) =>
+      `${numberFormat.format(points)} / ${numberFormat.format(required)} ${plural(required, 'point', 'points')}`,
+    button: 'Jouer en Classique',
+  },
+
   regionDone: {
     title: 'Région terminée !',
     bonusLabel: 'Cauris · bonus région',
