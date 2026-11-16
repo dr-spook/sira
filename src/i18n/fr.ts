@@ -148,8 +148,8 @@ export const fr = {
     /** La phrase est découpée en morceaux pour que l'écran mette les deux nombres en gras. */
     need: (cost: number, balance: number) => ({
       before: 'Il te faut ',
-      cost: `${numberFormat.format(cost)} ${plural(cost, 'Cauri', 'Cauris')}`,
-      middle: ' pour cet indice (tu en as ',
+      cost: numberFormat.format(cost),
+      middle: ` ${plural(cost, 'Cauri', 'Cauris')} pour cet indice (tu en as `,
       balance: numberFormat.format(balance),
       after: ').',
     }),
