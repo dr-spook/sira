@@ -1,15 +1,20 @@
 <!--
   Petite puce de texte : format de l'énigme (« Carré »), série (« Série ×4 »), statut.
-  Variante `neutral` pour l'instant ; la variante `reward` viendra avec l'écran Run terminé (tâche D6).
+  Variantes :
+    - `neutral` : fond carte, texte foncé.
+    - `reward` : fond jaune or, texte foncé, icône Trophy (tâche D6).
 -->
 <script setup lang="ts">
+import { Trophy } from 'lucide-vue-next'
+
 const { variant = 'neutral' } = defineProps<{
-  variant?: 'neutral'
+  variant?: 'neutral' | 'reward'
 }>()
 </script>
 
 <template>
   <span class="tag-pill" :class="`tag-pill--${variant}`">
+    <Trophy v-if="variant === 'reward'" :size="14" aria-hidden="true" />
     <slot />
   </span>
 </template>
@@ -33,5 +38,10 @@ const { variant = 'neutral' } = defineProps<{
 .tag-pill--neutral {
   background: var(--surface-card);
   color: var(--text-high);
+}
+
+.tag-pill--reward {
+  background: var(--reward);
+  color: var(--reward-text);
 }
 </style>

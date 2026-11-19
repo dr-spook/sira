@@ -122,6 +122,7 @@
   --font-size-24: 1.5rem;
   --font-size-32: 2rem;
   --font-size-48: 3rem;
+  --font-size-display: 4.5rem; /* score géant (maquette 12, tâche D6) */
 
   --line-height-body: 1.5;
   --line-height-title: 1.1;
