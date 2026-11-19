@@ -71,6 +71,7 @@ export const kit = {
     brand: 'SIRA',
     tagFormat: 'Carré',
     tagStreak: 'Série ×4',
+    tagRecord: 'Nouveau record perso !',
     revealAnswer: 'Tô',
     regionDone: 'Guiriko',
     regionCurrent: 'Bankui',

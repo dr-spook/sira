@@ -58,6 +58,11 @@ if (import.meta.env.DEV) {
     component: () => import('@/screens/ChampionLockedModal.vue'),
     props: { open: true, points: 62, required: 100 },
   })
+  routes.push({
+    path: '/dev/run-termine',
+    component: () => import('@/screens/RunDoneScreen.vue'),
+    props: { score: 145, isRecord: true, correct: 12, total: 15, bestStreak: 6 },
+  })
 }
 
 // Adresse inconnue : on renvoie au Hub plutôt que d'afficher une page vide.
