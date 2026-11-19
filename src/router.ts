@@ -53,6 +53,11 @@ if (import.meta.env.DEV) {
     component: () => import('@/screens/NotEnoughCaurisModal.vue'),
     props: { open: true, cost: 15, balance: 8 },
   })
+  routes.push({
+    path: '/dev/run-termine',
+    component: () => import('@/screens/RunDoneScreen.vue'),
+    props: { score: 145, isRecord: true, correct: 12, total: 15, bestStreak: 6 },
+  })
 }
 
 // Adresse inconnue : on renvoie au Hub plutôt que d'afficher une page vide.

@@ -345,6 +345,10 @@ function log(name: string) {
           <TagPill>{{ demo.tagStreak }}</TagPill>
           <figcaption>neutral</figcaption>
         </figure>
+        <figure>
+          <TagPill variant="reward">{{ demo.tagRecord }}</TagPill>
+          <figcaption>reward</figcaption>
+        </figure>
       </div>
     </section>
 
