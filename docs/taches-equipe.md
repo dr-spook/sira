@@ -17,7 +17,7 @@ Claude Code ne code aucune de ces tâches : quand il repère un travail hors de 
 | D5 | [Écran « Temps écoulé »](#d5-écran--temps-écoulé-) | — | — | ✅ terminé (fatao) |
 | D6 | [Écran « Run terminé »](#d6-écran--run-terminé--variante-récompense-de-tagpill) | — | — | 🚧 en cours (Adama) |
 | D7 | [Écran Paramètres](#d7-écran-paramètres--son-et-réinitialisation) | `settings` | — | 🚧 en cours (Aina) |
-| D8 | [Garder la sauvegarde](#d8-demander-au-navigateur-de-garder-la-sauvegarde) | `persistStorage` | — | 🚧 en cours (Adama) |
+| D8 | [Garder la sauvegarde](#d8-demander-au-navigateur-de-garder-la-sauvegarde) | `persistStorage` | — | ✅ terminé (Adama) |
 | D9 | [Icônes PWA à partir du logo](#d9-icônes-pwa-à-partir-du-logo) | — | — | — |
 | I1 | [CI GitHub Actions](#i1-intégration-continue--github-actions-sur-chaque-pr) | — | — | ✅ terminé (dr-spook) |
 | I2 | [Option `--prune`](#i2-option---prune-du-script-de-contenu) | — | — | — |
@@ -381,9 +381,9 @@ Claude Code ne code aucune de ces tâches : quand il repère un travail hors de 
 4. Tests : remplace `navigator.storage` par un faux objet avec `vi.stubGlobal`.
 
 **Critères de fin :**
-- [ ] Une seule demande par démarrage, et aucune si c'est déjà accordé.
-- [ ] Navigateur sans l'API ou refus : aucune erreur.
-- [ ] Le résultat n'apparaît dans la console qu'en dev.
+- [x] Une seule demande par démarrage, et aucune si c'est déjà accordé.
+- [x] Navigateur sans l'API ou refus : aucune erreur.
+- [x] Le résultat n'apparaît dans la console qu'en dev.
 
 ## D9. Icônes PWA à partir du logo
 

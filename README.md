@@ -150,7 +150,7 @@ Puis ouvre http://localhost:4173 : Chrome propose l'installation dans la barre d
 src/
   engine/       règles du jeu, en TypeScript pur et testé (pas de Vue, pas de Dexie)
   stores/       Pinia : relie les règles, la sauvegarde et les écrans
-  db/           sauvegarde locale (Dexie / IndexedDB) et ses versions
+  db/           sauvegarde locale (Dexie / IndexedDB), persistance du stockage et ses versions
   config/       game.json (chiffres du jeu), features.ts (interrupteurs), ui.ts (délais)
   content/      puzzles.json, GÉNÉRÉ par npm run content (ne pas l'éditer)
   components/   composants réutilisables (visibles sur /kit)
