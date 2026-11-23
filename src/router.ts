@@ -53,6 +53,11 @@ if (import.meta.env.DEV) {
     component: () => import('@/screens/NotEnoughCaurisModal.vue'),
     props: { open: true, cost: 15, balance: 8 },
   })
+  routes.push({
+    path: '/dev/champion-verrouille',
+    component: () => import('@/screens/ChampionLockedModal.vue'),
+    props: { open: true, points: 62, required: 100 },
+  })
 }
 
 // Adresse inconnue : on renvoie au Hub plutôt que d'afficher une page vide.
