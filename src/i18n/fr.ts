@@ -148,13 +148,22 @@ export const fr = {
     /** La phrase est découpée en morceaux pour que l'écran mette les deux nombres en gras. */
     need: (cost: number, balance: number) => ({
       before: 'Il te faut ',
-      cost: `${numberFormat.format(cost)} ${plural(cost, 'Cauri', 'Cauris')}`,
-      middle: ' pour cet indice (tu en as ',
+      cost: numberFormat.format(cost),
+      middle: ` ${plural(cost, 'Cauri', 'Cauris')} pour cet indice (tu en as `,
       balance: numberFormat.format(balance),
       after: ').',
     }),
     hint: 'Gagnes-en en répondant juste ou en terminant une région.',
     button: 'Continuer sans indice',
+  },
+
+  championLocked: {
+    title: 'Champion verrouillé',
+    text: (required: number) =>
+      `Atteins ${numberFormat.format(required)} ${plural(required, 'point', 'points')} en Classique pour débloquer ce mode.`,
+    progress: (points: number, required: number) =>
+      `${numberFormat.format(points)} / ${numberFormat.format(required)} ${plural(required, 'point', 'points')}`,
+    button: 'Jouer en Classique',
   },
 
   regionDone: {
