@@ -12,8 +12,8 @@ Claude Code ne code aucune de ces tâches : quand il repère un travail hors de 
 |---|---|---|---|---|
 | D1 | [Qualité WebP : moins de 40 Ko par image](#d1-qualité-webp--moins-de-40-ko-par-image) | — | — | — |
 | D2 | [Tableau de correspondance PNG ↔ PDF](#d2-tableau-de-correspondance-png--pdf-des-maquettes) | — | — | ✅ terminé (fatao) |
-| D3 | [Modale « Pas assez de Cauris »](#d3-modale--pas-assez-de-cauris-) | — | — | ✅ terminé (fatao), 1 retouche mineure |
-| D4 | [Modale « Champion verrouillé »](#d4-modale--champion-verrouillé-) | — | — | 🚧 en cours (fatao) |
+| D3 | [Modale « Pas assez de Cauris »](#d3-modale--pas-assez-de-cauris-) | — | — | ✅ terminé (fatao) |
+| D4 | [Modale « Champion verrouillé »](#d4-modale--champion-verrouillé-) | — | — | ✅ terminé (fatao) |
 | D5 | [Écran « Temps écoulé »](#d5-écran--temps-écoulé-) | — | — | ✅ terminé (fatao) |
 | D6 | [Écran « Run terminé »](#d6-écran--run-terminé--variante-récompense-de-tagpill) | — | — | 🚧 en cours (Adama) |
 | D7 | [Écran Paramètres](#d7-écran-paramètres--son-et-réinitialisation) | `settings` | — | 🚧 en cours (Aina) |

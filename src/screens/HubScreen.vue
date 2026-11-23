@@ -3,11 +3,13 @@
   Seul le Classique est jouable ; les autres cartes suivent src/config/features.ts.
 -->
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
+import { useRouter } from 'vue-router'
 import CauriChip from '@/components/CauriChip.vue'
 import ModeCard from '@/components/ModeCard.vue'
 import ProgressBar from '@/components/ProgressBar.vue'
 import ScreenHeader from '@/components/ScreenHeader.vue'
+import ChampionLockedModal from '@/screens/ChampionLockedModal.vue'
 import { features } from '@/config/features'
 import { gameConfig } from '@/config/game'
 import { fr } from '@/i18n/fr'
@@ -16,6 +18,15 @@ import { useProgressStore } from '@/stores/progress'
 
 const player = usePlayerStore()
 const progress = useProgressStore()
+const router = useRouter()
+
+// Modale « Champion verrouillé » : ouverte au toucher de la carte Champion verrouillée.
+const championLockedOpen = ref(false)
+
+function playClassic() {
+  championLockedOpen.value = false
+  router.push({ name: 'tour' })
+}
 
 const total = gameConfig.classique.regionOrder.length
 const done = computed(
@@ -28,6 +39,7 @@ interface Mode {
   subtitle: string
   locked: boolean
   lockLabel?: string
+  lockedClickable?: boolean
 }
 
 // Une fonctionnalité pas encore livrée affiche « Bientôt » : on ne promet ni date ni contenu.
@@ -40,6 +52,8 @@ const otherModes = computed<Mode[]>(() => [
     lockLabel: features.champion
       ? fr.hub.champion.condition(gameConfig.unlocks.champion.classiquePoints)
       : fr.common.soon,
+    // Cliquable seulement si le mode existe (interrupteur) mais que le joueur n'a pas ses points.
+    lockedClickable: features.champion && !player.championUnlocked(),
   },
   {
     id: 'maitre',
@@ -87,8 +101,18 @@ const otherModes = computed<Mode[]>(() => [
         :subtitle="mode.subtitle"
         :locked="mode.locked"
         :lock-label="mode.lockLabel"
+        :locked-clickable="mode.lockedClickable"
+        @locked-click="championLockedOpen = true"
       />
     </div>
+    <ChampionLockedModal
+      v-if="features.champion"
+      :open="championLockedOpen"
+      :points="player.profile.points"
+      :required="gameConfig.unlocks.champion.classiquePoints"
+      @close="championLockedOpen = false"
+      @play-classic="playClassic"
+    />
   </main>
 </template>
 
