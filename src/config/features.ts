@@ -21,7 +21,7 @@ export const features = {
   /** Duel par Code Défi envoyé sur WhatsApp. */
   duelWhatsapp: false,
   /** Demande au navigateur de ne pas effacer la sauvegarde (navigator.storage.persist). */
-  persistStorage: false,
+  persistStorage: true,
 } as const satisfies Record<string, boolean>
 
 export type Feature = keyof typeof features

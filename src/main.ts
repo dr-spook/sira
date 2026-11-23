@@ -6,7 +6,9 @@ import '@/styles/tokens.css'
 import '@/styles/base.css'
 
 import App from '@/App.vue'
+import { features } from '@/config/features'
 import { configErrorMessage, configErrors } from '@/config/game'
+import { requestPersistentStorage } from '@/db/persist'
 import { fr } from '@/i18n/fr'
 import { router } from '@/router'
 
@@ -19,6 +21,10 @@ if (configErrors.length) {
   box.textContent = `${fr.errors.config}\n\n${message}`
   document.getElementById('app')?.replaceChildren(box)
   throw new Error(message)
+}
+
+if (features.persistStorage) {
+  void requestPersistentStorage()
 }
 
 createApp(App).use(createPinia()).use(router).mount('#app')

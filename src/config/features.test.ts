@@ -29,8 +29,8 @@ describe('features', () => {
       'sounds',
       'duelLocal',
       'duelWhatsapp',
-      'persistStorage',
     ]
     for (const name of stillOff) expect(features[name], name).toBe(false)
+    expect(features.persistStorage).toBe(true)
   })
 })
