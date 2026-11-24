@@ -21,7 +21,7 @@ Claude Code ne code aucune de ces tâches : quand il repère un travail hors de 
 | D9 | [Icônes PWA à partir du logo](#d9-icônes-pwa-à-partir-du-logo) | — | — | — |
 | I1 | [CI GitHub Actions](#i1-intégration-continue--github-actions-sur-chaque-pr) | — | — | ✅ terminé (dr-spook) |
 | I2 | [Option `--prune`](#i2-option---prune-du-script-de-contenu) | — | — | — |
-| I3 | [Modale Indice et les 3 indices](#i3-modale-indice-et-branchement-des-3-indices) | `hints` | D3 | — |
+| I3 | [Modale Indice et les 3 indices](#i3-modale-indice-et-branchement-des-3-indices) | `hints` | D3 | 🚧 en cours (fatao) |
 | I4 | [Bibliothèque](#i4-bibliothèque-et-son-accès-depuis-le-hub) | `library` | — | — |
 | I5 | [Mode Champion](#i5-mode-champion--logique-et-écran) | `champion` | D4, D5, D6 | — |
 | I6 | [Mode Maître](#i6-mode-maître-avec-le-format-duo) | `maitre` | I5, D5 | — |
@@ -490,7 +490,7 @@ Claude Code ne code aucune de ces tâches : quand il repère un travail hors de 
 
 ## I3. Modale Indice et branchement des 3 indices
 
-- **Pris par :** —
+- **Pris par :** fatao
 - **Maquette :** PNG 15, page 17 du PDF (et PNG 4 et 5 pour le bouton Indice)
 - **Interrupteur :** `hints`
 - **Dépend de :** tâche D3 (modale « Pas assez de Cauris »)

@@ -5,7 +5,7 @@
 // La tâche qui construit une fonctionnalité passe son interrupteur à true dans sa propre PR.
 export const features = {
   /** Bouton Indice et modale « Utiliser un indice » dans l'écran Question. */
-  hints: false,
+  hints: true,
   /** Bibliothèque des anecdotes, et son accès depuis le Hub. */
   library: false,
   /** Écran Paramètres (son, réinitialisation). */
