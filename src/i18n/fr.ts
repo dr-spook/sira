@@ -1,4 +1,5 @@
 import type { RegionStatus } from '@/engine/classic'
+import type { HintId } from '@/engine/config'
 
 const numberFormat = new Intl.NumberFormat('fr-FR')
 const plural = (count: number, one: string, many: string) => (Math.abs(count) > 1 ? many : one)
@@ -164,6 +165,18 @@ export const fr = {
     progress: (points: number, required: number) =>
       `${numberFormat.format(points)} / ${numberFormat.format(required)} ${plural(required, 'point', 'points')}`,
     button: 'Jouer en Classique',
+  },
+
+  hint: {
+    title: 'Utiliser un indice',
+    labels: {
+      eliminer_2: 'Éliminer 2 mauvaises réponses',
+      retirer_leurre: 'Retirer un leurre',
+      placer_lettre: 'Placer une lettre',
+    } satisfies Record<HintId, string>,
+    missing: (amount: number) => `il te manque ${numberFormat.format(amount)}`,
+    nothingLeft: 'plus rien à retirer',
+    close: 'Fermer',
   },
 
   regionDone: {

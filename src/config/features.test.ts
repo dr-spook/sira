@@ -21,7 +21,6 @@ describe('features', () => {
   // Quand une tâche active sa fonctionnalité, elle retire son nom de cette liste dans sa PR.
   it('garde à false les fonctionnalités pas encore livrées', () => {
     const stillOff: (keyof typeof features)[] = [
-      'hints',
       'library',
       'settings',
       'champion',

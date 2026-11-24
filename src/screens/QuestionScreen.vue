@@ -23,12 +23,14 @@ import { ui } from '@/config/ui'
 import { catalog } from '@/content/catalog'
 import { isBoardFull, letterOf } from '@/engine/board'
 import { currentItem } from '@/engine/classic'
-import type { Gain } from '@/engine/config'
+import type { Gain, HintId } from '@/engine/config'
 import { baseGain } from '@/engine/economy'
 import { fr } from '@/i18n/fr'
 import { useGameStore } from '@/stores/game'
 import { usePlayerStore } from '@/stores/player'
 import BravoModal from './BravoModal.vue'
+import HintModal from './HintModal.vue'
+import NotEnoughCaurisModal from './NotEnoughCaurisModal.vue'
 import RetryModal from './RetryModal.vue'
 
 const { regionId } = defineProps<{ regionId: string }>()
@@ -38,8 +40,12 @@ const game = useGameStore()
 const player = usePlayerStore()
 
 const phase = ref<'answering' | 'reveal' | 'modal'>('answering')
-/** Ouvre la modale Indice : elle sera branchée par la tâche I3 (interrupteur hints). */
 const hintsOpen = ref(false)
+const notEnoughOpen = ref(false)
+/** Coût de l'indice refusé faute de Cauris, passé à la modale « Pas assez de Cauris ». */
+const refusedCost = ref(0)
+/** Indices qui ne servent plus à rien sur cette manche (remis à zéro à chaque nouvelle manche). */
+const exhaustedHints = ref<HintId[]>([])
 let revealTimer: ReturnType<typeof setTimeout> | undefined
 
 const region = computed(() => catalog.regions.find((r) => r.id === regionId))
@@ -97,6 +103,29 @@ async function validate() {
   if (await game.submit()) startReveal()
 }
 
+// Coût de l'indice le moins cher du format en cours (affiché sur le bouton Indice).
+const cheapestHint = computed(() => {
+  const format = round.value?.format
+  if (!format) return undefined
+  const costs = Object.values(gameConfig.hints)
+    .filter((hint) => hint.formats.includes(format))
+    .map((hint) => hint.cost)
+  return costs.length > 0 ? Math.min(...costs) : undefined
+})
+
+async function useHint(hint: HintId) {
+  const outcome = await game.requestHint(hint)
+  if (outcome.ok) {
+    hintsOpen.value = false
+  } else if (outcome.error === 'nothing-left') {
+    exhaustedHints.value = [...exhaustedHints.value, hint]
+  } else if (outcome.error === 'insufficient-cauris') {
+    refusedCost.value = gameConfig.hints[hint].cost
+    hintsOpen.value = false
+    notEnoughOpen.value = true
+  }
+}
+
 function startReveal() {
   phase.value = 'reveal'
   revealTimer = setTimeout(showModal, ui.resultRevealMs)
@@ -112,6 +141,7 @@ function next() {
     router.push({ name: 'region-done', params: { regionId } })
     return
   }
+  exhaustedHints.value = []
   phase.value = 'answering'
   game.next()
 }
@@ -215,18 +245,36 @@ onBeforeUnmount(() => clearTimeout(revealTimer))
 
     <footer class="question__footer">
       <BaseButton
-        v-if="features.hints"
+        v-if="features.hints && cheapestHint !== undefined"
         variant="secondary"
         size="sm"
         :disabled="game.answered"
         @click="hintsOpen = true"
       >
         {{ fr.question.hint }}
+        <CauriChip :amount="cheapestHint" size="sm" />
       </BaseButton>
       <RouterLink class="question__give-up" :to="{ name: 'tour', query: { region: regionId } }">
         {{ fr.question.giveUp }}
       </RouterLink>
     </footer>
+
+    <template v-if="features.hints">
+      <HintModal
+        :open="hintsOpen"
+        :format="round.format"
+        :balance="player.profile.cauris"
+        :exhausted="exhaustedHints"
+        @close="hintsOpen = false"
+        @select="useHint"
+      />
+      <NotEnoughCaurisModal
+        :open="notEnoughOpen"
+        :cost="refusedCost"
+        :balance="player.profile.cauris"
+        @close="notEnoughOpen = false"
+      />
+    </template>
 
     <template v-if="result">
       <BravoModal
