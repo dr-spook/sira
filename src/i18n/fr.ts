@@ -176,10 +176,14 @@ export const fr = {
   runDone: {
     eyebrow: 'Champion',
     title: 'Run terminé',
-    score: 'Score',
+    score: (n: number) => numberFormat.format(n),
+    scoreLabel: 'Score',
     record: 'Nouveau record perso !',
     correct: 'Bonnes réponses',
+    correctValue: (correct: number, total: number) =>
+      `${numberFormat.format(correct)}/${numberFormat.format(total)}`,
     bestStreak: 'Série max',
+    streakValue: (n: number) => `×${numberFormat.format(n)}`,
     replay: 'Rejouer',
     backToHub: 'Retour au hub',
   },

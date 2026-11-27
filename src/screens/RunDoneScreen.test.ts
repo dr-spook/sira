@@ -50,14 +50,30 @@ describe('RunDoneScreen', () => {
       bestStreak: 6,
     })
 
-    expect(wrapper.find('.run-done__score-value').text()).toBe('145')
+    expect(wrapper.find('.run-done__score-value').text()).toBe(fr.runDone.score(145))
     expect(wrapper.text()).toContain(fr.runDone.title)
     expect(wrapper.text()).toContain(fr.runDone.record)
     expect(wrapper.find('.tag-pill--reward').exists()).toBe(true)
-    expect(wrapper.text()).toContain('12/15')
-    expect(wrapper.text()).toContain('×6')
+    expect(wrapper.text()).toContain(fr.runDone.correctValue(12, 15))
+    expect(wrapper.text()).toContain(fr.runDone.streakValue(6))
     expect(wrapper.text()).toContain(fr.runDone.correct)
     expect(wrapper.text()).toContain(fr.runDone.bestStreak)
+  })
+
+  it('formate les nombres avec le séparateur de milliers et préfixe multiplicateur', () => {
+    const wrapper = mountScreen({
+      score: 1250,
+      isRecord: true,
+      correct: 10,
+      total: 15,
+      bestStreak: 8,
+    })
+
+    expect(wrapper.find('.run-done__score-value').text()).toBe(fr.runDone.score(1250))
+    expect(wrapper.find('.run-done__score-value').text()).toMatch(/1[\s\u202f]250/)
+    expect(wrapper.text()).toContain(fr.runDone.correctValue(10, 15))
+    expect(wrapper.text()).toContain(fr.runDone.streakValue(8))
+    expect(wrapper.text()).toContain('×8')
   })
 
   it('masque le badge de record quand isRecord est faux', () => {

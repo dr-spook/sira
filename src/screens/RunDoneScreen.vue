@@ -32,18 +32,18 @@ const emit = defineEmits<{
     <h1 class="run-done__title">{{ fr.runDone.title }}</h1>
 
     <div class="run-done__score-container">
-      <span class="run-done__score-label">{{ fr.runDone.score }}</span>
-      <span class="run-done__score-value">{{ score }}</span>
+      <span class="run-done__score-label">{{ fr.runDone.scoreLabel }}</span>
+      <span class="run-done__score-value">{{ fr.runDone.score(score) }}</span>
       <TagPill v-if="isRecord" variant="reward">{{ fr.runDone.record }}</TagPill>
     </div>
 
     <div class="run-done__stats">
       <div class="run-done__stat-card">
-        <span class="run-done__stat-value">{{ correct }}/{{ total }}</span>
+        <span class="run-done__stat-value">{{ fr.runDone.correctValue(correct, total) }}</span>
         <span class="run-done__stat-label">{{ fr.runDone.correct }}</span>
       </div>
       <div class="run-done__stat-card">
-        <span class="run-done__stat-value">×{{ bestStreak }}</span>
+        <span class="run-done__stat-value">{{ fr.runDone.streakValue(bestStreak) }}</span>
         <span class="run-done__stat-label">{{ fr.runDone.bestStreak }}</span>
       </div>
     </div>
