@@ -173,6 +173,21 @@ export const fr = {
     backToMap: 'Retour à la carte',
   },
 
+  runDone: {
+    eyebrow: 'Champion',
+    title: 'Run terminé',
+    score: (n: number) => numberFormat.format(n),
+    scoreLabel: 'Score',
+    record: 'Nouveau record perso !',
+    correct: 'Bonnes réponses',
+    correctValue: (correct: number, total: number) =>
+      `${numberFormat.format(correct)}/${numberFormat.format(total)}`,
+    bestStreak: 'Série max',
+    streakValue: (n: number) => `×${numberFormat.format(n)}`,
+    replay: 'Rejouer',
+    backToHub: 'Retour au hub',
+  },
+
   errors: {
     config: 'Le jeu ne peut pas démarrer : un réglage est invalide.',
   },

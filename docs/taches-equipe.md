@@ -15,7 +15,7 @@ Claude Code ne code aucune de ces tâches : quand il repère un travail hors de 
 | D3 | [Modale « Pas assez de Cauris »](#d3-modale--pas-assez-de-cauris-) | — | — | ✅ terminé (fatao) |
 | D4 | [Modale « Champion verrouillé »](#d4-modale--champion-verrouillé-) | — | — | ✅ terminé (fatao) |
 | D5 | [Écran « Temps écoulé »](#d5-écran--temps-écoulé-) | — | — | ✅ terminé (fatao) |
-| D6 | [Écran « Run terminé »](#d6-écran--run-terminé--variante-récompense-de-tagpill) | — | — | 🚧 en cours (Adama) |
+| D6 | [Écran « Run terminé »](#d6-écran--run-terminé--variante-récompense-de-tagpill) | — | — | ✅ terminé (Adama) |
 | D7 | [Écran Paramètres](#d7-écran-paramètres--son-et-réinitialisation) | `settings` | — | 🚧 en cours (Aina) |
 | D8 | [Garder la sauvegarde](#d8-demander-au-navigateur-de-garder-la-sauvegarde) | `persistStorage` | — | ✅ terminé (Adama) |
 | D9 | [Icônes PWA à partir du logo](#d9-icônes-pwa-à-partir-du-logo) | — | — | — |
@@ -307,9 +307,9 @@ Claude Code ne code aucune de ces tâches : quand il repère un travail hors de 
 3. Route de dev avec `props: { score: 145, isRecord: true, correct: 12, total: 15, bestStreak: 6 }`.
 
 **Critères de fin :**
-- [ ] Les 2 variantes de `TagPill` sont sur `/kit`.
-- [ ] « Nouveau record perso ! » n'apparaît que si `isRecord` vaut `true`.
-- [ ] Aucune taille en `px` écrite en dur pour le score : elle vient d'un token.
+- [x] Les 2 variantes de `TagPill` sont sur `/kit`.
+- [x] « Nouveau record perso ! » n'apparaît que si `isRecord` vaut `true`.
+- [x] Aucune taille en `px` écrite en dur pour le score : elle vient d'un token.
 
 ## D7. Écran Paramètres : son et réinitialisation
 

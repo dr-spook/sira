@@ -56,6 +56,7 @@ npm run dev
 Ouvre l'adresse affichée (en général **http://localhost:5173**) dans Chrome ou Edge. Pour voir le jeu comme sur un téléphone : `F12`, puis l'icône téléphone (« Toggle device toolbar »), et choisis une largeur de 375 px.
 
 - **`/kit`** (http://localhost:5173/kit) : tous les composants de l'interface, dans tous leurs états. C'est la référence visuelle de l'équipe. Cette page n'existe qu'en dev.
+- **`/dev/*`** : prévisualisation isolée des écrans et modales en dev (ex. `/dev/run-termine`, `/dev/temps-ecoule`, `/dev/pas-assez-de-cauris`).
 - Le serveur recharge la page tout seul quand tu enregistres un fichier. `Ctrl + C` dans le terminal pour l'arrêter.
 
 ---
